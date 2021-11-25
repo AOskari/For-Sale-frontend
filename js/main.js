@@ -102,7 +102,6 @@ hideMidSectionElements = () => {
 }
 
 
-
 /** Toggles the display booleans according to the given parameter. **/
 const toggleWantedView = (view) => {
   showSearch = (view == "search");
