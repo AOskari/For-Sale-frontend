@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="styles.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;700&display=swap" rel="stylesheet">
   <title>For-Sale</title>
 </head>
 <body>
@@ -44,20 +47,27 @@
     </div>
     
     <section id="mid_section">
-      <div>
-        <h1 id="user_info">
-          Current user placeholder
-        </h1>
-      </div>
 
       <div id="login_and_register" class="none">
+        <div id="logo_container">
+          <h1>Logo placeholder</h1>
+        </div>
         <form id="login_form">
-          <h1>Login registered user</h1>
-          <input id="login_name" placeholder="user" name="username" type="email" required>
-          <input id="login_passwd" type="password" name="password" placeholder="Password" required>
-          <button type="submit">Login</button>
+          <h3 style="font-weight: 700;">LOGIN</h3>
+          <div class="input_container">
+            <h4>Email</h4>
+            <input id="login_name" placeholder="..." name="username" type="email" class="input_field" required>
+          </div>
+          <div class="input_container">
+            <h4>Password</h4>
+            <input id="login_passwd" type="password" name="password" placeholder="..." class="input_field" required>
+            <a href="">Not a registered user?</a>
+          </div>
+          
+          <button type="submit" id="sign_in_button">Sign in</button>
         </form>
 
+<!-- 
         <form id="register_form">
           <h1>Register user</h1>
           <input id="register_email" placeholder="user email" name="email" type="email" required>
@@ -65,7 +75,7 @@
           <input id="register_lname" placeholder="last name" name="last_name" type="text" required>
           <input id="register_passwd" type="password" name="passwd" placeholder="Password" required>
           <button type="submit">Register</button>
-        </form>
+        </form> -->
       </div>
 
     </section>
