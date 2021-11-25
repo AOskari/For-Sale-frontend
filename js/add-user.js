@@ -30,7 +30,7 @@ registerUserForm.addEventListener("submit", async (evt) => {
 // Adding an submit eventListener which attempts to log the user in with the given credentials.
 loginForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
-  const data = serializeJson(registerUserForm);
+  const data = serializeJson(loginForm);
 
   // Creating an object which contains the needed options for fetching
   const fetchOptions = {
