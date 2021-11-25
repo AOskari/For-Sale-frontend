@@ -21,7 +21,7 @@
       <input id="searchbar" placeholder="Search items.." class="hidden"/>
         
       <!-- login_btn displayed according to registered status -->
-      <button id="login_btn" class="visible">
+      <button id="login_btn" class="visible" onclick="displayLoginView()">
         Login / Register
       </button>
 
@@ -50,7 +50,7 @@
         </h1>
       </div>
 
-      <div id="login_and_register" class="visible">
+      <div id="login_and_register" class="none">
         <form id="login_form">
           <h1>Login registered user</h1>
           <input id="login_name" placeholder="user" name="email" type="email" required>
@@ -72,10 +72,8 @@
 
 
 
-   
-
   </div>
-  <script src="main.js"></script>
+  <script src="./js/main.js"></script>
   <script src="./js/add-user.js"></script>
   <script src="./js/serialize.js"></script>
 </body>

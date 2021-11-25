@@ -6,35 +6,44 @@ let showOwnAds = false;
 let showLogin = false;
 let logged = false;
 
-/** Toggles the Search screen. This is used by the Search bottom nav button. **/
+/** Toggles the Search screen. **/
 const displaySearchView = () => {
   toggleWantedView("search");
   hideToolbarElements();
+  hideMidSectionElements();
   const searchbar = document.getElementById("searchbar");
   searchbar.classList.add("visible");
   searchbar.classList.remove("hidden");
   toggleNavButtonFocus("search_nav_button");
 }
 
-/** Toggles the Home screen. This is used by the Home bottom nav button. **/
+/** Toggles the Home screen. **/
 const displayHomeView = () => {
   toggleWantedView("home");
   hideToolbarElements();
+  hideMidSectionElements();
    // TODO: Display Home screen.
   toggleNavButtonFocus("home_nav_button");
 }
 
-/** Toggles the Own ads screen. This is used by the Own ads bottom nav button. **/
+/** Toggles the Own ads screen. **/
 const displayOwnAdsView = () => {
   toggleWantedView("ownAds");
   hideToolbarElements();
-
+  hideMidSectionElements();
   // TODO: Display Own ads screen.
-
   toggleNavButtonFocus("own_ads_nav_button")
 }
 
-
+/** Toggles the Login and register screen. **/
+const displayLoginView = () => {
+  toggleWantedView("login");
+  hideToolbarElements();
+  hideMidSectionElements();
+  const loginForm = document.getElementById("login_and_register");
+  loginForm.classList.remove("none");
+  loginForm.classList.remove("display");
+}
 
 
 /** Toggles the focus of the bottom navigation buttons according to the given parameter. **/
@@ -86,6 +95,12 @@ const hideToolbarElements = () => {
   }
 }
 
+hideMidSectionElements = () => {
+  const loginForm = document.getElementById("login_and_register");
+  loginForm.classList.remove("display");
+  loginForm.classList.add("none");  
+}
+
 
 
 /** Toggles the display booleans according to the given parameter. **/
@@ -102,20 +117,3 @@ const checkLoggedStatus = () => {
   // TODO: Set logged in according if the user has logged in.
   // Update UI if user has logged in.
 }
-
-
-// get users to form options
-const getUsers = async () => {
-  try {
-    const options = {
-      headers: {
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    };
-    const response = await fetch(url + '/user', options);
-    const users = await response.json();
-    createUserOptions(users);
-  } catch (e) {
-    console.log(e.message);
-  }
-};

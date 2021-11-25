@@ -5,6 +5,8 @@
 
 .hidden { visibility: hidden }
 .visible { visibility: visible }
+.none { display: none }
+.display {display: block }
 .focused { background-color: tomato }
 .unfocused { background-color: white }
 
