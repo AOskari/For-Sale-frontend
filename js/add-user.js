@@ -1,7 +1,6 @@
 'use strict';
 
-const url = "10.114.34.81/app";
-
+const url = "localhost:3000";
 const registerUserForm = document.getElementById("register_form");
 
 registerUserForm.addEventListener("submit", async (evt) => {
