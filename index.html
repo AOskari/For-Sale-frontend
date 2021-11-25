@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="styles.css" rel="stylesheet">
+  <title>For-Sale</title>
+</head>
+<body>
+  <div id="main">
+
+    <div id="toolbar">
+
+      <!-- user_thumbnail displayed according to registered status -->
+      <div id="user_thumbnail" class="hidden">
+          <img src="" alt="">
+      </div>
+
+      <!-- Hidden class will be toggled when using search_nav_button -->
+      <input id="searchbar" placeholder="Search items.." class="hidden"/>
+        
+      <!-- login_btn displayed according to registered status -->
+      <button id="login_btn" class="visible">
+        Login / Register
+      </button>
+
+
+    </div>
+
+    <div id="bottom_nav">
+      <button id="home_nav_button" class="focused" onclick="displayHomeView()">
+          Home
+      </button>
+
+      <button id="search_nav_button" class="unfocused" onclick="displaySearchView()">
+          Search
+      </button>
+
+      <button id="own_ads_nav_button" class="unfocused" onclick="displayOwnAdsView()">
+          Own ads
+      </button>
+
+    </div>
+    
+    <section id="mid_section">
+      <div>
+        <h1 id="user_info">
+          Current user placeholder
+        </h1>
+      </div>
+
+      <div id="login_register_form" class="visible">
+        <form>
+          <h1>Login registered user</h1>
+          <input id="login_name" placeholder="user email" type="email" required>
+          <input id="login_passwd" type="password" name="passwd" placeholder="Password" required>
+        </form>
+
+        <form>
+          <h1>Register user</h1>
+          <input id="register_email" placeholder="user email" type="email" required>
+          <input id="register_fname" placeholder="first name" type="text" required>
+          <input id="register_lname" placeholder="last name" type="text" required>
+          <input id="register_passwd" type="password" name="passwd" placeholder="Password" required>
+        </form>
+      </div>
+
+    </section>
+
+
+
+   
+
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
