@@ -1,4 +1,4 @@
-
+"use strict";
 
 let showSearch = false;
 let showHome = true;
@@ -90,26 +90,13 @@ const toggleNavButtonFocus = (button) => {
 
 /** A multipurpose function used for hiding the toolbar elements. **/
 const hideToolbarElements = () => {
-  const userThumbnail = document.getElementById("user_thumbnail");
+
   const searchbar = document.getElementById("searchbar");
-  const loginBtn = document.getElementById("login_btn");
   searchbar.classList.add("hidden");
   searchbar.classList.remove("visible");
-
-  if (logged) {
-    userThumbnail.classList.remove("hidden");
-    userThumbnail.classList.add("visible");
-    loginBtn.classList.remove("visible");
-    loginBtn.classList.add("hidden");
-  } else {
-    userThumbnail.classList.remove("visible");
-    userThumbnail.classList.add("hidden");
-    loginBtn.classList.remove("hidden");
-    loginBtn.classList.add("visible");
-  }
 }
 
-hideMidSectionElements = () => {
+const hideMidSectionElements = () => {
   const loginAndRegister = document.getElementById("login_and_register");
   loginAndRegister.classList.remove("display");
   loginAndRegister.classList.add("none");  
@@ -128,10 +115,26 @@ const toggleWantedView = (view) => {
 }
 
 
-
-
-/** Checks if the user is logged in. **/
+/** Checks if the user is logged in and updates the UI accordingly. **/
 const checkLoggedStatus = () => {
-  // TODO: Set logged in according if the user has logged in.
-  // Update UI if user has logged in.
+  const userThumbnail = document.getElementById("user_thumbnail");
+  const loginBtn = document.getElementById("login_btn");
+
+  if (sessionStorage.getItem("token")) logged = true;
+  else logged = false;
+
+  if (logged) {
+    userThumbnail.classList.remove("hidden");
+    userThumbnail.classList.add("visible");
+    loginBtn.classList.remove("visible");
+    loginBtn.classList.add("hidden");
+    displayHomeView();
+  } else {
+    userThumbnail.classList.remove("visible");
+    userThumbnail.classList.add("hidden");
+    loginBtn.classList.remove("hidden");
+    loginBtn.classList.add("visible");
+  }
 }
+
+checkLoggedStatus();

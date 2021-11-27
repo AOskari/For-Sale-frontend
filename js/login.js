@@ -4,7 +4,6 @@ const url = "http://localhost:3000";
 const registerUserForm = document.getElementById("register_form");
 const loginForm = document.getElementById("login_form");
 
-
 // Adding a submit eventlistener which registers the user to the database with the given credentials.
 registerUserForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
@@ -49,6 +48,9 @@ loginForm.addEventListener("submit", async (evt) => {
   } else {
     sessionStorage.setItem("token", json.token);
     sessionStorage.setItem("user", JSON.stringify(json.user));
-    location.href = "index.html";
   }
+ checkLoggedStatus();
 });
+
+
+
