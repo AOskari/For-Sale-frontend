@@ -8,8 +8,8 @@ const loginForm = document.getElementById("login_form");
 registerUserForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   const data = serializeJson(registerUserForm);
-
-  // Creating an object which contains the needed options for fetching
+  console.log(`serializedJson data: ${data}`);
+  // Creating fetch options for registering.
   const fetchOptions = {
     method: "POST",
     headers: {
@@ -18,20 +18,57 @@ registerUserForm.addEventListener("submit", async (evt) => {
     body: JSON.stringify(data),
   };
 
-  const response = await fetch(url + "/user", fetchOptions);
+  // Attempt to register the user with given options and inform the user of the result.
+  const response = await fetch(url + "/auth/register", fetchOptions);
   const json = await response.json();
   alert(json.message);
-  location.href = "index.html";
+
+  // After succesfully registering, log in with the newly registered account.
+  if (json.user_id) {
+    
+    // Extracting required data and creating a new object for the request body
+    const login = JSON.stringify(data);
+    const loginParse = JSON.parse(login);
+    const loginData = {
+      username: loginParse.email,
+      password: loginParse.passwd
+    };
+
+    // Create a new options object.
+    const loginFetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    };
+
+    // Attempt to login with the given options object
+    const loginResponse = await fetch(url + "/auth/login", loginFetchOptions);
+    const loginJson = await loginResponse.json();
+
+    // Checking if the login was succesfully; If succeful, adding the user to the session storage.
+    if (!loginJson.user) {
+      alert(loginJson.message);
+    } else {
+      sessionStorage.setItem("token", loginJson.token);
+      sessionStorage.setItem("user", JSON.stringify(loginJson.user));
+    }
+
+    // Finally, update the UI.
+    checkLoggedStatus();
+  }
+
 });
 
 
 
-// Adding an submit eventListener which attempts to log the user in with the given credentials.
+// Adding a submit eventListener which attempts to log the user in with the given credentials.
 loginForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   const data = serializeJson(loginForm);
 
-  // Creating an object which contains the needed options for fetching
+  // Creating fetch options
   const fetchOptions = {
     method: "POST",
     headers: {
@@ -49,7 +86,7 @@ loginForm.addEventListener("submit", async (evt) => {
     sessionStorage.setItem("token", json.token);
     sessionStorage.setItem("user", JSON.stringify(json.user));
   }
- checkLoggedStatus();
+  checkLoggedStatus();
 });
 
 
