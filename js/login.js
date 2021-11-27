@@ -68,7 +68,7 @@ loginForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   const data = serializeJson(loginForm);
 
-  // Creating fetch options
+  // Creating fetch options for login
   const fetchOptions = {
     method: "POST",
     headers: {
@@ -77,15 +77,19 @@ loginForm.addEventListener("submit", async (evt) => {
     body: JSON.stringify(data),
   };
 
+  // Attempt to login with given options
   const response = await fetch(url + "/auth/login", fetchOptions);
   const json = await response.json();
 
+  // Set the token and user info to the session storage, if succesful.
   if (!json.user) {
     alert(json.message);
   } else {
     sessionStorage.setItem("token", json.token);
     sessionStorage.setItem("user", JSON.stringify(json.user));
   }
+
+  // Update UI according to login status.
   checkLoggedStatus();
 });
 

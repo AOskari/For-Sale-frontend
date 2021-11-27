@@ -1,14 +1,8 @@
 "use strict";
-
-let showSearch = false;
-let showHome = true;
-let showOwnAds = false;
-let showLogin = false;
 let logged = false;
 
 /** Toggles the Search screen. **/
 const displaySearchView = () => {
-  toggleWantedView("search");
   hideToolbarElements();
   hideMidSectionElements();
   const searchbar = document.getElementById("searchbar");
@@ -19,7 +13,6 @@ const displaySearchView = () => {
 
 /** Toggles the Home screen. **/
 const displayHomeView = () => {
-  toggleWantedView("home");
   hideToolbarElements();
   hideMidSectionElements();
    // TODO: Display Home screen.
@@ -28,7 +21,6 @@ const displayHomeView = () => {
 
 /** Toggles the Own ads screen. **/
 const displayOwnAdsView = () => {
-  toggleWantedView("ownAds");
   hideToolbarElements();
   hideMidSectionElements();
   // TODO: Display Own ads screen.
@@ -37,7 +29,6 @@ const displayOwnAdsView = () => {
 
 /** Toggles the Login and register screen. **/
 const displayLoginView = () => {
-  toggleWantedView("login");
   hideToolbarElements();
   hideMidSectionElements();
   const loginAndRegister = document.getElementById("login_and_register");
@@ -47,6 +38,7 @@ const displayLoginView = () => {
   loginForm.classList.add("display");
 }
 
+/** Toggles the register screen. **/
 const displayRegisterView = () => {
  // toggleWantedView("register");
   const loginForm = document.getElementById("login_form");
@@ -56,9 +48,19 @@ const displayRegisterView = () => {
   const registerForm = document.getElementById("register_form");
   registerForm.classList.remove("none");
   registerForm.classList.add("display");
- 
-
 }
+
+
+const displayProfileView = () => {
+  hideToolbarElements();
+  hideMidSectionElements();
+
+  const userProfile = document.getElementById("user_profile");
+  userProfile.classList.remove("none");
+  userProfile.classList.add("display");
+}
+
+
 
 /** Toggles the focus of the bottom navigation buttons according to the given parameter. **/
 const toggleNavButtonFocus = (button) => {
@@ -97,21 +99,18 @@ const hideToolbarElements = () => {
 }
 
 const hideMidSectionElements = () => {
+  // Hide login and register screen.
   const loginAndRegister = document.getElementById("login_and_register");
   loginAndRegister.classList.remove("display");
   loginAndRegister.classList.add("none");  
   const registerForm = document.getElementById("register_form");
   registerForm.classList.remove("display");
   registerForm.classList.add("none");
-}
 
-
-/** Toggles the display booleans according to the given parameter. **/
-const toggleWantedView = (view) => {
-  showSearch = (view == "search");
-  showHome = (view == "home");
-  showOwnAds = (view == "ownAds");
-  showLogin = (view == "login");
+  // Hide profile screen.
+  const userProfile = document.getElementById("user_profile");
+  userProfile.classList.remove("display");
+  userProfile.classList.add("none");
 }
 
 
