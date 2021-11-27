@@ -40,11 +40,25 @@ const displayLoginView = () => {
   toggleWantedView("login");
   hideToolbarElements();
   hideMidSectionElements();
-  const loginForm = document.getElementById("login_and_register");
+  const loginAndRegister = document.getElementById("login_and_register");
+  loginAndRegister.classList.remove("none");
+  loginAndRegister.classList.add("display");
   loginForm.classList.remove("none");
-  loginForm.classList.remove("display");
+  loginForm.classList.add("display");
 }
 
+const displayRegisterView = () => {
+ // toggleWantedView("register");
+  const loginForm = document.getElementById("login_form");
+  loginForm.classList.remove("display");
+  loginForm.classList.add("none");
+ 
+  const registerForm = document.getElementById("register_form");
+  registerForm.classList.remove("none");
+  registerForm.classList.add("display");
+ 
+
+}
 
 /** Toggles the focus of the bottom navigation buttons according to the given parameter. **/
 const toggleNavButtonFocus = (button) => {
@@ -96,9 +110,12 @@ const hideToolbarElements = () => {
 }
 
 hideMidSectionElements = () => {
-  const loginForm = document.getElementById("login_and_register");
-  loginForm.classList.remove("display");
-  loginForm.classList.add("none");  
+  const loginAndRegister = document.getElementById("login_and_register");
+  loginAndRegister.classList.remove("display");
+  loginAndRegister.classList.add("none");  
+  const registerForm = document.getElementById("register_form");
+  registerForm.classList.remove("display");
+  registerForm.classList.add("none");
 }
 
 
@@ -109,6 +126,8 @@ const toggleWantedView = (view) => {
   showOwnAds = (view == "ownAds");
   showLogin = (view == "login");
 }
+
+
 
 
 /** Checks if the user is logged in. **/
