@@ -54,7 +54,8 @@ const displayRegisterView = () => {
 const displayProfileView = () => {
   hideToolbarElements();
   hideMidSectionElements();
-
+  setProfileInfo();
+  toggleNavButtonFocus("profile button");
   const userProfile = document.getElementById("user_profile");
   userProfile.classList.remove("none");
   userProfile.classList.add("display");
@@ -85,6 +86,8 @@ const toggleNavButtonFocus = (button) => {
     case "own_ads_nav_button":
       salesbtn.classList.add("focused");
       salesbtn.classList.remove("unfocused");
+      break;
+    case "profile_button":
       break;
   }
 }
@@ -135,5 +138,21 @@ const checkLoggedStatus = () => {
     loginBtn.classList.add("visible");
   }
 }
+
+const setProfileInfo = () => {
+  const username = document.getElementById("username");
+  const email = document.getElementById("user_email");
+  const firstName = document.getElementById("first_name");
+  const lastName = document.getElementById("last_name");
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
+  username.innerHTML = `${user.first_name} ${user.last_name}`;
+  email.value = user.email;
+  firstName.value = user.first_name;
+  lastName.value = user.last_name;
+
+}
+
 
 checkLoggedStatus();

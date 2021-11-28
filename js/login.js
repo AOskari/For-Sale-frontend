@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const url = "http://localhost:3000";
 const registerUserForm = document.getElementById("register_form");

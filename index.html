@@ -92,15 +92,41 @@
 			<!-- Displays all the information of the user. This screen is only available if the user has logged in. -->
 			<div id="user_profile" class="none">
 			
-				<div id="user_info">
-					
+				<div id="profile_info">
+					<img src="" id="user_img" alt="Profile picture">
+					<div id="profile_username">
+						<h3 id="username">Fname Lname</h3>
+					</div>
 				</div>
-				<button id="logout_button" class="borderless_button">
-					Logout
-				</button>
 
+				<div id="user_info">
+					<div id="change_profileinfo">
+						<div class="profile_statusinfo">
+							<input id="user_email" type="email" value="email" placeholder="Email">
+							<button id="change_email">Change email</button>
+						</div>
+						<div class="profile_statusinfo">
+							<input type="text" placeholder="First name" id="first_name">
+							<button id="change_fname">Change first name</button>
+						</div>
+						<div class="profile_statusinfo">
+							<input type="text" placeholder="Last name" id="last_name">
+							<button id="change_lname">Change last name</button>
+						</div>
+						<div class="profile_statusinfo">
+							<input type="password" placeholder="new password">
+							<button id="change_password">Change password</button>
+						</div>
+					</div>
+				
+					<div id="logout_section">
+						<button id="logout_button" class="borderless_button">
+							Logout
+						</button>
+					</div>
+				</div>
+				
 			</div>
-
 
 		</section>
 
@@ -109,6 +135,7 @@
 	<script src="./js/main.js"></script>
 	<script src="./js/logout.js"></script>
 	<script src="./js/login.js"></script>
+	<script src="./js/modifyUser.js"></script>
 	<script src="./js/serialize.js"></script>
 </body>
 </html>

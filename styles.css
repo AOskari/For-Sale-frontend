@@ -202,8 +202,77 @@ h4 {
   margin-top: 0px;
 }
 
-
 /** Login and register form ends **/
+
+
+
+/** Profile screen **/
+
+#user_profile {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: yellow;
+  height: 100%;
+  width: 100%;
+}
+
+#profile_info {
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: greenyellow;
+}
+
+#user_img {
+  flex: 1;
+  background-color: tomato;
+}
+
+#profile_username {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+#user_info {
+  flex: 2;
+  display: flex;
+  flex-flow: column;
+  background-color: green;
+}
+
+#change_profileinfo {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  background-color: greenyellow;
+}
+
+#logout_section {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.profile_statusinfo {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: turquoise;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+/** Profile screen ends **/
+
+
+
 
 
 
@@ -217,7 +286,6 @@ h4 {
     height: 100vh;
   }
   
-
   #bottom_nav {
     top: 0;
     left: 0;
