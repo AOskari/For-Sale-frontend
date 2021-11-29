@@ -5,6 +5,10 @@ const logout = document.getElementById("logout_button");
 // Logs out the user.
 logout.addEventListener("click", async (evt) => {
   evt.preventDefault();
+  logoutUser();
+});
+
+const logoutUser = () => {
   console.log("Logging out");
 
   try {
@@ -27,5 +31,4 @@ logout.addEventListener("click", async (evt) => {
   } catch (e) {
     console.log(`Failed to logout: ${e.message}`);
   }
-
-});
+}

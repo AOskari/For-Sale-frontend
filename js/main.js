@@ -55,10 +55,42 @@ const displayProfileView = () => {
   hideToolbarElements();
   hideMidSectionElements();
   setProfileInfo();
+
+  const userInfo = document.getElementById("user_info");
+  const changeProfileInfo = document.getElementById("change_profile_info");
+  
+  userInfo.classList.remove("none");
+  userInfo.classList.add("display");
+  changeProfileInfo.classList.remove("display");
+  changeProfileInfo.classList.add("none");
+
   toggleNavButtonFocus("profile button");
   const userProfile = document.getElementById("user_profile");
   userProfile.classList.remove("none");
   userProfile.classList.add("display");
+}
+
+/** Displays the change profile info screen within the Profile screen **/
+const displayChangeProfileInfoView = () => {
+  
+  const userInfo = document.getElementById("user_info");
+  const changeProfileInfo = document.getElementById("change_profile_info");
+
+  userInfo.classList.remove("display");
+  userInfo.classList.add("none");
+  changeProfileInfo.classList.remove("none");
+  changeProfileInfo.classList.add("display");
+
+  const email = document.getElementById("change_email_input");
+  const firstName = document.getElementById("change_fname_input");
+  const lastName = document.getElementById("change_lname_input");
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
+  email.value = user.email;
+  firstName.value = user.first_name;
+  lastName.value = user.last_name;
+
 }
 
 
@@ -142,17 +174,18 @@ const checkLoggedStatus = () => {
 const setProfileInfo = () => {
   const username = document.getElementById("username");
   const email = document.getElementById("user_email");
-  const firstName = document.getElementById("first_name");
-  const lastName = document.getElementById("last_name");
+  const firstName = document.getElementById("user_fname");
+  const lastName = document.getElementById("user_lname");
 
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   username.innerHTML = `${user.first_name} ${user.last_name}`;
-  email.value = user.email;
-  firstName.value = user.first_name;
-  lastName.value = user.last_name;
-
+  email.innerHTML = `Email: ${user.email}`;
+  firstName.innerHTML = `First name: ${user.first_name}`;
+  lastName.innerHTML = `Last name: ${user.last_name}`;
 }
+
+
 
 
 checkLoggedStatus();
