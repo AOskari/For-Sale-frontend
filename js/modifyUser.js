@@ -24,7 +24,7 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
 
   let response = "";
 
-  if (modifyParse.passwd !== "") {
+  if (modifyParse.passwd === "") {
     response = await fetch(url + "/user", fetchOptions);
     newPassword = modifyParse.old_password;
   } else {
