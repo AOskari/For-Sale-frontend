@@ -1,7 +1,5 @@
 "use strict";
 
-const url = "http://localhost:3000";
-
 const changeProfileInfoForm = document.getElementById("change_profile_info_form")
 
 // Adding a submit eventListener which attempts to modify the user in with the given credentials.
@@ -9,7 +7,7 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
 
   const data = serializeJson(changeProfileInfoForm);
-  const newPassword = "";
+  let newPassword = "";
 
   // Creating fetch options for modify
   const fetchOptions = {
