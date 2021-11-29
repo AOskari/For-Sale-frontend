@@ -162,7 +162,7 @@ const checkLoggedStatus = () => {
     userThumbnail.classList.add("visible");
     loginBtn.classList.remove("visible");
     loginBtn.classList.add("hidden");
-    displayHomeView();
+   
   } else {
     userThumbnail.classList.remove("visible");
     userThumbnail.classList.add("hidden");
@@ -186,6 +186,5 @@ const setProfileInfo = () => {
 }
 
 
-
-
 checkLoggedStatus();
+displayHomeView();

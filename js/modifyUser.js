@@ -23,8 +23,6 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   const modifyParse = JSON.parse(modify);
 
   let response = "";
-  
-  console.log(`newPassword: ${modifyParse.old_passwd} ${modifyParse.passwd}`)
 
   if (modifyParse.passwd === "") {
     response = await fetch(url + "/user", fetchOptions);
@@ -38,15 +36,12 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
 
   // After modifications, relog automatically to update token data.
 
-  logoutUser();
+  await logoutUser();
 
   const loginData = {
     username: modifyParse.email,
     password: newPassword
   };
-
-  console.log(newPassword);
-  console.log(JSON.stringify(loginData));
 
   // Create a new login options object.
   const loginOptions = {
@@ -70,4 +65,8 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
     console.log(`Modified user with new values: ${JSON.stringify(loginJson.user)}`);
     displayProfileView();
   }
+
+  // Update the UI.
+  checkLoggedStatus();
+
 });

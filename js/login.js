@@ -58,6 +58,7 @@ registerUserForm.addEventListener("submit", async (evt) => {
 
     // Finally, update the UI.
     checkLoggedStatus();
+    displayHomeView();
   }
 
 });
@@ -92,6 +93,7 @@ loginForm.addEventListener("submit", async (evt) => {
 
   // Update UI according to login status.
   checkLoggedStatus();
+  displayHomeView();
 });
 
 
