@@ -8,7 +8,7 @@ logout.addEventListener("click", async (evt) => {
   logoutUser();
 });
 
-const logoutUser = () => {
+const logoutUser = async () => {
   console.log("Logging out");
 
   try {

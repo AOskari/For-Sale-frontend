@@ -1,4 +1,6 @@
-"use strict"; 
+"use strict";
+
+const url = "http://localhost:3000";
 
 const changeProfileInfoForm = document.getElementById("change_profile_info_form")
 
@@ -22,7 +24,7 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   const modify = JSON.stringify(data);
   const modifyParse = JSON.parse(modify);
 
-  const response = "";
+  let response = "";
 
   if (modifyParse.passwd !== "") {
     response = await fetch(url + "/user", fetchOptions);
