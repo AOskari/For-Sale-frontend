@@ -23,23 +23,18 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   const modifyParse = JSON.parse(modify);
 
   let response = "";
+  
+  console.log(`newPassword: ${modifyParse.old_passwd} ${modifyParse.passwd}`)
 
   if (modifyParse.passwd === "") {
     response = await fetch(url + "/user", fetchOptions);
-    newPassword = modifyParse.old_password;
+    newPassword = modifyParse.old_passwd;
   } else {
     response = await fetch(url + "/user/pw", fetchOptions);
     newPassword = modifyParse.passwd;
   }
 
-  const json = await response.json();
-
-  if (json.error) {
-    alert(json.error.message);
-    return;
-  }
-  alert(json.message);
-
+  if (!response.ok) return;
 
   // After modifications, relog automatically to update token data.
 
@@ -50,6 +45,9 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
     password: newPassword
   };
 
+  console.log(newPassword);
+  console.log(JSON.stringify(loginData));
+
   // Create a new login options object.
   const loginOptions = {
     method: "POST",
@@ -58,8 +56,6 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
     },
     body: JSON.stringify(loginData),
   }
-
-
 
   // Attempt to login with the given options object
   const loginResponse = await fetch(url + "/auth/login", loginOptions);

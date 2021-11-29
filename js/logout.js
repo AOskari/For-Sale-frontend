@@ -24,7 +24,6 @@ const logoutUser = async () => {
 
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
-    alert("You have logged out.");
     displayHomeView();
     checkLoggedStatus();
 
