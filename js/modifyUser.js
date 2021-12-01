@@ -16,7 +16,6 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   const fetchOptions = {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     },
     body: fd,
