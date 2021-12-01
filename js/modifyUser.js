@@ -72,37 +72,3 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   checkLoggedStatus();
 
 });
-
-
-
-/** Adds the given profile picture to the database. **/
-
-/* 
-  const fd = new FormData(profilePicForm);
-
-  const fetchOptions = {
-    method: 'PUT',
-    headers: {
-      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-    },
-    body: fd,
-  };
-
-  const response = await fetch(url + '/user/pic', fetchOptions);
-  const json = await response.json();
-
-  if (!response.ok) return;
-
-  alert("Profile picture added.");
-  console.log('Added profile pic:', json);
-
-  const formdataJson = serializeJson(fd);
-  const stringFormData = JSON.stringify(formdataJson);
-  console.log('Added profile pic:', stringFormData);
-
-  // TODO: Update the current profile picture.
-
-  const userImg = document.getElementById("user_img");
- // userImg.src = url + "/uploads/"
-  //userImg.src = 
- */

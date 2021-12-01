@@ -1,5 +1,8 @@
 "use strict";
 let logged = false;
+let notification = false;
+
+const url = "http://localhost:3000";
 
 /** Toggles the Search screen. **/
 const displaySearchView = () => {
@@ -64,7 +67,7 @@ const displayProfileView = () => {
   changeProfileInfo.classList.remove("display");
   changeProfileInfo.classList.add("none");
 
-  toggleNavButtonFocus("profile button");
+  toggleNavButtonFocus("profile_button");
   const userProfile = document.getElementById("user_profile");
   userProfile.classList.remove("none");
   userProfile.classList.add("display");
@@ -151,7 +154,7 @@ const hideMidSectionElements = () => {
 
 /** Checks if the user is logged in and updates the UI accordingly. **/
 const checkLoggedStatus = () => {
-  const userThumbnail = document.getElementById("user_thumbnail");
+  const userThumbnail = document.getElementById("user_thumbnail_container");
   const loginBtn = document.getElementById("login_btn");
 
   if (sessionStorage.getItem("token")) logged = true;
@@ -171,12 +174,14 @@ const checkLoggedStatus = () => {
   }
 }
 
+/** Sets the correct information to the Profile screen. */
 const setProfileInfo = () => {
   const username = document.getElementById("username");
   const email = document.getElementById("user_email");
   const firstName = document.getElementById("user_fname");
   const lastName = document.getElementById("user_lname");
-  const userImg = document.getElementById("user_img");
+  let userImg = document.getElementById("user_img");
+  let userThumbnail = document.getElementById("user_thumbnail");
 
   const user = JSON.parse(sessionStorage.getItem("user"));
 
@@ -187,14 +192,31 @@ const setProfileInfo = () => {
 
   if (user.profile_pic == 0) {
     userImg.src = "./images/default_profile_img.png";
+    userThumbnail.src = "./images/default_profile_img.png";
   } else {
     userImg.src = url + "/uploads/" + user.profile_pic;
+    userThumbnail.src = url + "/uploads/" + user.profile_pic;
   }
+}
 
+/** Displays a red dot if notification value is true. **/
+const toggleNotification = (state) => {
+  notification = state;
+  const notificationImg = document.getElementById("notification");
 
-
+  if (notification) {
+    notificationImg.classList.remove("none");
+    notificationImg.classList.add("display");
+    return;
+  }
+  notificationImg.classList.remove("display");
+  notificationImg.classList.add("none");
 }
 
 
 checkLoggedStatus();
-if (logged) displayHomeView();
+if (logged) {
+  displayHomeView();
+  setProfileInfo();
+  toggleNotification(false);
+}
