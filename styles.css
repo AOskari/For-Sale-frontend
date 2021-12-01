@@ -227,12 +227,18 @@ h4 {
 #profile_info {
   flex: 1;
   display: flex;
-  flex-flow: column wrap;
+  background-color: brown;
+  flex-flow: row wrap;
+}
+
+#user_img_container {
+  flex: 1;
+  background-color: green;
 }
 
 #user_img {
-  flex: 1;
-  background-color: tomato;
+  width: 100%;
+  height: 100%;
 }
 
 #profile_username {
@@ -261,15 +267,6 @@ h4 {
   flex-flow: column;
   align-items: center;
   background-color: greenyellow;
-}
-
-#profile_info_section {
-  flex: 2;
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  justify-content: space-around;
-  background-color: brown;
 }
 
 #change_info_section {

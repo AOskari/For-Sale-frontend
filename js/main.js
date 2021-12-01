@@ -176,6 +176,7 @@ const setProfileInfo = () => {
   const email = document.getElementById("user_email");
   const firstName = document.getElementById("user_fname");
   const lastName = document.getElementById("user_lname");
+  const userImg = document.getElementById("user_img");
 
   const user = JSON.parse(sessionStorage.getItem("user"));
 
@@ -183,6 +184,15 @@ const setProfileInfo = () => {
   email.innerHTML = `Email: ${user.email}`;
   firstName.innerHTML = `First name: ${user.first_name}`;
   lastName.innerHTML = `Last name: ${user.last_name}`;
+
+  if (user.profile_pic == 0) {
+    userImg.src = "./images/default_profile_img.png";
+  } else {
+    userImg.src = url + "/uploads/" + user.profile_pic;
+  }
+
+
+
 }
 
 
