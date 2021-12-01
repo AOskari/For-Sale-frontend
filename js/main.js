@@ -187,4 +187,4 @@ const setProfileInfo = () => {
 
 
 checkLoggedStatus();
-displayHomeView();
+if (logged) displayHomeView();

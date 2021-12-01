@@ -93,13 +93,17 @@
 			<div id="user_profile" class="none">
 			
 				<div id="profile_info">
-					<img src="" id="user_img" alt="Profile picture">
-					<div id="profile_username">
-						<h3 id="username">Fname Lname</h3>
+					<div id="profile_pic_section">
+						<img src="" id="user_img" alt="Profile picture">
+						<div id="profile_username">
+							<h3 id="username">Fname Lname</h3>
+						</div>
 					</div>
+					
 				</div>
 
 				<div id="user_info">
+
 					<div id="current_profile_info" class="display">
 						
 						<div id="profile_info_section">
@@ -120,7 +124,6 @@
 								Change profile info
 							</button>
 						</div>
-						
 
 					</div>
 				
@@ -129,6 +132,7 @@
 							Logout
 						</button>
 					</div>
+
 				</div>
 				
 				<!-- Displayed when the user clicks on the change profile info button. -->
@@ -136,6 +140,7 @@
 			
 					<form id="change_profile_info_form">
 						<h3 style="font-weight: 700; margin: 5px;">Change profile info</h3>
+						<input type="file" name="profile_pic" placeholder="Add an image" accept="image/*" id="profile_pic_input">
 						<input type="email" value="email" placeholder="Email" id="change_email_input" name="email">
 						<input type="text" placeholder="First name" id="change_fname_input" name="first_name">
 						<input type="text" placeholder="Last name" id="change_lname_input" name="last_name">

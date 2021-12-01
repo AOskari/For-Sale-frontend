@@ -30,9 +30,10 @@ registerUserForm.addEventListener("submit", async (evt) => {
     // Extracting required data and creating a new object for the request body
     const login = JSON.stringify(data);
     const loginParse = JSON.parse(login);
+    
     const loginData = {
       username: loginParse.email,
-      password: loginParse.passwd
+      password: loginParse.passwd,
     };
 
     // Create a new options object.

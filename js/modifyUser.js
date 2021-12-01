@@ -1,12 +1,15 @@
 "use strict";
 
 const changeProfileInfoForm = document.getElementById("change_profile_info_form")
+const profilePicForm = document.getElementById("profile_pic_form");
 
 // Adding a submit eventListener which attempts to modify the user in with the given credentials.
 changeProfileInfoForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
 
   const data = serializeJson(changeProfileInfoForm);
+  const fd = new FormData(changeProfileInfoForm);
+
   let newPassword = "";
 
   // Creating fetch options for modify
@@ -16,7 +19,7 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
       "Content-Type": "application/json",
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     },
-    body: JSON.stringify(data),
+    body: fd,
   };
 
   const modify = JSON.stringify(data);
@@ -70,3 +73,37 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   checkLoggedStatus();
 
 });
+
+
+
+/** Adds the given profile picture to the database. **/
+
+/* 
+  const fd = new FormData(profilePicForm);
+
+  const fetchOptions = {
+    method: 'PUT',
+    headers: {
+      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: fd,
+  };
+
+  const response = await fetch(url + '/user/pic', fetchOptions);
+  const json = await response.json();
+
+  if (!response.ok) return;
+
+  alert("Profile picture added.");
+  console.log('Added profile pic:', json);
+
+  const formdataJson = serializeJson(fd);
+  const stringFormData = JSON.stringify(formdataJson);
+  console.log('Added profile pic:', stringFormData);
+
+  // TODO: Update the current profile picture.
+
+  const userImg = document.getElementById("user_img");
+ // userImg.src = url + "/uploads/"
+  //userImg.src = 
+ */

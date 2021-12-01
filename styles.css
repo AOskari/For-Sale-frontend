@@ -227,7 +227,7 @@ h4 {
 #profile_info {
   flex: 1;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
 }
 
 #user_img {
@@ -369,6 +369,18 @@ h4 {
 input:focus,textarea:focus {
   outline: none;
 }
+
+#profile_pic_section {
+  display: flex;
+  flex: 1;
+  flex-flow: row;
+}
+
+#profile_pic_form {
+  width: 100%;
+  display: flex;
+}
+
 
 
 
