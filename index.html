@@ -20,7 +20,7 @@
 			</div>
 
 			<!-- Hidden class will be toggled when using search_nav_button -->
-			<input id="searchbar" placeholder="Search items.." class="hidden"/>
+			<input id="searchbar" placeholder="Search items.." class="none"/>
 	
 			<!-- login_btn displayed according to registered status -->
 			<button id="login_btn" class="visible" onclick="displayLoginView()">
@@ -33,6 +33,7 @@
 			<button id="search_nav_button" class="unfocused" onclick="displaySearchView()">Search</button>
 			<button id="own_ads_nav_button" class="unfocused" onclick="displayOwnAdsView()">Own ads</button>
 		</div>
+	
 		
 		<!-- display property of elements within mid_section are toggled according to button clicks -->
 		<section id="mid_section">
@@ -41,9 +42,7 @@
 			<!-- elements used for displaying the login and registration screen. Login and register form displayed separately. -->
 			<div id="login_and_register" class="display">
 
-
 				<div id="logo_container"><h1>Logo placeholder</h1></div>
-
 
 				<!-- Primary screen displayed when pressing the login/register button. Used for logging to the server. -->
 				<form id="login_form" class="display">
@@ -162,14 +161,50 @@
 
 			</div>
 
+
+
+			<!-- Home portion -->
+			<div id="home_section" class="display">
+				<h3>Home screen</h3>
+				<div id="home_listing_section">
+					<ul id="home_listing_list">
+						<!-- Listing cards are created here -->
+
+					</ul>
+
+				</div>
+				<div class="listing_section_filler">
+				</div>	
+
+			</div>
+
+
+			<!-- Home portion -->
+			<div id="search_section" class="none">
+				<h3>Search screen</h3>
+				<div id="search_listing_section">
+					<ul id="search_listing_list">
+						<!-- Listing cards are created here -->
+
+					</ul>
+
+				</div>
+				<div  class="listing_section_filler">
+				</div>	
+
+			</div>
+			
+
 		</section>
 
-
+		
 	</div>
+	<script src="./js/listing.js"></script>
 	<script src="./js/main.js"></script>
 	<script src="./js/logout.js"></script>
 	<script src="./js/login.js"></script>
 	<script src="./js/modifyUser.js"></script>
+	<script src="./js/search.js"></script>
 	<script src="./js/serialize.js"></script>
 </body>
 </html>

@@ -4,23 +4,23 @@ let notification = false;
 
 const url = "http://localhost:3000";
 
-/** Toggles the Search screen. **/
+/** Displays the Search view. **/
 const displaySearchView = () => {
   hideToolbarElements();
   hideMidSectionElements();
-  const searchbar = document.getElementById("searchbar");
-  searchbar.classList.add("visible");
-  searchbar.classList.remove("hidden");
+  displayElementById("searchbar");
+  displayElementById("search_section");
   toggleNavButtonFocus("search_nav_button");
-}
+};
 
-/** Toggles the Home screen. **/
+/** Displays the Home view. **/
 const displayHomeView = () => {
   hideToolbarElements();
   hideMidSectionElements();
-   // TODO: Display Home screen.
+  getListing("");
+  displayElementById("home_section");
   toggleNavButtonFocus("home_nav_button");
-}
+};
 
 /** Toggles the Own ads screen. **/
 const displayOwnAdsView = () => {
@@ -34,65 +34,38 @@ const displayOwnAdsView = () => {
 const displayLoginView = () => {
   hideToolbarElements();
   hideMidSectionElements();
-  const loginAndRegister = document.getElementById("login_and_register");
-  loginAndRegister.classList.remove("none");
-  loginAndRegister.classList.add("display");
-  loginForm.classList.remove("none");
-  loginForm.classList.add("display");
+  displayElementById("login_and_register");
+  displayElementById("login_form");
 }
 
 /** Toggles the register screen. **/
 const displayRegisterView = () => {
- // toggleWantedView("register");
-  const loginForm = document.getElementById("login_form");
-  loginForm.classList.remove("display");
-  loginForm.classList.add("none");
- 
-  const registerForm = document.getElementById("register_form");
-  registerForm.classList.remove("none");
-  registerForm.classList.add("display");
+  hideElementById("login_form");
+  displayElementById("register_form");
 }
 
-
+/** Displays the profile view. **/
 const displayProfileView = () => {
   hideToolbarElements();
   hideMidSectionElements();
   setProfileInfo();
-
-  const userInfo = document.getElementById("user_info");
-  const changeProfileInfo = document.getElementById("change_profile_info");
-  
-  userInfo.classList.remove("none");
-  userInfo.classList.add("display");
-  changeProfileInfo.classList.remove("display");
-  changeProfileInfo.classList.add("none");
-
-  toggleNavButtonFocus("profile_button");
-  const userProfile = document.getElementById("user_profile");
-  userProfile.classList.remove("none");
-  userProfile.classList.add("display");
+  displayElementById("user_info");
+  hideElementById("change_profile_info");
+  displayElementById("user_profile");
+  toggleNavButtonFocus("profile_button"); 
 }
 
 /** Displays the change profile info screen within the Profile screen **/
 const displayChangeProfileInfoView = () => {
-  
-  const userInfo = document.getElementById("user_info");
-  const changeProfileInfo = document.getElementById("change_profile_info");
 
-  userInfo.classList.remove("display");
-  userInfo.classList.add("none");
-  changeProfileInfo.classList.remove("none");
-  changeProfileInfo.classList.add("display");
-
-  const email = document.getElementById("change_email_input");
-  const firstName = document.getElementById("change_fname_input");
-  const lastName = document.getElementById("change_lname_input");
+  hideElementById("user_info");
+  displayElementById("change_profile_info");
 
   const user = JSON.parse(sessionStorage.getItem("user"));
 
-  email.value = user.email;
-  firstName.value = user.first_name;
-  lastName.value = user.last_name;
+  document.getElementById("change_email_input").value = user.email;
+  document.getElementById("change_fname_input").value = user.first_name;
+  document.getElementById("change_lname_input").value = user.last_name;
 
 }
 
@@ -131,25 +104,26 @@ const toggleNavButtonFocus = (button) => {
 /** A multipurpose function used for hiding the toolbar elements. **/
 const hideToolbarElements = () => {
 
-  const searchbar = document.getElementById("searchbar");
-  searchbar.classList.add("hidden");
-  searchbar.classList.remove("visible");
+  // TODO: Display For-Sale logo when searchbar is hidden.
+  hideElementById("searchbar");
 }
 
 const hideMidSectionElements = () => {
   // Hide login and register screen.
-  const loginAndRegister = document.getElementById("login_and_register");
-  loginAndRegister.classList.remove("display");
-  loginAndRegister.classList.add("none");  
-  const registerForm = document.getElementById("register_form");
-  registerForm.classList.remove("display");
-  registerForm.classList.add("none");
+  hideElementById("login_and_register");
+  hideElementById("register_form");
 
+  // Hide home section.
+  hideElementById("home_section");
+  document.getElementById("home_listing_list").innerHTML = "";
+
+  // Hide search screen.
+  hideElementById("search_section");
+  document.getElementById("search_listing_list").innerHTML = "";
+  
   // Hide profile screen.
-  const userProfile = document.getElementById("user_profile");
-  userProfile.classList.remove("display");
-  userProfile.classList.add("none");
-}
+  hideElementById("user_profile");
+};
 
 
 /** Checks if the user is logged in and updates the UI accordingly. **/
@@ -202,16 +176,74 @@ const setProfileInfo = () => {
 /** Displays a red dot if notification value is true. **/
 const toggleNotification = (state) => {
   notification = state;
-  const notificationImg = document.getElementById("notification");
-
   if (notification) {
-    notificationImg.classList.remove("none");
-    notificationImg.classList.add("display");
+    displayElementById("notification");
     return;
   }
-  notificationImg.classList.remove("display");
-  notificationImg.classList.add("none");
+  hideElementById("notification");
 }
+
+
+
+// Fetches and creates elements for displaying the listing in the given element.
+const createListingCards = (listing, targetElement) => {
+  
+  const listingList = document.getElementById(targetElement);
+  
+  console.log(`Listing at createListingCards: ${listing}`);
+
+  for (let i = 0; i < Object.keys(listing).length; i++) {
+
+    // Displaying only 20 items maximum in the home screen.
+    if(i == 20 && targetElement == "home_listing_list") break;
+  
+
+    const img = document.createElement("img");
+  //  img.src = url + "/uploads/" + listing[i].filename;
+    img.alt = listing[i].title;
+
+    const fig = document.createElement("figure").appendChild(img);
+    const name = document.createElement("h3");
+    name.innerHTML = listing[i].title;
+
+    const price = document.createElement("h5");
+    price.innerHTML = listing[i].price;
+
+    const description = document.createElement("p");
+    description.innerHTML = listing[i].description;
+
+
+    const li = document.createElement("li");
+    li.classList.add("listing_item");
+
+    li.appendChild(fig);
+    li.appendChild(name);
+    li.appendChild(price);
+    li.appendChild(description);
+    listingList.appendChild(li);
+  }
+
+}
+
+
+
+/** Functions for hiding and displaying elements. **/
+const hideElementById = (element) => {
+  const e = document.getElementById(element);
+  e.classList.add("none");
+  e.classList.remove("display");
+};
+const displayElementById = (element) => {
+  const e = document.getElementById(element);
+  e.classList.add("display");
+  e.classList.remove("none");
+};
+
+
+
+
+
+
 
 
 checkLoggedStatus();
@@ -220,3 +252,4 @@ if (logged) {
   setProfileInfo();
   toggleNotification(false);
 }
+

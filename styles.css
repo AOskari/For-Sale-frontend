@@ -104,7 +104,7 @@ body {
   align-items: center;
   color: white;
   width: 100%;
-  background-color: #000000;
+  background-color: #00000066;
   height: 70px;
   position: fixed;
   justify-content: space-around;
@@ -395,7 +395,7 @@ input:focus,textarea:focus {
   flex-flow: row;
 }
 
-#profile_pic_input {
+#put {
   color: white;
   display: flex;
 
@@ -407,9 +407,94 @@ input:focus,textarea:focus {
 }
 
 
-
-
 /** Profile screen ends **/
+
+
+
+
+
+/** Home screen portion **/
+
+#home_section {
+  background-color: gold;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+}
+
+.listing_item {
+
+  border-radius: 15px;
+  display: block;
+  flex-flow: column;
+  float: left;
+  height: 150px;
+  background-color: burlywood;
+  padding: 10px;
+  width: 100px;
+  margin: 5px;
+
+}
+
+#home_listing_section {
+  overflow: none;
+  background-color: chocolate;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-flow: column;
+
+}
+
+.listing_section_filler {
+  height: 70px;
+  min-height: 70px;
+  background-color: green;
+  width: 100%;
+  display: flex;
+}
+
+#home_listing_list {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
+
+/** Search screen portion **/
+
+
+#search_listing_section {
+  overflow: none;
+  background-color: chocolate;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-flow: column;
+
+}
+
+#search_section {
+  background-color: gold;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
 
 
 
