@@ -489,6 +489,29 @@ input:focus,textarea:focus {
 
 
 
+/** Own Ads portion **/
+
+#own_ads {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 200px;
+  background-color: greenyellow;
+}
+
+#own_listing_info {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  color: white;
+  background-color: yellow;
+}
+
+
+
 
 
 

@@ -7,7 +7,7 @@ const loginForm = document.getElementById("login_form");
 registerUserForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   const data = serializeJson(registerUserForm);
-  console.log(`serializedJson data: ${data}`);
+
   // Creating fetch options for registering.
   const fetchOptions = {
     method: "POST",

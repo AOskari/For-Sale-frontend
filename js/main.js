@@ -26,8 +26,16 @@ const displayHomeView = () => {
 const displayOwnAdsView = () => {
   hideToolbarElements();
   hideMidSectionElements();
-  // TODO: Display Own ads screen.
+  hideElementById("new_ad_section");
+  displayElementById("own_listing_info_section");
+  displayElementById("own_ads");
   toggleNavButtonFocus("own_ads_nav_button")
+}
+
+/** Displays the form for adding a new ad. **/
+const displayNewAdForm = () => {
+  hideElementById("own_listing_info_section");
+  displayElementById("new_ad_section");
 }
 
 /** Toggles the Login and register screen. **/
@@ -123,6 +131,9 @@ const hideMidSectionElements = () => {
   
   // Hide profile screen.
   hideElementById("user_profile");
+
+  // Hide own ads screen.
+  hideElementById("own_ads");
 };
 
 
@@ -247,9 +258,8 @@ const displayElementById = (element) => {
 
 
 checkLoggedStatus();
+displayHomeView();
 if (logged) {
-  displayHomeView();
   setProfileInfo();
-  toggleNotification(false);
 }
-
+toggleNotification(false);

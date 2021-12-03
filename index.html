@@ -162,20 +162,15 @@
 			</div>
 
 
-
 			<!-- Home portion -->
 			<div id="home_section" class="display">
 				<h3>Home screen</h3>
 				<div id="home_listing_section">
 					<ul id="home_listing_list">
 						<!-- Listing cards are created here -->
-
 					</ul>
-
 				</div>
-				<div class="listing_section_filler">
-				</div>	
-
+				<div class="listing_section_filler"></div>	
 			</div>
 
 
@@ -185,15 +180,46 @@
 				<div id="search_listing_section">
 					<ul id="search_listing_list">
 						<!-- Listing cards are created here -->
-
 					</ul>
-
 				</div>
-				<div  class="listing_section_filler">
-				</div>	
-
+				<div class="listing_section_filler"></div>	
 			</div>
 			
+			<!-- Own Ads portion -->
+			<div id="own_ads" class="none">
+
+				<div id="own_listing_info_section" class="display">
+					<div id="own_listing_info">
+						<h2>Own Ad info</h2>
+						<h3>Amount of ads: 0</h3>
+					</div>
+	
+					<div id="own_listing_section" >
+						<ul id="own_listing_list">
+							<!-- Listing cards are created here -->
+	
+						</ul>
+					</div>
+					<button id="new_ad_button" onclick="displayNewAdForm()">Create new ad</button>
+				</div>
+				
+
+				<div id="new_ad_section" class="none">
+				
+					<form id="new_ad_form">
+						<input type="file" name="filename" id="ad_form_file" required>
+						<input type="text" name="title" id="ad_form_title" placeholder="name" required>
+						<input type="text" name="description" id="ad_form_description" placeholder="description" required>
+						<input type="number" name="price" id="ad_form_price" placeholder="price" required>
+						<button type="submit">Post ad</button>
+					</form>
+
+				</div>
+
+				
+
+				<div class="listing_section_filler"></div>	
+			</div>
 
 		</section>
 

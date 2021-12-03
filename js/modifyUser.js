@@ -64,7 +64,7 @@ changeProfileInfoForm.addEventListener("submit", async (evt) => {
   } else {
     sessionStorage.setItem("token", loginJson.token);
     sessionStorage.setItem("user", JSON.stringify(loginJson.user));
-    console.log(`Modified user with new values: ${JSON.stringify(loginJson.user)}`);
+    console.log(`Modified user values.`);
     displayProfileView();
   }
 
