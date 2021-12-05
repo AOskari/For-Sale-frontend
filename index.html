@@ -21,7 +21,10 @@
 
 			<!-- Hidden class will be toggled when using search_nav_button -->
 			<input id="searchbar" placeholder="Search items.." class="none"/>
-	
+			<div id="toolbar_logo_container" class="none">
+				<img id="toolbar_logo" src="images/for-sale-logo.png" alt="logo">
+			</div>
+
 			<!-- login_btn displayed according to registered status -->
 			<button id="login_btn" class="visible" onclick="displayLoginView()">
 				Login / Register
@@ -29,12 +32,11 @@
 		</div>
 
 		<div id="bottom_nav">
-			<button id="home_nav_button" class="focused" onclick="displayHomeView()">Home</button>
-			<button id="search_nav_button" class="unfocused" onclick="displaySearchView()">Search</button>
-			<button id="own_ads_nav_button" class="unfocused" onclick="displayOwnAdsView()">Own ads</button>
+			<button id="home_nav_button" class="focused nav_button" onclick="displayHomeView()"><img class="button-icon" src="images/home-icon.png"></button>
+			<button id="search_nav_button" class="unfocused nav_button" onclick="displaySearchView()"><img class="button-icon" src="images/search-icon.png"></button>
+			<button id="own_ads_nav_button" class="unfocused nav_button" onclick="displayOwnAdsView()"><img class="button-icon" src="images/listing-icon.png"></button>
 		</div>
 	
-		
 		<!-- display property of elements within mid_section are toggled according to button clicks -->
 		<section id="mid_section">
 
@@ -42,50 +44,58 @@
 			<!-- elements used for displaying the login and registration screen. Login and register form displayed separately. -->
 			<div id="login_and_register" class="display">
 
-				<div id="logo_container"><h1>Logo placeholder</h1></div>
+				<div id="login_register_section">
+			
+					<div id="logo_container"><img id="logo" src="images/for-sale-logo.png" alt="For-Sale logo"></div>
 
-				<!-- Primary screen displayed when pressing the login/register button. Used for logging to the server. -->
-				<form id="login_form" class="display">
-					<h3 style="font-weight: 700;">Login</h3>
-					<div class="input_container">
-						<h4>Email</h4>
-						<input id="login_name" placeholder="..." name="username" type="email" class="input_field" required>
-					</div>
-					<div class="input_container">
-						<h4>Password</h4>
-						<input id="login_passwd" type="password" name="password" placeholder="..." class="input_field" required>
-						<h4 id="register_text">
-							New user? 
-							<button type="button" onclick="displayRegisterView()" class="borderless_button">Create an account
-							</button>
-						</h4>
-					</div>
-					<button type="submit" class="borderless_button">Sign in</button>
-				</form>
+					<!-- Primary screen displayed when pressing the login/register button. Used for logging to the server. -->
+					<form id="login_form" class="display">
+						<h3 style="font-weight: 700;">Login</h3>
+						<div class="input_container">
+							<h4>Email</h4>
+							<input class="input_field" id="login_name" placeholder="..." name="username" type="email" class="input_field" required>
+						</div>
+						<div class="input_container">
+							<h4>Password</h4>
+							<input class="input_field" id="login_passwd" type="password" name="password" placeholder="..." class="input_field" required>
+							<h4 id="register_text">
+								New user? 
+								<button type="button" onclick="displayRegisterView()" class="borderless_button">Create an account
+								</button>
+							</h4>
+						</div>
+						<button type="submit" class="borderless_button">Sign in</button>
+					</form>
 
 
-				<!-- Form used for registering the user, which is displayed when clicking the new user button in login_form. -->
-				<form id="register_form"  class="none">
-					<h3 style="font-weight: 700;">Register user</h3>
-					<div class="input_container">
-						<h4>Email</h4>
-						<input id="register_email" placeholder="..." name="email" type="email" class="input_field" required>
-					</div>
-					<div class="input_container">
-						<h4>First name</h4>
-						<input id="register_fname" placeholder="..." name="first_name" type="text" class="input_field" required>
-					</div>
-					<div class="input_container">
-						<h4>Last name</h4>
-						<input id="register_lname" placeholder="..." name="last_name" type="text" class="input_field" required>
-					</div>
-					<div class="input_container">
-						<h4>Password</h4>
-						<input id="register_passwd" type="password" name="passwd" placeholder="..." class="input_field" required>
-					</div>
-					<button type="submit" class="borderless_button">Register</button>
-				</form> 
+					<!-- Form used for registering the user, which is displayed when clicking the new user button in login_form. -->
+					<form id="register_form"  class="none">
+						<h3 style="font-weight: 700;">Register user</h3>
+						<div class="input_container">
+							<h4>Email</h4>
+							<input id="register_email" placeholder="..." name="email" type="email" class="input_field" required>
+						</div>
+						<div class="input_container">
+							<h4>First name</h4>
+							<input id="register_fname" placeholder="..." name="first_name" type="text" class="input_field" required>
+						</div>
+						<div class="input_container">
+							<h4>Last name</h4>
+							<input id="register_lname" placeholder="..." name="last_name" type="text" class="input_field" required>
+						</div>
+						<div class="input_container">
+							<h4>Password</h4>
+							<input id="register_passwd" type="password" name="passwd" placeholder="..." class="input_field" required>
+						</div>
+						<button type="submit" class="borderless_button">Register</button>
+					</form> 
 
+			</div>
+
+
+				<div id="login_img_container">
+						<img src="./images/login_wallpaper.jpg" alt="login_img" >
+				</div>
 
 			</div>
 

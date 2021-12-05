@@ -8,6 +8,7 @@ const url = "http://localhost:3000";
 const displaySearchView = () => {
   hideToolbarElements();
   hideMidSectionElements();
+  hideElementById("toolbar_logo_container");
   displayElementById("searchbar");
   displayElementById("search_section");
   toggleNavButtonFocus("search_nav_button");
@@ -24,6 +25,12 @@ const displayHomeView = () => {
 
 /** Toggles the Own ads screen. **/
 const displayOwnAdsView = () => {
+
+  if (!sessionStorage.getItem("user")) {
+    alert("Login to view own ads!")
+    return;
+  }
+  
   hideToolbarElements();
   hideMidSectionElements();
   hideElementById("new_ad_section");
@@ -42,6 +49,7 @@ const displayNewAdForm = () => {
 const displayLoginView = () => {
   hideToolbarElements();
   hideMidSectionElements();
+  hideElementById("toolbar_logo_container")
   displayElementById("login_and_register");
   displayElementById("login_form");
 }
@@ -103,19 +111,19 @@ const toggleNavButtonFocus = (button) => {
       salesbtn.classList.add("focused");
       salesbtn.classList.remove("unfocused");
       break;
-    case "profile_button":
+    default:
       break;
   }
 }
 
 
-/** A multipurpose function used for hiding the toolbar elements. **/
+/** Hides the toolbar elements. **/
 const hideToolbarElements = () => {
-
-  // TODO: Display For-Sale logo when searchbar is hidden.
   hideElementById("searchbar");
+  displayElementById("toolbar_logo_container");
 }
 
+/** Hides the midsection elements. **/
 const hideMidSectionElements = () => {
   // Hide login and register screen.
   hideElementById("login_and_register");
