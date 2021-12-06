@@ -172,7 +172,7 @@
 			</div>
 
 
-			<!-- Home portion -->
+			<!-- Home view -->
 			<div id="home_section" class="display">
 				<h3>Home screen</h3>
 				<div id="home_listing_section">
@@ -184,7 +184,7 @@
 			</div>
 
 
-			<!-- Home portion -->
+			<!-- Home view -->
 			<div id="search_section" class="none">
 				<h3>Search screen</h3>
 				<div id="search_listing_section">
@@ -195,22 +195,23 @@
 				<div class="listing_section_filler"></div>	
 			</div>
 			
-			<!-- Own Ads portion -->
+			<!-- Own Ads view -->
 			<div id="own_ads" class="none">
 
 				<div id="own_listing_info_section" class="display">
 					<div id="own_listing_info">
 						<h2>Own Ad info</h2>
-						<h3>Amount of ads: 0</h3>
+						<h3 id="amount_of_ads">Amount of ads: 0</h3>
+						<button id="new_ad_button" onclick="displayNewAdForm()">Create new ad</button>
 					</div>
 	
-					<div id="own_listing_section" >
+					<div id="own_listing_section">
 						<ul id="own_listing_list">
 							<!-- Listing cards are created here -->
 	
 						</ul>
 					</div>
-					<button id="new_ad_button" onclick="displayNewAdForm()">Create new ad</button>
+					
 				</div>
 				
 

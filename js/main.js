@@ -30,9 +30,10 @@ const displayOwnAdsView = () => {
     alert("Login to view own ads!")
     return;
   }
-  
+
   hideToolbarElements();
   hideMidSectionElements();
+  getOwnListing();
   hideElementById("new_ad_section");
   displayElementById("own_listing_info_section");
   displayElementById("own_ads");
@@ -49,7 +50,9 @@ const displayNewAdForm = () => {
 const displayLoginView = () => {
   hideToolbarElements();
   hideMidSectionElements();
-  hideElementById("toolbar_logo_container")
+  toggleNavButtonFocus("");
+  hideElementById("toolbar_logo_container");
+  displayElementById("bottom_nav");
   displayElementById("login_and_register");
   displayElementById("login_form");
 }
@@ -57,6 +60,7 @@ const displayLoginView = () => {
 /** Toggles the register screen. **/
 const displayRegisterView = () => {
   hideElementById("login_form");
+  hideElementById("bottom_nav")
   displayElementById("register_form");
 }
 
@@ -65,6 +69,7 @@ const displayProfileView = () => {
   hideToolbarElements();
   hideMidSectionElements();
   setProfileInfo();
+  displayElementById("bottom_nav");
   displayElementById("user_info");
   hideElementById("change_profile_info");
   displayElementById("user_profile");
@@ -208,37 +213,54 @@ const toggleNotification = (state) => {
 const createListingCards = (listing, targetElement) => {
   
   const listingList = document.getElementById(targetElement);
-  
+  listingList.innerHTML = "";
+
   console.log(`Listing at createListingCards: ${listing}`);
+  console.log(`Listing object size: ${Object.keys(listing).length}`);
 
   for (let i = 0; i < Object.keys(listing).length; i++) {
 
     // Displaying only 20 items maximum in the home screen.
-    if(i == 20 && targetElement == "home_listing_list") break;
+    if (i == 20 && targetElement == "home_listing_list") break;
   
-
     const img = document.createElement("img");
-  //  img.src = url + "/uploads/" + listing[i].filename;
+
+    // Placing a placeholder image if image is not found.
+    img.onerror = () => img.src = "./images/placeholder-listing-img.png";
+
+    img.src = url + "/uploads/" + listing[i].filename;
+    
     img.alt = listing[i].title;
+    img.classList.add("listing_item_img");
 
     const fig = document.createElement("figure").appendChild(img);
+    fig.classList.add("listing_item_img_container");
+
+    const price = document.createElement("h5");
+    price.innerHTML = listing[i].price + " €";
+
+
+
     const name = document.createElement("h3");
     name.innerHTML = listing[i].title;
 
-    const price = document.createElement("h5");
-    price.innerHTML = listing[i].price;
 
     const description = document.createElement("p");
     description.innerHTML = listing[i].description;
 
+    const infoContainer = document.createElement("div");
+    infoContainer.appendChild(price);
+    infoContainer.appendChild(name);
+    infoContainer.appendChild(description);
+
+    infoContainer.classList.add("listing_item_info");
 
     const li = document.createElement("li");
     li.classList.add("listing_item");
 
     li.appendChild(fig);
-    li.appendChild(name);
-    li.appendChild(price);
-    li.appendChild(description);
+    li.appendChild(infoContainer);
+
     listingList.appendChild(li);
   }
 

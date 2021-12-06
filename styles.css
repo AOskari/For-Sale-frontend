@@ -285,6 +285,7 @@ h4 {
   width: 100%;
   height: 100%;
   max-width: 400px;
+  border-radius: 50%;
   max-height: 400px;
 
 }
@@ -458,24 +459,50 @@ input:focus,textarea:focus {
 }
 
 .listing_item {
-
-  border-radius: 15px;
-  display: block;
+  box-shadow: 2px 2px 2px black;
+  border-radius: 8px;
+  display: flex;
   flex-flow: column;
   float: left;
-  height: 150px;
-  background-color: burlywood;
-  padding: 10px;
-  width: 100px;
+  height: 190px;
+  background-image: linear-gradient(to bottom right, var(--primary-color), var(--button-secondary-color));
+  width: 150px;
   margin: 5px;
-
 }
+
+.listing_item_info {
+  flex: 2;
+  display: flex;
+  flex-flow: column;
+  padding: 5px;
+}
+
+.listing_item_img_container {
+  flex: 3;
+  width: 100%;
+  max-height: 108px;
+  display: flex;
+  border-radius: 8px 8px 0px 0px;
+  background-color: white;
+  box-shadow: 
+        inset 0px 11px 8px -10px #B6B6B4,
+        inset 0px -11px 8px -10px #B6B6B4; 
+}
+
+.listing_item_img {
+  width: auto;
+}
+
+
 
 #home_listing_section {
   overflow: none;
-  background-color: chocolate;
+  background-color: var(--primary-color);
   height: 80%;
-  width: 100%;
+  width: 90%;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px gray;
   display: flex;
   align-items: center;
   flex: 1;
@@ -530,7 +557,7 @@ input:focus,textarea:focus {
   display: flex;
   flex-flow: column;
   width: 100%;
-  height: 200px;
+  height: 100%;
   background-color: greenyellow;
 }
 
@@ -545,11 +572,23 @@ input:focus,textarea:focus {
   background-color: yellow;
 }
 
+#own_listing_list {
+  overflow: hidden;
+  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  background-color: wheat;
+}
 
-
-
-
-
+#own_listing_info_section {
+  overflow: none;
+  background-color: chocolate;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
 
 
 

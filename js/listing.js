@@ -33,7 +33,7 @@ const getListing = async (searchInput) => {
 
 
 /** Fetches the user's own listings from the database. **/
-const getOwnListing = async (userId) => {
+const getOwnListing = async () => {
   try {
     
     const fetchOptions = {
@@ -42,10 +42,13 @@ const getOwnListing = async (userId) => {
       },
     };
 
-    const response = await fetch(url + "/listing/user/" + sessionStorage.getItem(token).user_id, fetchOptions);
+    const userId = JSON.parse(sessionStorage.getItem("user")).user_id;
+
+    const response = await fetch(url + "/listing/user/" + userId, fetchOptions);
     const listing = await response.json();
 
     createListingCards(listing, "own_listing_list");
+    document.getElementById("amount_of_ads").innerHTML = `Amount of ads: ${Object.keys(listing).length}`;
 
   } catch (e) {
     console.log(`Error ${e.message}`);
@@ -67,7 +70,6 @@ newAdForm.addEventListener("submit", async (evt) => {
   const fetchOptions = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     },
     body: data,
@@ -84,6 +86,8 @@ newAdForm.addEventListener("submit", async (evt) => {
   emptyListingInput("ad_form_title");
   emptyListingInput("ad_form_description");
   emptyListingInput("ad_form_price");
+
+  displayOwnAdsView();
 
 });
 
