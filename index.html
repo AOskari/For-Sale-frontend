@@ -236,15 +236,51 @@
 			<!-- Listing item information view -->
 			<div id="listing_item_section" class="none">
 				<div id="listing_upper_section">
-
+					<h2 id="listing_upper_section_title"></h2>
+					<h2>•</h2>
+					<h2 id="listing_upper_posted_date"></h2>
 				</div>
 				<div id="listing_mid_section">
 					<img src="" alt="listing picture" id="listing_section_img">
 				</div>
 				<div id="listing_lower_section">
+					<div>
+						<h3 id="listing_lower_section_price"></h3>
+						<p id="listing_lower_section_description"></p>
+					</div>
+					<button id="listing_back_button" onclick="hideListingInfo()">Back</button>
+
+					<div id="listing_user_info">
+						<h2 id="listing_user_name"></h2>
+						<h2 id="listing_user_email"></h2>
+						<h2 id="listing_user_rating"></h2>
+					</div>
+
+					<div id="listing_comment_section">
+						<form id="comment_form" class="none">
+							<input id="comment_input" name="comment" type="text" required>
+							<button id="add_comment_button">Add a comment</button>
+						</form>
+
+						<ul id="listing_comments">
+
+						</ul>						
+
+						<div class="listing_section_filler"></div>	
+						
+					</div>
+				
 
 				</div>
+
+				
 			</div>
+
+			<!-- View other user profile view -->
+			<diV id="other_profile_view">
+			
+
+			</diV>
 
 		</section>
 

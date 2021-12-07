@@ -1,4 +1,4 @@
-"user strict";
+"use strict";
 
 /** Fetches the listing data from the database. **/
 const getListing = async (searchInput) => {

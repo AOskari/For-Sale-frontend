@@ -147,6 +147,10 @@ const hideMidSectionElements = () => {
 
   // Hide own ads screen.
   hideElementById("own_ads");
+
+  // Hide listing item section.
+  hideElementById("listing_item_section");
+
 };
 
 
@@ -207,6 +211,7 @@ const toggleNotification = (state) => {
   hideElementById("notification");
 }
 
+const hideListingInfo = () => hideElementById("listing_item_section");
 
 
 // Fetches and creates elements for displaying the listing in the given element.
@@ -261,8 +266,74 @@ const createListingCards = (listing, targetElement) => {
     li.appendChild(fig);
     li.appendChild(infoContainer);
 
-    li.addEventListener("click", () => {
-      // TODO: Open listing info view.
+    // Adding an event listener which displays elements with information of the listing.
+    li.addEventListener("click", async () => {
+
+      const title = document.getElementById("listing_upper_section_title");
+      title.innerHTML = listing[i].title;
+
+      const dateElement = document.getElementById("listing_upper_posted_date");
+      const date = new Date(listing[i].listing_date);
+
+      dateElement.innerHTML = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+      const img = document.getElementById("listing_section_img");
+      img.src = url + "/uploads/" + listing[i].filename;
+
+      const price =document.getElementById("listing_lower_section_price");
+      price.innerHTML = listing[i].price + " €";
+
+      const desc = document.getElementById("listing_lower_section_description");
+      desc.innerHTML = listing[i].description;
+
+      const userResponse = await fetch(url + "/userGet/" + listing[i].seller_id);
+      const userJson = await userResponse.json();
+
+      document.getElementById("listing_user_name").innerHTML = `${userJson.first_name} ${userJson.last_name}`;
+      document.getElementById("listing_user_email").innerHTML = `${userJson.email}`;
+     
+      // Fetching the user's review rating.
+      const response = await fetch(url + "/review/user/" + userJson.user_id);
+      const json = await response.json();
+
+      if (response.ok) document.getElementById("listing_user_rating").innerHTML = `${json}`;
+      else document.getElementById("listing_user_rating").innerHTML = `No reviews.`;
+
+
+      hideMidSectionElements();
+      toggleNavButtonFocus("");
+
+      const commentResponse = await fetch(url + "/commentGet/listing/" + listing[i].listing_id);
+      const comments = await commentResponse.json();
+
+      for (let i = 0; i < Object.keys(comments).length; i++) {
+
+        const li = document.createElement("li");
+        const user = JSON.parse(sessionStorage.getItem("user"));
+
+        const h2 = document.createElement("h2");
+        h2.innerHTML = `${user.first_name} ${user.last_name}`;
+
+        const br = document.createElement("br");
+
+        const p = document.createElement("p");
+        p.innerHTML = comments[i].comment;
+        
+        li.appendChild(h2);
+        li.appendChild(br);
+        li.appendChild(p);
+        li.classList.add("listing_comment");
+
+        document.getElementById("listing_comments").appendChild(li);
+      }
+
+      const listingSection = document.getElementById("listing_item_section");
+      listingSection.classList.remove("none");
+      listingSection.classList.add("display");
+
+      if (sessionStorage.getItem("user")) displayElementById("comment_form");
+      else hideElementById("comment_form");
+  
     });
 
     listingList.appendChild(li);
