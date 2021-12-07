@@ -211,7 +211,11 @@ const toggleNotification = (state) => {
   hideElementById("notification");
 }
 
-const hideListingInfo = () => hideElementById("listing_item_section");
+// TODO: Add parameter which decides the screen to display.
+const hideListingInfo = () => {
+  hideElementById("listing_item_section");
+  displayHomeView();
+}
 
 
 // Fetches and creates elements for displaying the listing in the given element.
@@ -245,7 +249,6 @@ const createListingCards = (listing, targetElement) => {
     price.innerHTML = listing[i].price + " €";
 
 
-
     const name = document.createElement("h3");
     name.innerHTML = listing[i].title;
 
@@ -269,72 +272,112 @@ const createListingCards = (listing, targetElement) => {
     // Adding an event listener which displays elements with information of the listing.
     li.addEventListener("click", async () => {
 
+      
+      // Setting fetched information to follow elements:
       const title = document.getElementById("listing_upper_section_title");
-      title.innerHTML = listing[i].title;
-
       const dateElement = document.getElementById("listing_upper_posted_date");
+      const price = document.getElementById("listing_lower_section_price");
+      const desc = document.getElementById("listing_lower_section_description");
+      const img = document.getElementById("listing_section_img");
       const date = new Date(listing[i].listing_date);
 
+      title.innerHTML = listing[i].title;
       dateElement.innerHTML = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-
-      const img = document.getElementById("listing_section_img");
       img.src = url + "/uploads/" + listing[i].filename;
-
-      const price =document.getElementById("listing_lower_section_price");
       price.innerHTML = listing[i].price + " €";
-
-      const desc = document.getElementById("listing_lower_section_description");
       desc.innerHTML = listing[i].description;
 
+
+      // Creating another fetch for getting user information of the owner.
       const userResponse = await fetch(url + "/userGet/" + listing[i].seller_id);
       const userJson = await userResponse.json();
 
+      
+      // Setting the owner information to the listing ad.
       document.getElementById("listing_user_name").innerHTML = `${userJson.first_name} ${userJson.last_name}`;
       document.getElementById("listing_user_email").innerHTML = `${userJson.email}`;
      
-      // Fetching the user's review rating.
+
+      // Creating another fetch for getting the user's review rating.
       const response = await fetch(url + "/review/user/" + userJson.user_id);
       const json = await response.json();
 
+      
+      // Set the rating in the chosen element according if the user has a rating.
       if (response.ok) document.getElementById("listing_user_rating").innerHTML = `${json}`;
       else document.getElementById("listing_user_rating").innerHTML = `No reviews.`;
 
 
+      // Hiding other mid section elements and taking removing the focus of nav buttons.
       hideMidSectionElements();
       toggleNavButtonFocus("");
 
+
+      // Creating yet another fetch for getting all the comments for the listing ad.
       const commentResponse = await fetch(url + "/commentGet/listing/" + listing[i].listing_id);
       const comments = await commentResponse.json();
 
+      // Emptying the list of comments before displaying current ones.
       document.getElementById("listing_comments").innerHTML = "";
 
+
+      // Looping through all comments and creating them into the listing_comments ul.
       for (let i = 0; i < Object.keys(comments).length; i++) {
 
+
+        // Fetching the creator of the comment.
         const commentUser = await fetch(url + "/userGet/" + comments[i].user_id);
         const user = await commentUser.json();
 
-        const li = document.createElement("li");
-
-        const h2 = document.createElement("h2");
-        h2.innerHTML = `${user.first_name} ${user.last_name}`;
-
-        const br = document.createElement("br");
-
-        const p = document.createElement("p");
-        p.innerHTML = comments[i].comment;
         
+        // Set correct information to selected elements.
+        const li = document.createElement("li");
+        const h2 = document.createElement("h2");
+        const br = document.createElement("br");
+        const p = document.createElement("p");
+
+        h2.innerHTML = `${user.first_name} ${user.last_name}`;
+        p.innerHTML = comments[i].comment;
+
+
+        // Add previously created elements to the list and add the list element to the ul.
         li.appendChild(h2);
         li.appendChild(br);
         li.appendChild(p);
         li.classList.add("listing_comment");
-
         document.getElementById("listing_comments").appendChild(li);
       }
+      
+      // Add comment to the database on submit.
+      const commentForm = document.getElementById("comment_form");
+      commentForm.addEventListener("submit", async (evt) => {
+        evt.preventDefault();
 
-      const listingSection = document.getElementById("listing_item_section");
-      listingSection.classList.remove("none");
-      listingSection.classList.add("display");
+        const data = serializeJson(commentForm);
 
+        const fetchOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+          body: JSON.stringify(data),
+        };
+
+        console.log(`${JSON.stringify(data)}`);
+
+      
+        const response = await fetch(url + "/comment/listing/" + listing[i].listing_id, fetchOptions);
+        const json = await response.json();
+        
+        if (response.ok) alert("Comment succesfully added.");
+      });
+
+      // Displaying the list item section.
+      displayElementById("listing_item_section");
+
+      
+      // If the user is logged in, display the comment input form.
       if (sessionStorage.getItem("user")) displayElementById("comment_form");
       else hideElementById("comment_form");
   
@@ -361,14 +404,8 @@ const displayElementById = (element) => {
 
 
 
-
-
-
-
-
+// Initialization of the home view.
 checkLoggedStatus();
 displayHomeView();
-if (logged) {
-  setProfileInfo();
-}
+if (logged) setProfileInfo();
 toggleNotification(false);
