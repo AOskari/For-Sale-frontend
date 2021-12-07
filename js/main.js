@@ -308,8 +308,10 @@ const createListingCards = (listing, targetElement) => {
 
       for (let i = 0; i < Object.keys(comments).length; i++) {
 
+        const commentUser = await fetch(url + "/userGet/" + comments[i].user_id);
+        const user = await commentUser.json();
+
         const li = document.createElement("li");
-        const user = JSON.parse(sessionStorage.getItem("user"));
 
         const h2 = document.createElement("h2");
         h2.innerHTML = `${user.first_name} ${user.last_name}`;
