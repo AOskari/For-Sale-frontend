@@ -306,6 +306,8 @@ const createListingCards = (listing, targetElement) => {
       const commentResponse = await fetch(url + "/commentGet/listing/" + listing[i].listing_id);
       const comments = await commentResponse.json();
 
+      document.getElementById("listing_comments").innerHTML = "";
+
       for (let i = 0; i < Object.keys(comments).length; i++) {
 
         const commentUser = await fetch(url + "/userGet/" + comments[i].user_id);
