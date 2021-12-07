@@ -261,6 +261,10 @@ const createListingCards = (listing, targetElement) => {
     li.appendChild(fig);
     li.appendChild(infoContainer);
 
+    li.addEventListener("click", () => {
+      // TODO: Open listing info view.
+    });
+
     listingList.appendChild(li);
   }
 
