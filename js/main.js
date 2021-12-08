@@ -1,6 +1,7 @@
 "use strict";
 let logged = false;
 let notification = false;
+let currentListingId = 0;
 
 const url = "http://localhost:3000";
 
@@ -322,11 +323,11 @@ const createListingCards = (listing, targetElement) => {
 
 
       // Looping through all comments and creating them into the listing_comments ul.
-      for (let i = 0; i < Object.keys(comments).length; i++) {
+      for (let j = 0; j < Object.keys(comments).length; j++) {
 
 
         // Fetching the creator of the comment.
-        const commentUser = await fetch(url + "/userGet/" + comments[i].user_id);
+        const commentUser = await fetch(url + "/userGet/" + comments[j].user_id);
         const user = await commentUser.json();
 
         
@@ -337,8 +338,8 @@ const createListingCards = (listing, targetElement) => {
         const p = document.createElement("p");
 
         h2.innerHTML = `${user.first_name} ${user.last_name}`;
-        p.innerHTML = comments[i].comment;
-
+        p.innerHTML = comments[j].comment;
+        p.classList.add("comment_text");
 
         // Add previously created elements to the list and add the list element to the ul.
         li.appendChild(h2);
@@ -348,30 +349,8 @@ const createListingCards = (listing, targetElement) => {
         document.getElementById("listing_comments").appendChild(li);
       }
       
-      // Add comment to the database on submit.
-      const commentForm = document.getElementById("comment_form");
-      commentForm.addEventListener("submit", async (evt) => {
-        evt.preventDefault();
-
-        const data = serializeJson(commentForm);
-
-        const fetchOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
-          },
-          body: JSON.stringify(data),
-        };
-
-        console.log(`${JSON.stringify(data)}`);
-
       
-        const response = await fetch(url + "/comment/listing/" + listing[i].listing_id, fetchOptions);
-        const json = await response.json();
-        
-        if (response.ok) alert("Comment succesfully added.");
-      });
+      currentListingId = listing[i].listing_id;
 
       // Displaying the list item section.
       displayElementById("listing_item_section");
@@ -387,6 +366,13 @@ const createListingCards = (listing, targetElement) => {
   }
 
 }
+
+// Add comment to the database on submit.
+const commentForm = document.getElementById("comment_form");
+commentForm.addEventListener("submit", async (evt) => {
+  evt.preventDefault();
+  addComment(currentListingId);
+});
 
 
 

@@ -633,7 +633,6 @@ input:focus,textarea:focus {
   display: flex;
   flex-flow: column;
   padding: 3px;
-  background-color: brown;
   min-height: 150px;
 }
 
@@ -648,20 +647,47 @@ input:focus,textarea:focus {
 }
 
 #comment_input {
-  width: 90%;
-  max-width: 500px;
-  min-height: 150px;
+  padding: 10px;
+  flex: 1;
+  border-style: none;
+  height: 70px;
+  resize: none;
+}
+
+#comment_form {
+  margin: 5px;
+  border-radius: 10px;
+  border-color: var(--trim-color);
+  border-style: solid;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+#add_comment_button {
+  height: 80%;
+  width: 90px;
+  margin: 10px;
 }
 
 #listing_comments {
   width: 100%;
-  background-color: green;
 }
 
 .listing_comment {
   border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  border-color: var(--trim-color);
+  overflow-x: auto;
   margin: 5px;
-  background-color: cornsilk;
+  background-color: var(--primary-color);
+}
+
+.comment_text {
+  max-width: 100%;
+  background-color: grey;
 }
 
 

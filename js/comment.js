@@ -1,8 +1,11 @@
 "use strict";
 
+// Adds a comment to the database.
 const addComment = async (listingId, form) => {
 
-  form.user_id = JSON.parse(sessionStorage.getItem("user")).user_id;
+  const data = {
+    comment: document.getElementById("comment_input").value,
+  }
 
   const fetchOptions = {
     method: "POST",
@@ -10,12 +13,17 @@ const addComment = async (listingId, form) => {
       "Content-Type": "application/json",
       Authorization: "Bearer " + sessionStorage.getItem("token"),
     },
-    body: JSON.stringify(form),
+    body: JSON.stringify(data),
   };
 
+  if (document.getElementById("comment_input").value == "") {
+    alert("Enter a comment.");
+    return;
+  }
+
   const response = await fetch(url + "/comment/listing/" + listingId, fetchOptions);
-  const json = await response.json();
-
-  if (response.ok) alert("Comment succesfully added.");
-
-}
+  if (response.ok) {
+    alert("Comment succesfully added.");
+    document.getElementById("comment_input").value = "";
+  }
+};
