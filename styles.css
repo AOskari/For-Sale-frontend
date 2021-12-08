@@ -260,7 +260,7 @@ h4 {
 
 /** Profile screen **/
 
-#user_profile {
+.profile {
   display: flex;
   flex-flow: column;
   background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
@@ -691,11 +691,59 @@ input:focus,textarea:focus {
 }
 
 
+/** View other profile section **/
 
+#other_user_profile {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+  background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+}
 
+#other_user_img_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 
+#review_back_button {
 
+}
 
+#other_profile_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+#review_form { 
+  border-radius: 10px;
+  border-color: var(--trim-color);
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  max-width: 300px;
+  min-width: 100px;
+  background-color: white;
+}
+#review_input {
+  max-width: 150px;
+  min-width: 100px;
+  border: none;
+  width: 100%;
+  flex: 4;
+}
+
+#review_button {
+  flex: 1;
+}
 
 
 
@@ -813,6 +861,11 @@ input:focus,textarea:focus {
     flex-flow: row;
   }
  
+  
+#other_user_profile {
+  justify-content: center;
+}
+
 
 }
 

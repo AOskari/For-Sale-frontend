@@ -2,6 +2,8 @@
 let logged = false;
 let notification = false;
 let currentListingId = 0;
+let currentListingOwner = {};
+let currentUserRating = {};
 
 const url = "http://localhost:3000";
 
@@ -77,6 +79,7 @@ const displayProfileView = () => {
   toggleNavButtonFocus("profile_button"); 
 }
 
+
 /** Displays the change profile info screen within the Profile screen **/
 const displayChangeProfileInfoView = () => {
 
@@ -91,6 +94,12 @@ const displayChangeProfileInfoView = () => {
 
 }
 
+/** Displays the listing item view. **/
+const displayListingItemView = () => {
+  hideMidSectionElements();
+  toggleNavButtonFocus("");
+  displayElementById("listing_item_section");
+}
 
 
 /** Toggles the focus of the bottom navigation buttons according to the given parameter. **/
@@ -152,6 +161,8 @@ const hideMidSectionElements = () => {
   // Hide listing item section.
   hideElementById("listing_item_section");
 
+  // Hide other user screen.
+  hideElementById("other_user_profile");
 };
 
 
@@ -274,6 +285,7 @@ const createListingCards = (listing, targetElement) => {
     li.addEventListener("click", async () => {
 
       
+
       // Setting fetched information to follow elements:
       const title = document.getElementById("listing_upper_section_title");
       const dateElement = document.getElementById("listing_upper_posted_date");
@@ -292,7 +304,7 @@ const createListingCards = (listing, targetElement) => {
       // Creating another fetch for getting user information of the owner.
       const userResponse = await fetch(url + "/userGet/" + listing[i].seller_id);
       const userJson = await userResponse.json();
-
+      currentListingOwner = userJson;
       
       // Setting the owner information to the listing ad.
       document.getElementById("listing_user_name").innerHTML = `${userJson.first_name} ${userJson.last_name}`;
@@ -302,7 +314,7 @@ const createListingCards = (listing, targetElement) => {
       // Creating another fetch for getting the user's review rating.
       const response = await fetch(url + "/review/user/" + userJson.user_id);
       const json = await response.json();
-
+      currentUserRating = json;
       
       // Set the rating in the chosen element according if the user has a rating.
       if (response.ok) document.getElementById("listing_user_rating").innerHTML = `${json}`;
@@ -367,12 +379,55 @@ const createListingCards = (listing, targetElement) => {
 
 }
 
+const listingUserInfo = document.getElementById("listing_user_info");
+listingUserInfo.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  hideMidSectionElements();
+  displayOtherUserInfo();
+});
+
+
 // Add comment to the database on submit.
 const commentForm = document.getElementById("comment_form");
 commentForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   addComment(currentListingId);
 });
+
+const reviewForm = document.getElementById("review_form");
+reviewForm.addEventListener("submit", async (evt) => {
+  evt.preventDefault();
+  addReview(currentListingOwner.user_id);
+
+  // Fetching the updated rating of the user and displaying it on the UI.
+  const response = await fetch(url + "/review/user/" + currentListingOwner.user_id);
+  const json = await response.json();
+  currentUserRating = json;
+  displayOtherUserInfo();
+  
+});
+
+
+// Displays the listing owner's information.
+const displayOtherUserInfo = () => {
+  
+  const img = document.getElementById("other_user_img");
+  const username = document.getElementById("other_username");
+  const rating = document.getElementById("review_rating");
+  
+  console.log(currentUserRating.message);
+
+  if (!currentUserRating.message) rating.innerHTML = `Rating: ${currentUserRating}`;
+  else rating.innerHTML = `No rating available.`;
+
+  username.innerHTML = `${currentListingOwner.first_name} ${currentListingOwner.last_name}`;
+
+  if (currentListingOwner.profile_pic == 0) img.src = "./images/default_profile_img.png";
+  else img.src = url + "/uploads/" + currentListingOwner.profile_pic;
+
+  displayElementById("other_user_profile");
+
+}
 
 
 
