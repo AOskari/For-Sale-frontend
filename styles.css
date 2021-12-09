@@ -10,8 +10,8 @@
   --primary-color: #FBFCFF;
   --secondary-color: #D0CCD0;
   --trim-color: #605856;
-  --button-primary-color: #000080;
-  --button-secondary-color: #1e90ff;
+  --button-primary-color: #7bb080;
+  --button-secondary-color: #A4C2A8;
 }
 
 /** Adding important for overriding the element properties. **/
@@ -461,13 +461,19 @@ input:focus,textarea:focus {
 }
 
 .listing_item {
-  box-shadow: 1px 1px 1px black;
+
+  border: var(--trim-color) solid 1px;
   display: flex;
   flex-flow: column;
   float: left;
   height: 210px;
   width: 170px;
   margin: 5px;
+}
+
+.listing_item:hover {
+  box-shadow: var(--trim-color) 1px 1px 2px 1px;
+  cursor: pointer;
 }
 
 .listing_item_info {
@@ -493,9 +499,13 @@ input:focus,textarea:focus {
 }
 
 #top_sellers_title {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 3em;
   width: 100%;
-  color:black;
-  font-weight: 700;
+  background-color: var(--primary-color);
 }
 
 
@@ -532,22 +542,30 @@ input:focus,textarea:focus {
 
 #search_listing_section {
   overflow: none;
-  background-color: chocolate;
+  background-color: var(--primary-color);
   height: 80%;
   width: 100%;
   display: flex;
   align-items: center;
   flex: 1;
   flex-flow: column;
-
 }
 
 #search_section {
-  background-color: gold;
   display: flex;
   flex-flow: column;
   width: 100%;
   align-items: center;
+}
+
+#search_title {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  width: 100%;
+  background-color: var(--primary-color);
 }
 
 
@@ -559,7 +577,7 @@ input:focus,textarea:focus {
   flex-flow: column;
   width: 100%;
   height: 100%;
-  background-color: greenyellow;
+  background-color: var(--primary-color);
 }
 
 #own_listing_info {
@@ -568,22 +586,26 @@ input:focus,textarea:focus {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: 7em;
   color: white;
-  background-color: yellow;
+  background-color: var(--primary-color);
+
 }
 
 #own_listing_list {
+  padding: 1em;
+  margin: 1em;
+  border: var(--trim-color) solid 1px;
   overflow: hidden;
   overflow-y: scroll;
   justify-content: center;
   align-items: center;
-  background-color: wheat;
+  background-color: var(--primary-color);
 }
 
 #own_listing_info_section {
   overflow: none;
-  background-color: chocolate;
+  background-color: var(--primary-color);
   height: 80%;
   width: 100%;
   display: flex;
@@ -597,6 +619,7 @@ input:focus,textarea:focus {
 /** Listing item section **/
 
 #listing_item_section {
+
   flex-flow: column;
   width: 100%;
   overflow-y: scroll;
@@ -874,7 +897,8 @@ input:focus,textarea:focus {
 }
 
 #delete_listing_button {
-  background-image: linear-gradient(to bottom right, red, var(--button-primary-color));
+  padding: 5px;
+  background-image: linear-gradient(to bottom right, red, darkred);
 }
 
 #listing_img {
