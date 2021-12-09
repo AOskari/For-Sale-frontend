@@ -97,7 +97,7 @@ const emptyListingInput = (element) => document.getElementById(element).value = 
 
 /** Adding a submit event, which attempts to change the listing data in the backend. **/
 const changeListingForm = document.getElementById("change_listing_info_form");
-changeListingForm("submit", async (evt) => {
+changeListingForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
 
   const data = serializeJson(changeListingForm);
@@ -132,10 +132,11 @@ changeListingForm("submit", async (evt) => {
 const deleteButton = document.getElementById("delete_listing_button");
 deleteButton.addEventListener("click", async (evt) => {
   evt.preventDefault();
-  deleteListing();
-/*   if (alert("Delete the listing?")) {
-    
-  } */
+
+  if (alert("Delete the listing?")) {
+  deleteListing();  
+  displayOwnAdsView();
+  } 
 
 });
 
