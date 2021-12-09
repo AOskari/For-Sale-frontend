@@ -22,6 +22,7 @@ const displaySearchView = () => {
 const displayHomeView = () => {
   hideToolbarElements();
   hideMidSectionElements();
+  displayElementById("bottom_nav");
   getListing("");
   displayElementById("home_section");
   toggleNavButtonFocus("home_nav_button");
