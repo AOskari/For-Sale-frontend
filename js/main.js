@@ -302,6 +302,7 @@ const createListingCards = (listing, targetElement) => {
       }
 
       img.src = url + "/uploads/" + listing[i].filename;
+      img.alt = listing[i].title;
       price.innerHTML = listing[i].price + " €";
       desc.innerHTML = listing[i].description;
 
