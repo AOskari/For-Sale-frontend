@@ -296,6 +296,7 @@ const createListingCards = (listing, targetElement) => {
       title.innerHTML = listing[i].title;
       dateElement.innerHTML = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
       img.src = url + "/uploads/" + listing[i].filename;
+      img.alt = listing[i].title;
       price.innerHTML = listing[i].price + " €";
       desc.innerHTML = listing[i].description;
 
