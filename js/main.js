@@ -316,7 +316,7 @@ const createListingCards = (listing, targetElement) => {
       currentUserRating = json;
       
       // Set the rating in the chosen element according if the user has a rating.
-      if (response.ok) document.getElementById("listing_user_rating").innerHTML = `${json}`;
+      if (response.ok) document.getElementById("listing_user_rating").innerHTML = `Reviews: ${json} / 5.0`;
       else document.getElementById("listing_user_rating").innerHTML = `No reviews.`;
 
 

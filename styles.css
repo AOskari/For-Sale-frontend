@@ -7,9 +7,9 @@
 }
 
 :root {
-  --primary-color: #FEFEFA;
-  --secondary-color: #18A8D8;
-  --trim-color: #0000cd;
+  --primary-color: #FBFCFF;
+  --secondary-color: #D0CCD0;
+  --trim-color: #605856;
   --button-primary-color: #000080;
   --button-secondary-color: #1e90ff;
 }
@@ -462,7 +462,6 @@ input:focus,textarea:focus {
 
 .listing_item {
   box-shadow: 1px 1px 1px black;
-  border-radius: 8px;
   display: flex;
   flex-flow: column;
   float: left;
@@ -483,7 +482,6 @@ input:focus,textarea:focus {
   width: 100%;
   max-height: 120px;
   display: flex;
-  border-radius: 8px 8px 0px 0px;
   background-color: white;
   box-shadow: 
         inset 0px 11px 8px -10px #B6B6B4,
@@ -606,10 +604,12 @@ input:focus,textarea:focus {
 
 #listing_upper_section {
   flex: 1;
-  background-color: burlywood;
+  background-color: var(--primary-color);
+  box-shadow: var(--trim-color) 5px 5px 50px 3px;
   padding-left: 10px;
   display: flex;
-  min-height: 100px;
+  min-height: 1em;
+  max-height: 10em;
   align-items: center;
   flex-flow: row;
 }
@@ -629,7 +629,84 @@ input:focus,textarea:focus {
 #listing_mid_section {
   flex: 1;
   min-height: 150px;
-  background-color: blue;
+  border: #605856 solid 1px;
+  margin: 13px;
+}
+
+#listing_mid_section > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#listing_mid_section > img:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 100em;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #listing_lower_section {
@@ -638,10 +715,25 @@ input:focus,textarea:focus {
   flex-flow: column;
   padding: 3px;
   min-height: 150px;
+  margin: 5px;
+}
+
+#listing_price_description {
+  margin: 5px;
+  padding: 15px;
+  border: var(--trim-color) solid 1px;
 }
 
 #listing_user_info {
-  background-color: coral;
+  border: var(--trim-color) solid 1px;
+  background-color: var(--secondary-color);
+  margin: 5px;
+  padding: 15px;
+  transition: 0.3s;
+}
+#listing_user_info:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 #listing_comment_section {
@@ -650,8 +742,12 @@ input:focus,textarea:focus {
   flex-flow: column;
 }
 
+#listing_back_button {
+  margin: 5px;
+}
+
 #comment_input {
-  padding: 10px;
+  padding: 15px;
   flex: 1;
   border-style: none;
   height: 70px;
@@ -660,9 +756,7 @@ input:focus,textarea:focus {
 
 #comment_form {
   margin: 5px;
-  border-radius: 10px;
-  border-color: var(--trim-color);
-  border-style: solid;
+  border: var(--trim-color) solid 1px;
   display: flex;
   flex-flow: row;
   align-items: center;
@@ -674,19 +768,25 @@ input:focus,textarea:focus {
   margin: 10px;
 }
 
+#comments_title {
+  margin: 10px;
+}
+
 #listing_comments {
-  width: 100%;
+  margin: 5px;
+  width: 99.35%;
+  border: var(--trim-color) solid 1px;
 }
 
 .listing_comment {
   border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
+  border: var(--trim-color) solid 1px;
   padding: 10px;
   border-color: var(--trim-color);
   overflow-x: auto;
   margin: 5px;
   background-color: var(--primary-color);
+  max-width: 100%;
 }
 
 .comment_text {
