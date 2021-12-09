@@ -99,62 +99,72 @@ const emptyListingInput = (element) => document.getElementById(element).value = 
 const changeListingForm = document.getElementById("change_listing_info_form");
 changeListingForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
+  try {
 
-  const data = serializeJson(changeListingForm);
-  const fd = new FormData(changeListingForm);
+    if (confirm("Save changes?")) {
 
-  fd.append("description", data.description);
+      const data = serializeJson(changeListingForm);
+      const fd = new FormData(changeListingForm);
+    
+      fd.append("description", data.description);
+    
+      const fetchOptions = {
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
+        body: fd,
+      };
+    
+      const response = await fetch(url + "/listing/" + currentModifiedListingId, fetchOptions);
 
-  const fetchOptions = {
-    method: "PUT",
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token"),
-    },
-    body: fd,
-  };
+      if (!response.ok) {
+        alert("Modifying the ad failed.");
+        return;
+      }
+    
+      alert("Modification was succesful.");
+    
+      displayOwnAdsView();
 
-  const response = await fetch(url + "/listing/" + "", fetchOptions);
-  const json = await response.json();
+    }
 
-  if (!response.ok) {
-    alert("Modifying the ad failed.");
-    return;
+  } catch (e) {
+    console.log(`error at modifyListing: ${e.message}`);
   }
 
-  alert("Modification was succesful.");
-
-  displayOwnAdsView();
-
 });
+
 
 /** Deletes the chosen listing. */
-
-const deleteButton = document.getElementById("delete_listing_button");
-deleteButton.addEventListener("click", async (evt) => {
-  evt.preventDefault();
-
-  if (alert("Delete the listing?")) {
-  deleteListing();  
-  displayOwnAdsView();
-  } 
-
-});
-
 const deleteListing = async () => {
 
-  const fetchOptions = {
-    method: "DELETE",
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token"),
-    },
-  };
+  try {
 
-  const response = await fetch(url + "/listing/" + currentModifiedListingId, fetchOptions);
-  
-  if (!response.ok) {
-    alert("Listing delete failed.");
-    return;
+    if (confirm("Delete the listing?")) {
+
+      const fetchOptions = {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
+      };
+    
+      const response = await fetch(url + "/listing/" + currentModifiedListingId, fetchOptions);
+      
+      if (!response.ok) {
+        alert("Listing delete failed.");
+        return;
+      }
+      alert("Listing delete was succesful.");
+      displayOwnAdsView();
+
+    }
+
+  } catch (e) {
+    console.log(e.message);
   }
-  alert("Listing delete was succesful.");
+
+  
 
 }

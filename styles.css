@@ -169,6 +169,7 @@ body {
   width: 100%;
   display: flex;
   max-width: 400px;
+  object-fit: contain;
 }
 
 #login_register_section {
@@ -410,6 +411,7 @@ h4 {
   box-shadow: 2px 10px 18px #B6B6B4;
   width: 100%;
   flex: 1;
+  padding-left: 10px;
   margin-bottom: 5px;
   display: flex;
 
@@ -556,6 +558,7 @@ input:focus,textarea:focus {
   flex-flow: column;
   width: 100%;
   align-items: center;
+  overflow-y: scroll;
 }
 
 #search_title {
@@ -885,7 +888,7 @@ input:focus,textarea:focus {
 #listing_img_container {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100%;
 }
@@ -898,12 +901,13 @@ input:focus,textarea:focus {
 
 #delete_listing_button {
   padding: 5px;
+  max-width: 200px;
   background-image: linear-gradient(to bottom right, red, darkred);
 }
 
 #listing_img {
   height: 100%;
-  width: 100%;
+  width: 50%;
   object-fit: contain;
 }
 
@@ -966,6 +970,11 @@ input:focus,textarea:focus {
 /** Tablet screen break points **/
 
 @media (min-width: 800px) {
+
+
+  #listing_img {
+    width: 80%;
+  }
 
   #main {
     flex-flow: row;

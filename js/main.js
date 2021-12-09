@@ -295,6 +295,12 @@ const createListingCards = (listing, targetElement) => {
 
       title.innerHTML = listing[i].title;
       dateElement.innerHTML = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+      img.onerror = () => {
+        img.src = "./images/placeholder-listing-img.png";
+        console.log("Listing image not found, placing placeholder.");
+      }
+
       img.src = url + "/uploads/" + listing[i].filename;
       price.innerHTML = listing[i].price + " €";
       desc.innerHTML = listing[i].description;
