@@ -242,9 +242,20 @@
 				</div>
 				<div id="listing_mid_section">
 					<img src="" alt="listing picture" id="listing_section_img">
+					<div id="myModal" class="modal">
+
+						<!-- The Close Button -->
+						<span class="close">&times;</span>
+
+						<!-- Modal Content (The Image) -->
+						<img class="modal-content" id="img01">
+
+						<!-- Modal Caption (Image Text) -->
+						<div id="caption"></div>
+					</div>
 				</div>
 				<div id="listing_lower_section">
-					<div>
+					<div id="listing_price_description">
 						<h3 id="listing_lower_section_price"></h3>
 						<p id="listing_lower_section_description"></p>
 					</div>
@@ -262,7 +273,7 @@
 							<textarea id="comment_input" type="text" placeholder="Enter a comment.."></textarea>
 							<button id="add_comment_button" class="custom_button" type="submit">Submit</button>
 						</form>
-
+						<h2 id="comments_title">Comments:</h2>
 						<ul id="listing_comments">
 
 						</ul>						
@@ -311,6 +322,7 @@
 
 		
 	</div>
+	<script src="./js/modal.js"></script>
 	<script src="./js/listing.js"></script>
 	<script src="./js/main.js"></script>
 	<script src="./js/logout.js"></script>
