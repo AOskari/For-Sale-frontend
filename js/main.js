@@ -4,6 +4,7 @@ let notification = false;
 let currentListingId = 0;
 let currentListingOwner = {};
 let currentUserRating = {};
+let currentModifiedListingId = 0;
 
 const url = "http://localhost:3000";
 
@@ -163,6 +164,9 @@ const hideMidSectionElements = () => {
 
   // Hide other user screen.
   hideElementById("other_user_profile");
+
+  // Hide listing item modification.
+  hideElementById("listing_item_modification");
 };
 
 
@@ -265,13 +269,9 @@ const createListingCards = (listing, targetElement) => {
     name.innerHTML = listing[i].title;
 
 
-    const description = document.createElement("p");
-    description.innerHTML = listing[i].description;
-
     const infoContainer = document.createElement("div");
     infoContainer.appendChild(price);
     infoContainer.appendChild(name);
-    infoContainer.appendChild(description);
 
     infoContainer.classList.add("listing_item_info");
 
@@ -282,9 +282,8 @@ const createListingCards = (listing, targetElement) => {
     li.appendChild(infoContainer);
 
     // Adding an event listener which displays elements with information of the listing.
-    li.addEventListener("click", async () => {
-
-      
+    if (targetElement != "own_listing_list") {
+      li.addEventListener("click", async () => {
 
       // Setting fetched information to follow elements:
       const title = document.getElementById("listing_upper_section_title");
@@ -372,7 +371,28 @@ const createListingCards = (listing, targetElement) => {
       if (sessionStorage.getItem("user")) displayElementById("comment_form");
       else hideElementById("comment_form");
   
-    });
+    })
+  } else {
+
+      li.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        const img = document.getElementById("listing_img");
+        const desc = document.getElementById("listing_modify_description");
+        const title = document.getElementById("listing_modify_title");
+        const price = document.getElementById("listing_modify_price");
+  
+        img.src = url + "/uploads/" + listing[i].filename;
+        desc.value = listing[i].description;
+        title.value = listing[i].title;
+        price.value = listing[i].price;
+        currentModifiedListingId = listing[i].listing_id
+
+        hideMidSectionElements();
+        displayElementById("listing_item_modification");
+
+      });
+
+    }
 
     listingList.appendChild(li);
   }
@@ -428,6 +448,8 @@ const displayOtherUserInfo = () => {
   displayElementById("other_user_profile");
 
 }
+
+
 
 
 

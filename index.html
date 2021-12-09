@@ -302,9 +302,33 @@
 			</div>
 
 
+
 			<!-- Listing item modification view -->
 			<div id="listing_item_modification" class="none">
+				<div class="listing_section_filler"></div>	
+				<div id="listing_back_button_container">
 				
+				</div>
+				<div id="listing_img_container">
+					<button class="borderless_button">Back</button>
+					<img src="" id="listing_img">
+					<button id="delete_listing_button" class="custom_button" onclick="deleteListing()">Delete listing</button>
+				</div>
+				<form id="change_listing_info_form">
+					<input type="file" name="filename" class="custom_file_input">
+					<h3>Description</h3>
+					<textarea name="description" type="text" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
+					<h3>Title</h3>
+					<input name="title" type="text" id="listing_modify_title" class="change_profile_info_form_input">
+					<h3>Price</h3>
+					<input name="price" type="number" id="listing_modify_price" class="change_profile_info_form_input">
+					<button type="submit" id="save_modify_changes" class="custom_button">Save changes</button>
+				</form>
+			
+				<div class="listing_section_filler"></div>	
+						
+			</div>
+		
 			</div>
 
 		</section>

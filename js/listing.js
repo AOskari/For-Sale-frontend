@@ -93,3 +93,67 @@ newAdForm.addEventListener("submit", async (evt) => {
 
 /** Empties the chosen input field. */
 const emptyListingInput = (element) => document.getElementById(element).value = "";
+
+
+/** Adding a submit event, which attempts to change the listing data in the backend. **/
+const changeListingForm = document.getElementById("change_listing_info_form");
+changeListingForm("submit", async (evt) => {
+  evt.preventDefault();
+
+  const data = serializeJson(changeListingForm);
+  const fd = new FormData(changeListingForm);
+
+  fd.append("description", data.description);
+
+  const fetchOptions = {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
+    },
+    body: fd,
+  };
+
+  const response = await fetch(url + "/listing/" + "", fetchOptions);
+  const json = await response.json();
+
+  if (!response.ok) {
+    alert("Modifying the ad failed.");
+    return;
+  }
+
+  alert("Modification was succesful.");
+
+  displayOwnAdsView();
+
+});
+
+/** Deletes the chosen listing. */
+
+const deleteButton = document.getElementById("delete_listing_button");
+deleteButton.addEventListener("click", async (evt) => {
+  evt.preventDefault();
+  deleteListing();
+/*   if (alert("Delete the listing?")) {
+    
+  } */
+
+});
+
+const deleteListing = async () => {
+
+  const fetchOptions = {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
+    },
+  };
+
+  const response = await fetch(url + "/listing/" + currentModifiedListingId, fetchOptions);
+  
+  if (!response.ok) {
+    alert("Listing delete failed.");
+    return;
+  }
+  alert("Listing delete was succesful.");
+
+}
