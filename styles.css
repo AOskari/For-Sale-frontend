@@ -20,8 +20,8 @@
 .none { display: none !important }
 .display {display: flex }
 
-.focused {   filter: invert(1); }
-.unfocused {   filter: invert(0); }
+.focused { background-color: var(--button-primary-color) !important; }
+.unfocused { background-color: transparent !important; }
 
 body {
   width: 100vw;
@@ -984,17 +984,18 @@ input:focus,textarea:focus {
   #bottom_nav {
     top: 0;
     left: 0;
-    width: 80px;
+    width: 250px;
     position: relative;
     height: 100%;
     justify-content: start;
+    align-items: center;
     flex-direction: column;
   }
+
  /** Toolbar section **/
 
   #toolbar {
     box-shadow: black 5px 5px 50px 3px;
-    opacity: .9;
   }  
 
   #user_thumbnail_container {
@@ -1002,23 +1003,29 @@ input:focus,textarea:focus {
     margin-right: 15px;
   }
 
-  #home_nav_button {
+  .nav_button {
     height: 60px;
-    width: 80%;
     margin-bottom: 10px;
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    padding: 10px;
+    padding-left: 20px;
+    margin-right: 10px;
+    align-items: center;
+    width: 95%;
     margin-top: 10px;
+    transition: 0.3s;
+    border-radius: 30px;
   }
 
-  #search_nav_button {
-    height: 60px;
-    width: 80%;
-    margin-bottom: 10px;
+  .nav_button h2 {
+    margin-left: 15px;
   }
 
-  #own_ads_nav_button {
-    height: 60px;
-    width: 80%;
-    margin-bottom: 10px;
+  .nav_button:hover {
+    background-color: var(--trim-color);
+    border-radius: 30px;
   }
 
   #searchbar {
