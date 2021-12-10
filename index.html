@@ -79,6 +79,10 @@
 
 					<!-- Form used for registering the user, which is displayed when clicking the new user button in login_form. -->
 					<form id="register_form"  class="none">
+						<button class="borderless_button" onclick="displayLoginView()">
+							Back
+						</button>
+						<br>
 						<h3 style="font-weight: 700;">Register user</h3>
 						<div class="input_container">
 							<h4>Email</h4>
@@ -206,12 +210,11 @@
 			
 			<!-- Own Ads view -->
 			<div id="own_ads" class="none">
-
 				<div id="own_listing_info_section" class="display">
 					<div id="own_listing_info" class="section_title">
 						<h2>My listings</h2>
 						<h3 id="amount_of_ads">Listings: 0</h3>
-						<button id="new_ad_button" onclick="displayNewAdForm()">Create listing</button>
+						<button id="new_ad_button" onclick="displayNewAdForm()" class="custom_button">Create listing</button>
 					</div>
 	
 					<div id="own_listing_section">
@@ -226,7 +229,14 @@
 
 				<div id="new_ad_section" class="none">
 
+					<button class="borderless_button" onclick="displayOwnAdsView()">
+						Back
+					</button>
+		
+
 					<form id="new_ad_form">
+						<h1 style="font-weight: 700;">Create a listing</h1>
+						<br>
 						<input type="file" name="filename" id="ad_form_file" class="custom_file_input" required>
 						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="name" required>
 						<input type="number" name="price" id="ad_form_price" class="input_field" placeholder="price" required>

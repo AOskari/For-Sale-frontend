@@ -964,6 +964,12 @@ input:focus,textarea:focus {
   justify-content: center;
 }
 
+#new_ad_button {
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 #new_ad_form{
   display: flex;
   flex-flow: column;
