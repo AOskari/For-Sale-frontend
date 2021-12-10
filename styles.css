@@ -986,6 +986,7 @@ input:focus,textarea:focus {
     left: 0;
     width: 250px;
     position: relative;
+    padding-left: 10px;
     height: 100%;
     justify-content: start;
     align-items: center;
@@ -1032,7 +1033,11 @@ input:focus,textarea:focus {
     width: 60%;
     flex: none;
   }
-  
+
+  .listing_item {
+    transition: 0.3s ease;
+  }
+
 
   /** Profile section **/
   #profile_username {
