@@ -391,17 +391,6 @@ h4 {
   margin-bottom: 70px;
 }
 
-#change_profile_buttons button {
-  width: 100%;
-  border-radius: 25px;
-  color: white;
-  background-image: linear-gradient(to bottom right, var(--button-secondary-color), var(--button-primary-color));
-  border-style: none;
-  height: 100%;
-  max-height: 50px;
-  margin: 5px;
-}
-
 .custom_button {
   width: 50%;
   border-radius: 25px;
@@ -468,7 +457,6 @@ input:focus,textarea:focus {
 
 
 
-
 /** Home screen portion **/
 
 #home_section {
@@ -478,16 +466,7 @@ input:focus,textarea:focus {
   align-items: center;
 }
 
-.listing_item {
 
-  border: var(--trim-color) solid 1px;
-  display: flex;
-  flex-flow: column;
-  float: left;
-  height: 210px;
-  width: 170px;
-  margin: 5px;
-}
 
 .listing_item:hover {
   box-shadow: var(--trim-color) 1px 1px 2px 1px;
@@ -514,9 +493,10 @@ input:focus,textarea:focus {
 
 .listing_item_img {
   width: auto;
+  object-fit: contain;
 }
 
-#top_sellers_title {
+.section_title {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -528,13 +508,12 @@ input:focus,textarea:focus {
 }
 
 
-#home_listing_section {
+.listing_section {
   overflow: none;
   height: 80%;
-  width: 90%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1700px;
   display: flex;
-  align-items: center;
   flex: 1;
   flex-flow: column;
 
@@ -547,34 +526,31 @@ input:focus,textarea:focus {
   display: flex;
 }
 
-#home_listing_list {
+.listing_list {
   overflow: hidden;
   overflow-y: scroll;
   justify-content: center;
-  align-items: center;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  align-items: center; 
+  margin-left: 5%;
 }
 
-#home_listing_list::-webkit-scrollbar {
+.listing_item {
+
+  border: var(--trim-color) solid 1px;
+  display: flex;
+  flex-flow: column;
+  float: left;
+  height: 210px;
+  width: 90%;
+  margin: 5px;
+}
+
+.listing_list::-webkit-scrollbar {
   display: none;
 }
 
 
-
 /** Search screen portion **/
-
-
-#search_listing_section {
-  overflow: none;
-  background-color: var(--primary-color);
-  height: 80%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex: 1;
-  flex-flow: column;
-}
 
 #search_section {
   display: flex;
@@ -583,18 +559,6 @@ input:focus,textarea:focus {
   align-items: center;
   overflow-y: scroll;
 }
-
-#search_title {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  height: 5em;
-  width: 100%;
-  background-color: var(--primary-color);
-  border: var(--trim-color) solid 1px;
-}
-
 
 
 /** Own Ads portion **/
@@ -607,16 +571,7 @@ input:focus,textarea:focus {
   background-color: var(--primary-color);
 }
 #own_listing_info {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   height: 7em;
-  color: white;
-  background-color: var(--primary-color);
-  border: var(--trim-color) solid 1px;
-
 }
 
 #own_listing_list {
@@ -700,30 +655,27 @@ input:focus,textarea:focus {
   opacity: 0.7;
 }
 
-/* The Modal (background) */
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  width: 100%;
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(46, 66, 49, 0.5);
 }
 
-/* Modal Content (Image) */
 .modal-content {
   margin: auto;
   display: block;
   width: 100%;
-  max-width: 100em;
+  max-width: 50em;
 }
 
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
 #caption {
   margin: auto;
   display: block;
@@ -735,7 +687,6 @@ input:focus,textarea:focus {
   height: 150px;
 }
 
-/* Add Animation - Zoom in the Modal */
 .modal-content, #caption {
   animation-name: zoom;
   animation-duration: 0.6s;
@@ -746,7 +697,6 @@ input:focus,textarea:focus {
   to {transform:scale(1)}
 }
 
-/* The Close Button */
 .close {
   position: absolute;
   top: 15px;
@@ -864,8 +814,17 @@ input:focus,textarea:focus {
 #other_user_img_container {
   display: flex;
   width: 100%;
+  height: 50%;
+
   align-items: center;
+  background-color: yellow;
   justify-content: center;
+}
+
+#other_user_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #other_profile_info {
@@ -994,6 +953,7 @@ input:focus,textarea:focus {
   display: none;
 }
 
+
 #new_ad_section{
   display: flex;
   height: 100%;
@@ -1033,9 +993,18 @@ input:focus,textarea:focus {
   min-width: 175px;
   width: 30%;
 }
-#ad_form_button{
+#ad_form_button {
   width: 20%;
   min-width: 100px;
+}
+
+@media (min-width: 400px) {
+
+  .listing_item {
+    width: 45%;
+  }
+  
+
 }
 
 
@@ -1052,6 +1021,16 @@ input:focus,textarea:focus {
 
   #listing_img {
     width: 80%;
+  }
+
+  .listing_item {
+    height: 220px;
+    width: 300px;
+    transition: 0.3s ease;
+  }
+
+  #home_listing_list {
+    margin-left: 0;
   }
 
   #main {
@@ -1108,10 +1087,6 @@ input:focus,textarea:focus {
     flex: none;
   }
 
-  .listing_item {
-    transition: 0.3s ease;
-  }
-
 
   /** Profile section **/
   #profile_username {
@@ -1154,6 +1129,18 @@ input:focus,textarea:focus {
 
 
 
+}
+
+@media (min-width: 1000px) {
+
+  #other_user_img_container {
+    height: 400px;
+  }
+
+  #home_listing_list {
+    margin-left: 5%;
+  }
+  
 }
 
 

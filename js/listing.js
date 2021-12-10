@@ -48,7 +48,7 @@ const getOwnListing = async () => {
     const listing = await response.json();
 
     createListingCards(listing, "own_listing_list");
-    document.getElementById("amount_of_ads").innerHTML = `Amount of ads: ${Object.keys(listing).length}`;
+    document.getElementById("amount_of_ads").innerHTML = `Listings: ${Object.keys(listing).length}`;
 
   } catch (e) {
     console.log(`Error ${e.message}`);

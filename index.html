@@ -167,10 +167,10 @@
 						<input type="password" placeholder="old password" name="old_passwd" id="old_passwd_input" class="change_profile_info_form_input" required>
 						<input type="password" placeholder="new password" name="passwd" id="new_passwd_input" class="change_profile_info_form_input">
 						<div id="change_profile_buttons">
-							<button id="changes_back_button" type="button" onclick="displayProfileView()">
+							<button id="changes_back_button" type="button" onclick="displayProfileView()" class="custom_button">
 								Back
 							</button>
-							<button id="save_changes_button" type="submit">
+							<button id="save_changes_button" type="submit" class="custom_button">
 								Save
 							</button>
 						</div>
@@ -183,9 +183,9 @@
 
 			<!-- Home view -->
 			<div id="home_section" class="display">
-				<h2 id="top_sellers_title">Top sellers</h2>
-				<div id="home_listing_section">
-					<ul id="home_listing_list">
+				<h2 id="top_sellers_title" class="section_title">Top sellers</h2>
+				<div id="home_listing_section" class="listing_section">
+					<ul id="home_listing_list" class="listing_list">
 						<!-- Listing cards are created here -->
 					</ul>
 				</div>
@@ -195,11 +195,9 @@
 
 			<!-- Home view -->
 			<div id="search_section" class="none">
-				<div id="search_title">
-					<h2>Search</h2>
-				</div>
-				<div id="search_listing_section">
-					<ul id="search_listing_list">
+				<h2 class="section_title">Search</h2>
+				<div id="search_listing_section" class="listing_section">
+					<ul id="search_listing_list" class="listing_list">
 						<!-- Listing cards are created here -->
 					</ul>
 				</div>
@@ -210,10 +208,10 @@
 			<div id="own_ads" class="none">
 
 				<div id="own_listing_info_section" class="display">
-					<div id="own_listing_info">
-						<h2>Own Ad info</h2>
-						<h3 id="amount_of_ads">Amount of ads: 0</h3>
-						<button id="new_ad_button" onclick="displayNewAdForm()">Create new ad</button>
+					<div id="own_listing_info" class="section_title">
+						<h2>My listings</h2>
+						<h3 id="amount_of_ads">Listings: 0</h3>
+						<button id="new_ad_button" onclick="displayNewAdForm()">Create listing</button>
 					</div>
 	
 					<div id="own_listing_section">

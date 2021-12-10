@@ -6,10 +6,15 @@ let currentListingOwner = {};
 let currentUserRating = {};
 let currentModifiedListingId = 0;
 
+let home = true;
+let search = false;
+let ownlistings = false;
+
 const url = "http://localhost:3000";
 
 /** Displays the Search view. **/
 const displaySearchView = () => {
+  toggleCurrentScreen("search");
   hideToolbarElements();
   hideMidSectionElements();
   hideElementById("toolbar_logo_container");
@@ -20,6 +25,7 @@ const displaySearchView = () => {
 
 /** Displays the Home view. **/
 const displayHomeView = () => {
+  toggleCurrentScreen("home");
   hideToolbarElements();
   hideMidSectionElements();
   displayElementById("bottom_nav");
@@ -30,9 +36,9 @@ const displayHomeView = () => {
 
 /** Toggles the Own ads screen. **/
 const displayOwnAdsView = () => {
-
+  toggleCurrentScreen("ownlistings");
   if (!sessionStorage.getItem("user")) {
-    alert("Login to view own ads!")
+    alert("Login to view My listings!")
     return;
   }
 
@@ -47,12 +53,14 @@ const displayOwnAdsView = () => {
 
 /** Displays the form for adding a new ad. **/
 const displayNewAdForm = () => {
+  toggleCurrentScreen("");
   hideElementById("own_listing_info_section");
   displayElementById("new_ad_section");
 }
 
 /** Toggles the Login and register screen. **/
 const displayLoginView = () => {
+  toggleCurrentScreen("");
   hideToolbarElements();
   hideMidSectionElements();
   toggleNavButtonFocus("");
@@ -64,6 +72,7 @@ const displayLoginView = () => {
 
 /** Toggles the register screen. **/
 const displayRegisterView = () => {
+  toggleCurrentScreen("");
   hideElementById("login_form");
   hideElementById("bottom_nav")
   displayElementById("register_form");
@@ -71,6 +80,7 @@ const displayRegisterView = () => {
 
 /** Displays the profile view. **/
 const displayProfileView = () => {
+  toggleCurrentScreen("");
   hideToolbarElements();
   hideMidSectionElements();
   setProfileInfo();
@@ -231,7 +241,10 @@ const toggleNotification = (state) => {
 // TODO: Add parameter which decides the screen to display.
 const hideListingInfo = () => {
   hideElementById("listing_item_section");
-  displayHomeView();
+
+  if (home) displayHomeView();
+  else if (search) displaySearchView();
+
 }
 
 
@@ -473,6 +486,12 @@ const displayElementById = (element) => {
   e.classList.remove("none");
 };
 
+/** Sets the correct boolean values according to displayed screen. */
+const toggleCurrentScreen = (screen) => {
+  home = screen == "home";
+  search = screen == "search";
+  ownlistings = screen = "ownlistings";
+}
 
 
 // Initialization of the home view.
