@@ -227,15 +227,14 @@
 				
 
 				<div id="new_ad_section" class="none">
-				
-					<form id="new_ad_form">
-						<input type="file" name="filename" id="ad_form_file" required>
-						<input type="text" name="title" id="ad_form_title" placeholder="name" required>
-						<input type="text" name="description" id="ad_form_description" placeholder="description" required>
-						<input type="number" name="price" id="ad_form_price" placeholder="price" required>
-						<button type="submit">Post ad</button>
-					</form>
 
+					<form id="new_ad_form">
+						<input type="file" name="filename" id="ad_form_file" class="custom_file_input" required>
+						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="name" required>
+						<input type="number" name="price" id="ad_form_price" class="input_field" placeholder="price" required>
+						<textarea type="text" name="description" id="ad_form_description" class="input_field" placeholder="description" required></textarea>
+						<button type="submit" class="custom_button" id="ad_form_button">Post ad</button>
+					</form>
 				</div>
 
 				

@@ -606,7 +606,6 @@ input:focus,textarea:focus {
   height: 100%;
   background-color: var(--primary-color);
 }
-
 #own_listing_info {
   display: flex;
   flex-flow: column;
@@ -914,8 +913,6 @@ input:focus,textarea:focus {
   background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
 }
 
-
-
 #listing_img_container {
   flex: 1;
   display: flex;
@@ -995,6 +992,50 @@ input:focus,textarea:focus {
 /** Disabling the default file input button **/
 ::file-selector-button {
   display: none;
+}
+
+#new_ad_section{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#new_ad_form{
+  display: flex;
+  flex-flow: column;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#ad_form_file{
+  width: 30%;
+  min-width: 175px;
+  margin: 20px;
+  padding: 10px;
+}
+#ad_form_title{
+  margin: 20px;
+  min-width: 175px;
+  width: 30%;
+}
+#ad_form_description{
+  margin: 20px;
+  min-width: 175px;
+  width: 55%;
+  height: 20%;
+}
+#ad_form_price{
+  margin: 20px;
+  min-width: 175px;
+  width: 30%;
+}
+#ad_form_button{
+  width: 20%;
+  min-width: 100px;
 }
 
 
@@ -1111,6 +1152,8 @@ input:focus,textarea:focus {
 }
 
 
+
+
 }
 
 
@@ -1140,5 +1183,7 @@ input:focus,textarea:focus {
     flex: none;
     
   }
+
+
 
 }
