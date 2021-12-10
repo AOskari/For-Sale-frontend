@@ -8,10 +8,10 @@
 
 :root {
   --primary-color: #FBFCFF;
-  --secondary-color: #D0CCD0;
-  --trim-color: #605856;
+  --secondary-color: #d0e8d1;
+  --trim-color: #7bb080;
   --button-primary-color: #7bb080;
-  --button-secondary-color: #A4C2A8;
+  --button-secondary-color: #7bb080;
 }
 
 /** Adding important for overriding the element properties. **/
@@ -29,6 +29,7 @@ body {
   display: flex;
   justify-content: center;
   overflow-y: hidden;
+  background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
 }
 
 
@@ -53,6 +54,7 @@ body {
   z-index: 5;
   top: 0;
   height: 60px;
+  border-bottom: var(--trim-color) solid 1px;
 }
 
 #login_btn {
@@ -77,6 +79,12 @@ body {
   border-radius: 50px;
   width: 50px;
   height: 50px;
+  transition: 0.3s;
+}
+
+#user_thumbnail:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 #notification {
@@ -91,7 +99,7 @@ body {
   height: 80%;
   border-radius: 50px;
   border-width: 1px;
-  border-color: blueviolet;
+  border-color: var(--secondary-color);
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -111,7 +119,9 @@ body {
   align-items: center;
   color: white;
   width: 100%;
-  background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+  background-color: var(--secondary-color);
+  border-left: var(--trim-color) solid 1px;
+  border-right: var(--trim-color) solid 1px;
   height: 70px;
   position: fixed;
   justify-content: space-around;
@@ -125,7 +135,8 @@ body {
   display: flex;
   justify-content: center;
   flex-flow: row;
-  box-shadow: 2px 10px 18px #B6B6B4;
+  border-right: var(--trim-color) solid 1px;
+  background-color: var(--primary-color);
 
 }
 
@@ -400,6 +411,11 @@ h4 {
   height: 100%;
   max-height: 50px;
   margin: 5px;
+  transition: 0.3s;
+}
+
+.custom_button:hover {
+  opacity: 0.7;
 }
 
 
@@ -508,6 +524,7 @@ input:focus,textarea:focus {
   height: 3em;
   width: 100%;
   background-color: var(--primary-color);
+  border: var(--trim-color) solid 1px;
 }
 
 
@@ -535,6 +552,12 @@ input:focus,textarea:focus {
   overflow-y: scroll;
   justify-content: center;
   align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#home_listing_list::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -569,6 +592,7 @@ input:focus,textarea:focus {
   height: 5em;
   width: 100%;
   background-color: var(--primary-color);
+  border: var(--trim-color) solid 1px;
 }
 
 
@@ -592,6 +616,7 @@ input:focus,textarea:focus {
   height: 7em;
   color: white;
   background-color: var(--primary-color);
+  border: var(--trim-color) solid 1px;
 
 }
 
@@ -604,6 +629,12 @@ input:focus,textarea:focus {
   justify-content: center;
   align-items: center;
   background-color: var(--primary-color);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#own_listing_list::-webkit-scrollbar {
+  display: none;
 }
 
 #own_listing_info_section {
@@ -631,7 +662,6 @@ input:focus,textarea:focus {
 #listing_upper_section {
   flex: 1;
   background-color: var(--primary-color);
-  box-shadow: var(--trim-color) 5px 5px 50px 3px;
   padding-left: 10px;
   display: flex;
   min-height: 1em;
@@ -770,6 +800,7 @@ input:focus,textarea:focus {
 
 #listing_back_button {
   margin: 5px;
+  width: 15%;
 }
 
 #comment_input {
@@ -994,10 +1025,6 @@ input:focus,textarea:focus {
   }
 
  /** Toolbar section **/
-
-  #toolbar {
-    box-shadow: black 5px 5px 50px 3px;
-  }  
 
   #user_thumbnail_container {
     margin-left: 15px;
