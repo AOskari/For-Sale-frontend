@@ -62,10 +62,12 @@ newAdForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
 
   const data = new FormData(newAdForm);
+  const desc = document.getElementById("ad_form_description");
 
   // Adding the current date and user id to the data body.
   data.append("listing_date", new Date().toISOString());
   data.append("user_id", JSON.parse(sessionStorage.getItem("user")).user_id);
+  data.append("description", desc.value);
 
   const fetchOptions = {
     method: "POST",
