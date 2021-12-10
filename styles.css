@@ -20,8 +20,8 @@
 .none { display: none !important }
 .display {display: flex }
 
-.focused { background-color: var(--button-primary-color) !important; }
-.unfocused { background-color: transparent !important; }
+.focused { filter: invert(1) }
+.unfocused { filter: invert(0) }
 
 body {
   width: 100vw;
@@ -1001,6 +1001,12 @@ input:focus,textarea:focus {
 /** Tablet screen break points **/
 
 @media (min-width: 800px) {
+
+  .focused { 
+    background-color: var(--button-primary-color) !important; 
+    filter: invert(0);
+  }
+  .unfocused { background-color: transparent !important; }
 
 
   #listing_img {
