@@ -23,6 +23,10 @@
 .focused { filter: invert(1) }
 .unfocused { filter: invert(0) }
 
+button:hover {
+  cursor: pointer;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -498,6 +502,7 @@ input:focus,textarea:focus {
 
 .listing_pages_btn:hover {
   color: var(--trim-color);
+
 }
 
 .selected {
@@ -509,7 +514,7 @@ input:focus,textarea:focus {
   flex-flow: row;
 }
 
-#home_listing_pages {
+.listing_pages {
   display: flex;
   flex-flow: row;
   justify-content: center;

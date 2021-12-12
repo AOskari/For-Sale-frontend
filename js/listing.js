@@ -16,16 +16,19 @@ const getListing = async (searchInput) => {
     else response = await fetch(url + "/listing", fetchOptions);
     const listing = await response.json();
 
+    console.log(JSON.stringify(listing));
+
     // Create the list to the home screen if there is no input. 
     // Otherwise create the list to the search screen.
     if (searchInput == "") {
-      createListingCards(listing, "home_listing_list");
       homeListing = listing;
+      createPageButtons(listing, "home_page_btn_section");
+      createListingCards("home_listing_list", 0, 20);
       return;
     }
-    createListingCards(listing, "search_listing_list");
-    
-
+    searchListing = listing;
+    createListingCards("search_listing_list", 0, Object.keys(listing).length);
+     
   } catch (e) {
     console.log(`Failed to fetch listing: ${e.message}`);
   }
@@ -47,8 +50,9 @@ const getOwnListing = async () => {
 
     const response = await fetch(url + "/listing/user/" + userId, fetchOptions);
     const listing = await response.json();
+    ownListing = listing;
 
-    createListingCards(listing, "own_listing_list");
+    createListingCards("own_listing_list", 0, 20);
     document.getElementById("amount_of_ads").innerHTML = `Listings: ${Object.keys(listing).length}`;
 
   } catch (e) {

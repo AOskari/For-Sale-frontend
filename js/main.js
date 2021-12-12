@@ -8,12 +8,19 @@ let currentModifiedListingId = 0;
 
 let homeListing = {};
 let searchListing = {};
+let ownListing = {};
+
+let currentHomePage = 1;
+let currentSearchPage = 1;
+let currentOwnPage = 1;
 
 let home = true;
 let search = false;
 let ownlistings = false;
+let targetPageElement = "";
 
 const url = "http://localhost:3000";
+const listingSize = 20;
 
 /** Displays the Search view. **/
 const displaySearchView = () => {
@@ -35,6 +42,7 @@ const displayHomeView = () => {
   getListing("");
   displayElementById("home_section");
   toggleNavButtonFocus("home_nav_button");
+  targetPageElement = "home_page_btn_section";
 };
 
 /** Toggles the Own ads screen. **/
@@ -153,6 +161,7 @@ const hideToolbarElements = () => {
   displayElementById("toolbar_logo_container");
 }
 
+
 /** Hides the midsection elements. **/
 const hideMidSectionElements = () => {
   // Hide login and register screen.
@@ -206,6 +215,7 @@ const checkLoggedStatus = () => {
   }
 }
 
+
 /** Sets the correct information to the Profile screen. */
 const setProfileInfo = () => {
   const username = document.getElementById("username");
@@ -252,23 +262,22 @@ const hideListingInfo = () => {
 
 
 // Fetches and creates elements for displaying the listing in the given element.
-const createListingCards = (listing, targetElement) => {
+const createListingCards = (targetElement, min, max) => {
 
   const listingList = document.getElementById(targetElement);
   listingList.innerHTML = "";
 
-/*   let minRange = page * 20;
-  let maxRange = (page * 20) + 20; */
+  let listing = {};
 
+  if (targetElement == "home_listing_list") listing = homeListing;
+  else if (targetElement == "search_listing_list") listing = searchListing;
+  else if (targetElement == "own_listing_list") listing = ownListing;
 
   console.log(`Listing at createListingCards: ${listing}`);
   console.log(`Listing object size: ${Object.keys(listing).length}`);
 
-  for (let i = 0; i < Object.keys(listing).length; i++) {
-
-    // Displaying only 20 items maximum in the home screen.
-    if (i == 20 && targetElement == "home_listing_list") break;
-  
+  for (let i = min; i < max; i++) {
+    
     const img = document.createElement("img");
 
     // Placing a placeholder image if image is not found.
@@ -333,6 +342,7 @@ const createListingCards = (listing, targetElement) => {
       const userJson = await userResponse.json();
       currentListingOwner = userJson;
       
+
       // Setting the owner information to the listing ad.
       document.getElementById("listing_user_name").innerHTML = `${userJson.first_name} ${userJson.last_name}`;
       document.getElementById("listing_user_email").innerHTML = `${userJson.email}`;
@@ -343,6 +353,7 @@ const createListingCards = (listing, targetElement) => {
       const json = await response.json();
       currentUserRating = json;
       
+
       // Set the rating in the chosen element according if the user has a rating.
       if (response.ok) document.getElementById("listing_user_rating").innerHTML = `Reviews: ${json} / 5.0`;
       else document.getElementById("listing_user_rating").innerHTML = `No reviews.`;
@@ -423,59 +434,113 @@ const createListingCards = (listing, targetElement) => {
     }
 
     listingList.appendChild(li);
+ 
   }
+};
 
-  // Creating the page buttons and the functionality for them.
-  if (targetElement == "home_listing_list") createPageButtons(homeListing, "home_page_btn_section");
-  else if (targetElement == "search_listing_list");//createPageButtons(listing, "home_page_btn_section");
-
-}
 
 /** Creates page buttons to the target element. */
 const createPageButtons = (listing, targetElement) => {
-
+  
+  let x = 0;
   let length = Object.keys(listing).length;
-
-  let pages = Math.floor(length / 20);
+  let pages = Math.floor(length / listingSize) + 1;
 
   // Create page buttons, max. 3 page buttons and the 4th button is the last page.
+  const btnContainer = document.getElementById(targetElement);
+  btnContainer.innerHTML = "";
 
-  const btnContainer = document.getElementById("home_page_btn_section");
+  // Adjusting the previousPages variable according to the amount of pages. 
+  // This variable is used for displaying previous page buttons.
+  let previousPages = currentHomePage - 1;
+  if (currentHomePage <= 1) previousPages = 1;
+  else if ((pages - currentHomePage < 3) && pages - currentHomePage > 0) previousPages = pages - 4;
+  
+ // Creating buttons to the selected div element.
+ 
+  for (let i = previousPages; i <= Math.min(pages, previousPages + 4); i++) {
+  
 
-  for (let i = 1; i <= Math.min(pages + 1, 4); i++) {
-
-    let btn = document.createElement("button");
+    // Create a new button element.
+    const btn = document.createElement("button");
     btn.classList.add("listing_pages_btn");
+  
 
-    if (i == 1) btn.classList.add("selected");
-
-    if (i == 4) btn.innerHTML = pages;
+    // Displaying a maximum amount of 5 page buttons in the screen. The last button is the last page available.
+    // i.e. 1 2 3 4 ... 9
+    if (x == 0) btn.classList.add("selected");    
+    if (x == 4) btn.innerHTML = pages;
     else btn.innerHTML = i;
 
 
-    // TODO: Add onclicklistener to btn
-    // TODO: Add function which changes button numbers according to page number.
+    // Adding an event listener which toggles the pages according to the pressed button.
     btn.addEventListener("click", (evt) => {
       evt.preventDefault();
-  
-
+      currentHomePage = btn.innerHTML;
+      createListingCards("home_listing_list", (currentHomePage - 1) * listingSize, Math.min(((currentHomePage - 1) * listingSize) + listingSize, length));
+      createPageButtons(listing, targetElement);
+      togglePageButtonFocus(currentHomePage, targetElement);
     });
 
 
+    // Add the created button to the parent object.
     btnContainer.append(btn);
 
-    if (i == 3) {
+
+    // Adding a text element between the 4th and 5th page button which contains ... to indicate that there are 
+    // more available page buttons than displayed.
+    if (x == 3) {
       let p = document.createElement("p");
       p.innerHTML = "...";
       btnContainer.append(p);
     }
+    x++;
+  }
+};
 
+
+// Displays the next 20 or less listing items on the home page.
+document.getElementById("home_page_next_btn").addEventListener("click", evt => {
+  evt.preventDefault();
+
+  let length = Object.keys(homeListing).length;
+  let pages = Math.floor(length / listingSize) + 1;
+
+  if (currentHomePage < pages) {
+    currentHomePage++;
+    createListingCards("home_listing_list", (currentHomePage - 1) * listingSize, Math.min(((currentHomePage - 1) * listingSize) + listingSize, length));
+    createPageButtons(homeListing, "home_page_btn_section");
+    togglePageButtonFocus(currentHomePage, "home_page_btn_section");
   }
 
-}
+});
+
+// Displays the previous 20 listing items on the home page.
+document.getElementById("home_page_previous_btn").addEventListener("click", evt => {
+  evt.preventDefault();
+  let length = Object.keys(homeListing).length;
+
+  if (currentHomePage > 1) {
+    currentHomePage--;
+    createListingCards("home_listing_list", (currentHomePage - 1) * listingSize, Math.min(((currentHomePage - 1) * listingSize) + listingSize, length));
+    createPageButtons(homeListing, "home_page_btn_section");
+    togglePageButtonFocus(currentHomePage, "home_page_btn_section");
+  }
+
+});
 
 
+// Highlights the chosen page button.
+const togglePageButtonFocus = (id, container) => {
+  const children = document.getElementById(container).children;
+  for (let i = 0; i < children.length; i++) {
+    if (children[i].innerHTML == id) children[i].classList.add("selected");
+    else children[i].classList.remove("selected");
+  }
+};
 
+
+// Display chosen user information on click.
 const listingUserInfo = document.getElementById("listing_user_info");
 listingUserInfo.addEventListener("click", (evt) => {
   evt.preventDefault();
@@ -491,21 +556,21 @@ commentForm.addEventListener("submit", async (evt) => {
   addComment(currentListingId);
 });
 
+
+// Add a review to the database on submit.
 const reviewForm = document.getElementById("review_form");
 reviewForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   addReview(currentListingOwner.user_id);
 
-  // Fetching the updated rating of the user and displaying it on the UI.
   const response = await fetch(url + "/review/user/" + currentListingOwner.user_id);
   const json = await response.json();
   currentUserRating = json;
   displayOtherUserInfo();
-  
 });
 
 
-// Displays the listing owner's information.
+/** Displays the listing owner's information. **/
 const displayOtherUserInfo = () => {
   
   const img = document.getElementById("other_user_img");
@@ -528,8 +593,6 @@ const displayOtherUserInfo = () => {
 
 
 
-
-
 /** Functions for hiding and displaying elements. **/
 const hideElementById = (element) => {
   const e = document.getElementById(element);
@@ -542,7 +605,7 @@ const displayElementById = (element) => {
   e.classList.remove("none");
 };
 
-/** Sets the correct boolean values according to displayed screen. */
+/** Sets the correct boolean values according to displayed screen. **/
 const toggleCurrentScreen = (screen) => {
   home = screen == "home";
   search = screen == "search";
