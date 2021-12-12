@@ -10,6 +10,7 @@
   --primary-color: #FBFCFF;
   --secondary-color: #d0e8d1;
   --trim-color: #7bb080;
+  --focus-color: black;
   --button-primary-color: #7bb080;
   --button-secondary-color: #7bb080;
 }
@@ -54,7 +55,8 @@ body {
   color: white;
   width: 100%;
   position: fixed;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-content: space-around;
   z-index: 5;
   top: 0;
   height: 60px;
@@ -64,6 +66,9 @@ body {
 #login_btn {
   height: 80%;
   width: 100px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border-radius: 25px;
 }
 
@@ -98,14 +103,51 @@ body {
   z-index: 16;
 }
 
-#searchbar {
+#searchbar_container {
   flex: 4;
+  display: flex;
+  flex-flow: row;
   height: 80%;
   border-radius: 50px;
   border-width: 1px;
-  border-color: var(--secondary-color);
+  border-style: solid;
+  align-items: center;
+  border-color: var(--trim-color);
   padding-left: 10px;
   padding-right: 10px;
+  background-color: white;
+  transition: 0.3s ease;
+}
+
+#searchbar_container:focus-within {
+  border-color: var(--focus-color);
+}
+
+#searchbar {
+  flex: 1;
+  height: 100%;
+  border-style: none;
+  background-color: transparent;
+}
+
+#searchbar_button {
+  height: 60%;
+  width: auto;
+  border-style: none;
+  background-color: transparent;
+  transition: 0.3s ease;
+}
+
+#searchbar_button:hover {
+  filter: invert(0.7);
+}
+
+
+
+#searchbar_button_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #toolbar_logo_container {
@@ -1161,7 +1203,8 @@ input:focus,textarea:focus {
     border-radius: 30px;
   }
 
-  #searchbar {
+
+  #searchbar_container {
     width: 60%;
     flex: none;
   }

@@ -28,7 +28,7 @@ const displaySearchView = () => {
   hideToolbarElements();
   hideMidSectionElements();
   hideElementById("toolbar_logo_container");
-  displayElementById("searchbar");
+  displayElementById("searchbar_container");
   displayElementById("search_section");
   toggleNavButtonFocus("search_nav_button");
 };
@@ -157,7 +157,7 @@ const toggleNavButtonFocus = (button) => {
 
 /** Hides the toolbar elements. **/
 const hideToolbarElements = () => {
-  hideElementById("searchbar");
+  hideElementById("searchbar_container");
   displayElementById("toolbar_logo_container");
 }
 
@@ -196,7 +196,6 @@ const hideMidSectionElements = () => {
 /** Checks if the user is logged in and updates the UI accordingly. **/
 const checkLoggedStatus = () => {
   const userThumbnail = document.getElementById("user_thumbnail_container");
-  const loginBtn = document.getElementById("login_btn");
 
   if (sessionStorage.getItem("token")) logged = true;
   else logged = false;
@@ -204,14 +203,12 @@ const checkLoggedStatus = () => {
   if (logged) {
     userThumbnail.classList.remove("hidden");
     userThumbnail.classList.add("visible");
-    loginBtn.classList.remove("visible");
-    loginBtn.classList.add("hidden");
+    hideElementById("login_btn");
    
   } else {
     userThumbnail.classList.remove("visible");
     userThumbnail.classList.add("hidden");
-    loginBtn.classList.remove("hidden");
-    loginBtn.classList.add("visible");
+    displayElementById("login_btn");
   }
 }
 
@@ -272,9 +269,6 @@ const createListingCards = (targetElement, min, max) => {
   if (targetElement == "home_listing_list") listing = homeListing;
   else if (targetElement == "search_listing_list") listing = searchListing;
   else if (targetElement == "own_listing_list") listing = ownListing;
-
-  console.log(`Listing at createListingCards: ${listing}`);
-  console.log(`Listing object size: ${Object.keys(listing).length}`);
 
   for (let i = min; i < max; i++) {
     

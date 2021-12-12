@@ -20,13 +20,17 @@
 			</div>
 
 			<!-- Hidden class will be toggled when using search_nav_button -->
-			<input id="searchbar" placeholder="Search items.." class="none"/>
+			<form id="searchbar_container" class="none">
+				<input id="searchbar" placeholder="Search items.."/>
+				<button id="searchbar_button" type="submit"><img src="images/search-icon.png" id="searchbar_button_img" alt=search></button>
+			</form>
+			
 			<div id="toolbar_logo_container" class="none">
 				<img id="toolbar_logo" src="images/for-sale-logo.png" alt="logo">
 			</div>
 
 			<!-- login_btn displayed according to registered status -->
-			<button id="login_btn" class="custom_button" class="visible" onclick="displayLoginView()">
+			<button id="login_btn" class="custom_button" class="display" onclick="displayLoginView()">
 				Login / Register
 			</button>
 		</div>

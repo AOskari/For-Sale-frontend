@@ -16,8 +16,6 @@ const getListing = async (searchInput) => {
     else response = await fetch(url + "/listing", fetchOptions);
     const listing = await response.json();
 
-    console.log(JSON.stringify(listing));
-
     // Create the list to the home screen if there is no input. 
     // Otherwise create the list to the search screen.
     if (searchInput == "") {

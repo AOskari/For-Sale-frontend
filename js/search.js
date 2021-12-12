@@ -1,11 +1,10 @@
 "use strict";
 
-const searchInput = document.getElementById("searchbar");
+const searchInput = document.getElementById("searchbar_container");
+const input = document.getElementById("searchbar");
 
-searchInput.addEventListener("change", async (evt) => {
+searchInput.addEventListener("submit", async (evt) => {
   evt.preventDefault();
-
-  console.log(`Search input value: ${searchInput.value}`);
-  getListing(searchInput.value);
+  getListing(input.value);
 
 });
