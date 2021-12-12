@@ -114,72 +114,76 @@
 
 			<!-- Displays all the information of the user. This screen is only available if the user has logged in. -->
 			<div id="user_profile" class="none">
+				<div id="user_profile_container">
+
 			
-				<div id="profile_info">
+					<div id="profile_info">
 
-					<div id="user_img_container"> 
-						<img src="" id="user_img" alt="Profile picture">
-					</div>
-
-					
-					<div id="profile_username">
-						<h3 id="username">Fname Lname</h3>
-					</div>
-			
-					<button id="logout_button" class="borderless_button">
-						Logout
-					</button>
-
-				</div>
-
-				<div id="user_info" class="display">
-
-					<div id="current_profile_info" class="display">
-
-						<div id="profile_info_section">
-							<h3 id="user_email" class="user_profile_info"></h3>
-							<h3 id="user_fname" class="user_profile_info"></h3>
-							<h3 id="user_lname" class="user_profile_info"></h3>
-						</div>
-						<div id="change_info_section" >
-							<button onclick="displayChangeProfileInfoView()" class="custom_button">
-								Change profile info
-							</button>
+						<div id="user_img_container"> 
+							<img src="" id="user_img" alt="Profile picture">
 						</div>
 
-					</div>
-				
-					<div id="logout_section">
-					
-					</div>
-
-				</div>
-				
-				<!-- Displayed when the user clicks on the change profile info button. -->
-				<div id="change_profile_info" class="none">
-			
-					<form id="change_profile_info_form">
-						<h3 style="font-weight: 700; margin: 5px;">Change profile info</h3>
-						<div class="custom_file_input">
-							<input type="file" name="profile_pic" placeholder="Add an image" accept="image/*" id="profile_pic_input">
-						</div>
 						
-						<input type="email" value="email" placeholder="Email" id="change_email_input" name="email" class="change_profile_info_form_input">
-						<input type="text" placeholder="First name" id="change_fname_input" name="first_name" class="change_profile_info_form_input">
-						<input type="text" placeholder="Last name" id="change_lname_input" name="last_name" class="change_profile_info_form_input">
-						<h5>*Changes require the current password</h5>
-						<input type="password" placeholder="old password" name="old_passwd" id="old_passwd_input" class="change_profile_info_form_input" required>
-						<input type="password" placeholder="new password" name="passwd" id="new_passwd_input" class="change_profile_info_form_input">
-						<div id="change_profile_buttons">
-							<button id="changes_back_button" type="button" onclick="displayProfileView()" class="custom_button">
-								Back
-							</button>
-							<button id="save_changes_button" type="submit" class="custom_button">
-								Save
-							</button>
+						<div id="profile_username">
+							<h3 id="username">Fname Lname</h3>
 						</div>
-					</form>
+				
+						<button id="logout_button" class="borderless_button">
+							Logout
+						</button>
+
+					</div>
+
+					<div id="user_info" class="display">
+
+						<div id="current_profile_info" class="display">
+
+							<div id="profile_info_section">
+								<h3 id="user_email" class="user_profile_info"></h3>
+								<h3 id="user_fname" class="user_profile_info"></h3>
+								<h3 id="user_lname" class="user_profile_info"></h3>
+							</div>
+							<div id="change_info_section" >
+								<button onclick="displayChangeProfileInfoView()" class="custom_button">
+									Change profile info
+								</button>
+							</div>
+
+						</div>
 					
+						<div id="logout_section">
+						
+						</div>
+
+					</div>
+					
+					<!-- Displayed when the user clicks on the change profile info button. -->
+					<div id="change_profile_info" class="none">
+				
+						<form id="change_profile_info_form">
+							<h3 style="font-weight: 700; margin: 5px; width: 100%">Profile info</h3>
+							<div class="custom_file_input">
+								<input type="file" name="profile_pic" placeholder="Add an image" accept="image/*" id="profile_pic_input">
+							</div>
+							
+							<input type="email" value="email" placeholder="Email" id="change_email_input" name="email" class="change_profile_info_form_input">
+							<input type="text" placeholder="First name" id="change_fname_input" name="first_name" class="change_profile_info_form_input">
+							<input type="text" placeholder="Last name" id="change_lname_input" name="last_name" class="change_profile_info_form_input">
+							<h5>*Changes require the current password</h5>
+							<input type="password" placeholder="old password" name="old_passwd" id="old_passwd_input" class="change_profile_info_form_input" required>
+							<input type="password" placeholder="new password" name="passwd" id="new_passwd_input" class="change_profile_info_form_input">
+							<div id="change_profile_buttons">
+								<button id="changes_back_button" type="button" onclick="displayProfileView()" class="custom_button">
+									Back
+								</button>
+								<button id="save_changes_button" type="submit" class="custom_button">
+									Save
+								</button>
+							</div>
+						</form>
+						
+					</div>
+
 				</div>
 
 			</div>
@@ -187,11 +191,23 @@
 
 			<!-- Home view -->
 			<div id="home_section" class="display">
-				<h2 id="top_sellers_title" class="section_title">Top sellers</h2>
+				<h2 id="top_sellers_title" class="section_title">Top sellers
+
+					<div id="home_listing_pages" class="listing_pages">
+						<button class="listing_pages_control_btn">Previous</button>
+						<div id="home_page_btn_section">
+
+						</div>
+						<button class="listing_pages_control_btn">Next</button>
+					</div>
+
+				</h2>
+				
 				<div id="home_listing_section" class="listing_section">
 					<ul id="home_listing_list" class="listing_list">
 						<!-- Listing cards are created here -->
 					</ul>
+				
 				</div>
 				<div class="listing_section_filler"></div>	
 			</div>

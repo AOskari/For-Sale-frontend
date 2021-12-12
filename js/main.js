@@ -6,6 +6,9 @@ let currentListingOwner = {};
 let currentUserRating = {};
 let currentModifiedListingId = 0;
 
+let homeListing = {};
+let searchListing = {};
+
 let home = true;
 let search = false;
 let ownlistings = false;
@@ -250,9 +253,13 @@ const hideListingInfo = () => {
 
 // Fetches and creates elements for displaying the listing in the given element.
 const createListingCards = (listing, targetElement) => {
-  
+
   const listingList = document.getElementById(targetElement);
   listingList.innerHTML = "";
+
+/*   let minRange = page * 20;
+  let maxRange = (page * 20) + 20; */
+
 
   console.log(`Listing at createListingCards: ${listing}`);
   console.log(`Listing object size: ${Object.keys(listing).length}`);
@@ -392,7 +399,7 @@ const createListingCards = (listing, targetElement) => {
       if (sessionStorage.getItem("user")) displayElementById("comment_form");
       else hideElementById("comment_form");
   
-    })
+    });
   } else {
 
       li.addEventListener("click", (evt) => {
@@ -418,7 +425,56 @@ const createListingCards = (listing, targetElement) => {
     listingList.appendChild(li);
   }
 
+  // Creating the page buttons and the functionality for them.
+  if (targetElement == "home_listing_list") createPageButtons(homeListing, "home_page_btn_section");
+  else if (targetElement == "search_listing_list");//createPageButtons(listing, "home_page_btn_section");
+
 }
+
+/** Creates page buttons to the target element. */
+const createPageButtons = (listing, targetElement) => {
+
+  let length = Object.keys(listing).length;
+
+  let pages = Math.floor(length / 20);
+
+  // Create page buttons, max. 3 page buttons and the 4th button is the last page.
+
+  const btnContainer = document.getElementById("home_page_btn_section");
+
+  for (let i = 1; i <= Math.min(pages + 1, 4); i++) {
+
+    let btn = document.createElement("button");
+    btn.classList.add("listing_pages_btn");
+
+    if (i == 1) btn.classList.add("selected");
+
+    if (i == 4) btn.innerHTML = pages;
+    else btn.innerHTML = i;
+
+
+    // TODO: Add onclicklistener to btn
+    // TODO: Add function which changes button numbers according to page number.
+    btn.addEventListener("click", (evt) => {
+      evt.preventDefault();
+  
+
+    });
+
+
+    btnContainer.append(btn);
+
+    if (i == 3) {
+      let p = document.createElement("p");
+      p.innerHTML = "...";
+      btnContainer.append(p);
+    }
+
+  }
+
+}
+
+
 
 const listingUserInfo = document.getElementById("listing_user_info");
 listingUserInfo.addEventListener("click", (evt) => {
