@@ -356,42 +356,8 @@ const createListingCards = (targetElement, min, max) => {
       hideMidSectionElements();
       toggleNavButtonFocus("");
 
-
-      // Creating yet another fetch for getting all the comments for the listing ad.
-      const commentResponse = await fetch(url + "/commentGet/listing/" + listing[i].listing_id);
-      const comments = await commentResponse.json();
-
-      // Emptying the list of comments before displaying current ones.
-      document.getElementById("listing_comments").innerHTML = "";
-
-
-      // Looping through all comments and creating them into the listing_comments ul.
-      for (let j = 0; j < Object.keys(comments).length; j++) {
-
-
-        // Fetching the creator of the comment.
-        const commentUser = await fetch(url + "/userGet/" + comments[j].user_id);
-        const user = await commentUser.json();
-
-        
-        // Set correct information to selected elements.
-        const li = document.createElement("li");
-        const h2 = document.createElement("h2");
-        const br = document.createElement("br");
-        const p = document.createElement("p");
-
-        h2.innerHTML = `${user.first_name} ${user.last_name}`;
-        p.innerHTML = comments[j].comment;
-        p.classList.add("comment_text");
-
-        // Add previously created elements to the list and add the list element to the ul.
-        li.appendChild(h2);
-        li.appendChild(br);
-        li.appendChild(p);
-        li.classList.add("listing_comment");
-        document.getElementById("listing_comments").appendChild(li);
-      }
-      
+      // Fetching the comments from the database for the given listing id.
+      getComments(listing[i].listing_id);
       
       currentListingId = listing[i].listing_id;
 
@@ -547,7 +513,10 @@ const commentForm = document.getElementById("comment_form");
 commentForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   addComment(currentListingId);
+  getComments(currentListingId);
 });
+
+
 
 
 // Add a review to the database on submit.
@@ -571,10 +540,6 @@ const displayOtherUserInfo = () => {
   const joined = document.getElementById("other_joined_date");
   const rating = document.getElementById("review_rating");
   
-  console.log(currentUserRating.message);
-
-  
-
   if (!currentUserRating.message) rating.innerHTML = `Rating: ${currentUserRating}`;
   else rating.innerHTML = `No rating available.`;
 

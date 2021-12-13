@@ -22,7 +22,8 @@ const addReview = async (userId) => {
     return;
   }
 
-  const response = await fetch(url + "/review/", fetchOptions);
+  const response = await fetch(url + "/addreview/", fetchOptions); 
+  //const response = await fetch(url + "/review/", fetchOptions);
   if (response.ok) {
     alert("Review succesfully added.");
     document.getElementById("review_input").value = 0;

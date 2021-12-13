@@ -349,14 +349,13 @@
 						<h3 id="other_email" class="user_profile_info"></h3>
 						<h3 id="review_rating">Rating: 4.0</h3>
 					</div>
-	
+					<form id="review_form">
+						<input value="0" type="number" min="0" max="5" step=1 name="review" id="review_input">
+						<button id="review_button" class="custom_button">Leave a review</button>
+					</form>
+					<button id="review_back_button" class="borderless_button" onclick="displayListingItemView()">Back</button>
 				</div>
 
-				<form id="review_form">
-					<input value="0" type="number" min="0" max="5" step=1 name="review" id="review_input">
-					<button id="review_button" class="custom_button">Leave a review</button>
-				</form>
-				<button id="review_back_button" class="borderless_button" onclick="displayListingItemView()">Back</button>
 			</div>
 
 
@@ -395,12 +394,12 @@
 	</div>
 	<script src="./js/modal.js"></script>
 	<script src="./js/listing.js"></script>
+	<script src="./js/comment.js"></script>
 	<script src="./js/main.js"></script>
 	<script src="./js/logout.js"></script>
 	<script src="./js/login.js"></script>
 	<script src="./js/modifyUser.js"></script>
 	<script src="./js/search.js"></script>
-	<script src="./js/comment.js"></script>
 	<script src="./js/review.js"></script>
 	<script src="./js/serialize.js"></script>
 </body>
