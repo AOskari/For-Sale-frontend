@@ -14,7 +14,6 @@
 	<div id="main">
 		<div id="toolbar">
 	
-
 			<div id="toolbar_logo_container" class="none">
 				<img id="toolbar_logo" src="images/for-sale-logo.png" alt="logo">
 			</div>
@@ -24,8 +23,6 @@
 				<input id="searchbar" placeholder="Search items.."/>
 				<button id="searchbar_button" type="submit"><img src="images/search-icon.png" id="searchbar_button_img" alt=search></button>
 			</form>
-			
-		
 
 			<!-- login_btn displayed according to registered status -->
 			<button id="login_btn" class="custom_button" class="display" onclick="displayLoginView()">
@@ -265,7 +262,7 @@
 						<br>
 						<input type="file" name="filename" id="ad_form_file" class="custom_file_input" required>
 						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="name" required>
-						<input type="number" name="price" id="ad_form_price" class="input_field" placeholder="price" required>
+						<input type="number" name="price" min="0" id="ad_form_price" class="input_field" placeholder="price" required>
 						<textarea type="text" name="description" id="ad_form_description" class="input_field" placeholder="description" required></textarea>
 						<button type="submit" class="custom_button" id="ad_form_button">Post ad</button>
 					</form>
@@ -305,7 +302,6 @@
 						<h3 id="listing_lower_section_price"></h3>
 						<p id="listing_lower_section_description"></p>
 					</div>
-
 
 					<div id="listing_user_info">
 						<h2 id="listing_user_name"></h2>

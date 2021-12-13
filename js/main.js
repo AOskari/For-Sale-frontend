@@ -281,23 +281,32 @@ const createListingCards = (targetElement, min, max) => {
     const fig = document.createElement("figure").appendChild(img);
     fig.classList.add("listing_item_img_container");
 
-    const price = document.createElement("h5");
+    const price = document.createElement("h3");
     price.innerHTML = listing[i].price + " €";
 
+    if (listing[i].price <= 0) price.innerHTML = "FREE";
 
-    const name = document.createElement("h3");
+    price.classList.add("listing_price");
+
+    const name = document.createElement("h2");
     name.innerHTML = listing[i].title;
 
+    const separator = document.createElement("div");
+    separator.classList.add("listing_item_separator");
 
     const infoContainer = document.createElement("div");
-    infoContainer.appendChild(price);
     infoContainer.appendChild(name);
-
+    infoContainer.appendChild(separator);
+    infoContainer.appendChild(price);
     infoContainer.classList.add("listing_item_info");
 
+    const infoBtn = document.createElement("button");
+    infoBtn.classList.add("listing_item_button");
+    infoBtn.innerHTML = "MORE DETAILS";
+
+    infoContainer.appendChild(infoBtn);
     const li = document.createElement("li");
     li.classList.add("listing_item");
-
     li.appendChild(fig);
     li.appendChild(infoContainer);
 
@@ -312,7 +321,6 @@ const createListingCards = (targetElement, min, max) => {
       const desc = document.getElementById("listing_lower_section_description");
       const img = document.getElementById("listing_section_img");
       const date = new Date(listing[i].listing_date);
-
 
       let day = `${date.getDate()}`;
       let month = `${date.getMonth() + 1}`
