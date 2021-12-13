@@ -598,7 +598,7 @@ input:focus,textarea:focus {
   height: 210px;
   width: 90%;
   margin: 5px;
-  box-shadow: 1px 10px 18px #B6B6B4;
+ 
 }
 
 .listing_item:hover {
@@ -613,6 +613,7 @@ input:focus,textarea:focus {
   flex-flow: column;
   align-items: center;
   padding: 10px;
+  overflow: hidden;
 }
 .listing_item_info > * {
   margin: 2px;
@@ -652,6 +653,11 @@ input:focus,textarea:focus {
 .listing_item_img {
   width: auto;
   object-fit: contain;
+}
+
+.listing_item h2 {
+  font-weight: 600;
+
 }
 
 .listing_item_separator {
@@ -697,15 +703,17 @@ input:focus,textarea:focus {
   justify-content: center;
   align-items: center; 
   margin-left: 5%;
-  transition: 1s ease;
+  transition: 1s ease-in;
 }
 
+#home_listing_section {
+  overflow: hidden;
+}
 
 
 .listing_price {
   font-weight: 700;
   color: var(--trim-color);
-
 }
 
 
