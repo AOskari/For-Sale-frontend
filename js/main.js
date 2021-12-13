@@ -313,8 +313,15 @@ const createListingCards = (targetElement, min, max) => {
       const img = document.getElementById("listing_section_img");
       const date = new Date(listing[i].listing_date);
 
+
+      let day = `${date.getDate()}`;
+      let month = `${date.getMonth() + 1}`
+
+      if (date.getDate() <= 9) day = "0" + (date.getDate());
+      if (date.getMonth() + 1 <= 9) month = "0" + (date.getMonth() + 1);
+
       title.innerHTML = listing[i].title;
-      dateElement.innerHTML = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+      dateElement.innerHTML = `Posted ${day}.${month}.${date.getFullYear()}`;
 
         console.log(date);
         console.log(listing[i].listing_date);

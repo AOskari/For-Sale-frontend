@@ -881,6 +881,7 @@ input:focus,textarea:focus {
   border-style: none;
   height: 70px;
   resize: none;
+  background-color: transparent;
 }
 
 #comment_form {
@@ -889,6 +890,7 @@ input:focus,textarea:focus {
   display: flex;
   flex-flow: row;
   align-items: center;
+  background-color: white;
 }
 
 #add_comment_button {
@@ -897,29 +899,56 @@ input:focus,textarea:focus {
   margin: 10px;
 }
 
-#comments_title {
-  margin: 10px;
-}
+#comments_title { margin: 10px; }
 
 #listing_comments {
   margin: 5px;
-  width: 99.35%;
+  flex: 1;
   border: var(--trim-color) solid 1px;
 }
 
-.listing_comment {
+.comment_date { color: gray; }
+
+.comment_img_container {
+  width: 50px;
+  justify-content: start;
+}
+
+.comment_list_object {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  background-color: var(--primary-color);
+  border-color: var(--trim-color);
   border-radius: 10px;
   border: var(--trim-color) solid 1px;
-  padding: 10px;
-  border-color: var(--trim-color);
-  overflow-x: auto;
+  height: auto;
   margin: 5px;
-  background-color: var(--primary-color);
+  padding: 10px;
+  max-width: 1750px;
+}
+
+.comment_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.listing_comment {
+  overflow-wrap: break-word;
+  margin: 5px;
+  overflow: none;
   max-width: 100%;
+}
+
+.listing_comment h2 {
+  font-weight: 700;
+  font-style: italic;
 }
 
 .comment_text {
   max-width: 100%;
+  object-fit: contain;
 }
 
 
