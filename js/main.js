@@ -195,19 +195,16 @@ const hideMidSectionElements = () => {
 
 /** Checks if the user is logged in and updates the UI accordingly. **/
 const checkLoggedStatus = () => {
-  const userThumbnail = document.getElementById("user_thumbnail_container");
 
   if (sessionStorage.getItem("token")) logged = true;
   else logged = false;
 
   if (logged) {
-    userThumbnail.classList.remove("hidden");
-    userThumbnail.classList.add("visible");
+    displayElementById("user_thumbnail_container");
     hideElementById("login_btn");
    
   } else {
-    userThumbnail.classList.remove("visible");
-    userThumbnail.classList.add("hidden");
+    hideElementById("user_thumbnail_container");
     displayElementById("login_btn");
   }
 }
@@ -215,19 +212,18 @@ const checkLoggedStatus = () => {
 
 /** Sets the correct information to the Profile screen. */
 const setProfileInfo = () => {
-  const username = document.getElementById("username");
-  const email = document.getElementById("user_email");
-  const firstName = document.getElementById("user_fname");
-  const lastName = document.getElementById("user_lname");
+
   let userImg = document.getElementById("user_img");
   let userThumbnail = document.getElementById("user_thumbnail");
 
   const user = JSON.parse(sessionStorage.getItem("user"));
+  const date = new Date(user.joined_date);
 
-  username.innerHTML = `${user.first_name} ${user.last_name}`;
-  email.innerHTML = `Email: ${user.email}`;
-  firstName.innerHTML = `First name: ${user.first_name}`;
-  lastName.innerHTML = `Last name: ${user.last_name}`;
+  document.getElementById("username").innerHTML = `${user.first_name} ${user.last_name}`;
+  document.getElementById("user_email").innerHTML = `Email: ${user.email}`;
+  document.getElementById("user_fname").innerHTML = `First name: ${user.first_name}`;
+  document.getElementById("user_lname").innerHTML = `Last name: ${user.last_name}`;
+  document.getElementById("member_since").innerHTML = `Member since ${getMonthName(date.getMonth())}, ${date.getFullYear()}`;
 
   if (user.profile_pic == 0) {
     userImg.src = "./images/default_profile_img.png";
@@ -572,17 +568,25 @@ const displayOtherUserInfo = () => {
   
   const img = document.getElementById("other_user_img");
   const username = document.getElementById("other_username");
+  const joined = document.getElementById("other_joined_date");
   const rating = document.getElementById("review_rating");
   
   console.log(currentUserRating.message);
 
+  
+
   if (!currentUserRating.message) rating.innerHTML = `Rating: ${currentUserRating}`;
   else rating.innerHTML = `No rating available.`;
 
+  const date = new Date(currentListingOwner.joined_date);
+
+  if (currentListingOwner.joined_date) joined.innerHTML = `Member since ${getMonthName(date.getMonth())}, ${date.getFullYear()}`;
+  else joined.innerHTML = "Joining date not found.";
+
   username.innerHTML = `${currentListingOwner.first_name} ${currentListingOwner.last_name}`;
 
-  if (currentListingOwner.profile_pic == 0) img.src = "./images/default_profile_img.png";
-  else img.src = url + "/uploads/" + currentListingOwner.profile_pic;
+  img.onerror = () => img.src = "./images/default_profile_img.png";
+  img.src = url + "/uploads/" + currentListingOwner.profile_pic;
 
   displayElementById("other_user_profile");
 
@@ -609,9 +613,46 @@ const toggleCurrentScreen = (screen) => {
   ownlistings = screen = "ownlistings";
 }
 
+/** Returns the name of the given month. **/
+const getMonthName = (month) => {
+  switch (month) {
+    case 0:
+      return "January";
+    case 1:
+      return "February";
+    case 2:
+      return "March";
+    case 3:
+      return "April";
+    case 4:
+      return "May";
+    case 5:
+      return "June";
+    case 6:
+      return "July";
+    case 7:
+      return "August";
+    case 8:
+      return "September";
+    case 9:
+      return "October";
+    case 10:
+      return "November";
+    case 11:
+      return "December";
+    default:
+      return;
+}
+}
+
 
 // Initialization of the home view.
 checkLoggedStatus();
 displayHomeView();
 if (logged) setProfileInfo();
 toggleNotification(false);
+
+document.getElementById("toolbar_logo").addEventListener("click", evt => {
+  evt.preventDefault();  
+  if (!home) displayHomeView();
+});

@@ -13,10 +13,10 @@
 <body>
 	<div id="main">
 		<div id="toolbar">
-			<!-- user_thumbnail displayed according to registered status -->
-			<div id="user_thumbnail_container" class="hidden" onclick="displayProfileView()">
-				<img src="" alt="" id="user_thumbnail">
-				<div id="notification" class="visible">🔴</div>
+	
+
+			<div id="toolbar_logo_container" class="none">
+				<img id="toolbar_logo" src="images/for-sale-logo.png" alt="logo">
 			</div>
 
 			<!-- Hidden class will be toggled when using search_nav_button -->
@@ -25,14 +25,18 @@
 				<button id="searchbar_button" type="submit"><img src="images/search-icon.png" id="searchbar_button_img" alt=search></button>
 			</form>
 			
-			<div id="toolbar_logo_container" class="none">
-				<img id="toolbar_logo" src="images/for-sale-logo.png" alt="logo">
-			</div>
+		
 
 			<!-- login_btn displayed according to registered status -->
 			<button id="login_btn" class="custom_button" class="display" onclick="displayLoginView()">
 				Login / Register
 			</button>
+
+			<!-- user_thumbnail displayed according to registered status -->
+			<div id="user_thumbnail_container" class="none" onclick="displayProfileView()">
+				<img src="" alt="" id="user_thumbnail">
+				<div id="notification" class="visible">🔴</div>
+			</div>
 		</div>
 
 		<div id="bottom_nav">
@@ -146,6 +150,7 @@
 								<h3 id="user_email" class="user_profile_info"></h3>
 								<h3 id="user_fname" class="user_profile_info"></h3>
 								<h3 id="user_lname" class="user_profile_info"></h3>
+								<h3 id="member_since" class="user_profile_info"></h3>
 							</div>
 							<div id="change_info_section" >
 								<button onclick="displayChangeProfileInfoView()" class="custom_button">
@@ -174,7 +179,7 @@
 							<input type="text" placeholder="First name" id="change_fname_input" name="first_name" class="change_profile_info_form_input">
 							<input type="text" placeholder="Last name" id="change_lname_input" name="last_name" class="change_profile_info_form_input">
 							<h5>*Changes require the current password</h5>
-							<input type="password" placeholder="old password" name="old_passwd" id="old_passwd_input" class="change_profile_info_form_input" required>
+							<input type="password" placeholder="current password" name="old_passwd" id="old_passwd_input" class="change_profile_info_form_input" required>
 							<input type="password" placeholder="new password" name="passwd" id="new_passwd_input" class="change_profile_info_form_input">
 							<div id="change_profile_buttons">
 								<button id="changes_back_button" type="button" onclick="displayProfileView()" class="custom_button">
@@ -340,6 +345,7 @@
 					
 					<div id="other_profile_info">
 						<h3 id="other_username">Fname Lname</h3>
+						<h3 id="other_joined_date">Member since 12 / 2021</h3>
 						<h3 id="other_email" class="user_profile_info"></h3>
 						<h3 id="review_rating">Rating: 4.0</h3>
 					</div>
