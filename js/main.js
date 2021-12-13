@@ -318,7 +318,10 @@ const createListingCards = (targetElement, min, max) => {
       const date = new Date(listing[i].listing_date);
 
       title.innerHTML = listing[i].title;
-      dateElement.innerHTML = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+      dateElement.innerHTML = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+        console.log(date);
+        console.log(listing[i].listing_date);
 
       img.onerror = () => {
         img.src = "./images/placeholder-listing-img.png";
