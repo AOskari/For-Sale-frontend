@@ -255,13 +255,13 @@
 					<button class="borderless_button" onclick="displayOwnAdsView()">
 						Back
 					</button>
-		
 
 					<form id="new_ad_form">
 						<h1 style="font-weight: 700;">Create a listing</h1>
 						<br>
 						<input type="file" name="filename" id="ad_form_file" class="custom_file_input" required>
 						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="name" required>
+						<input type="text" name="location" id="ad_form_location" class="input_field" placeholder="location" required>
 						<input type="number" name="price" min="0" id="ad_form_price" class="input_field" placeholder="price" required>
 						<textarea type="text" name="description" id="ad_form_description" class="input_field" placeholder="description" required></textarea>
 						<button type="submit" class="custom_button" id="ad_form_button">Post ad</button>
@@ -269,20 +269,23 @@
 				</div>
 
 				
-
 				<div class="listing_section_filler"></div>	
 			</div>
 
 
 			<!-- Listing item information view -->
 			<div id="listing_item_section" class="none">
+			
 				<div id="listing_upper_section">
 					<button id="listing_back_button" class="custom_button" onclick="hideListingInfo()">Back</button>
-					<h2 id="listing_upper_section_title"></h2>
-					<h2>•</h2>
-					<h2 id="listing_upper_posted_date"></h2>
-
+					<div id="listing_title_section">
+						<h2 id="listing_upper_section_title"></h2>
+						<h2>•</h2>
+						<h2 id="listing_upper_posted_date"></h2>
+					</div>
+					<h2 id="listing_location">Location</h2>
 				</div>
+				
 				<div id="listing_mid_section">
 					<img src="" alt="listing picture" id="listing_section_img">
 					<div id="myModal" class="modal">
@@ -371,6 +374,8 @@
 					<input type="file" name="filename" class="custom_file_input">
 					<h3>Description</h3>
 					<textarea name="description" type="text" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
+					<h3>Location</h3>
+					<input name="location" type="text" id="listing_modify_location" class="change_profile_info_form_input">
 					<h3>Title</h3>
 					<input name="title" type="text" id="listing_modify_title" class="change_profile_info_form_input">
 					<h3>Price</h3>

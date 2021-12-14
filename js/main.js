@@ -294,17 +294,36 @@ const createListingCards = (targetElement, min, max) => {
     const separator = document.createElement("div");
     separator.classList.add("listing_item_separator");
 
+    const date = document.createElement("h4");
+    const fDate = new Date(listing[i].listing_date);
+
+    // Formatting the day and month.
+    let day = fDate.getDate();
+    let month = fDate.getMonth() + 1;
+    if (fDate.getDate() <= 9) day = `0${fDate.getDate()}`;
+    if (fDate.getMonth() + 1 <= 9) day = `0${fDate.getMonth() + 1}`;
+    date.innerHTML = `${day}.${month}.${fDate.getFullYear()}`;
+
+    const location = document.createElement("h4");
+    location.innerHTML = listing[i].location;
+
+    const div1 = document.createElement("div");
+    div1.appendChild(name);
+    div1.appendChild(price);
+    div1.classList.add("listing_card_info");
+
+    const div2 = document.createElement("div");
+    // Add added date and location here
+    div2.appendChild(date);
+    div2.appendChild(location);
+    div2.classList.add("listing_card_info");
+
     const infoContainer = document.createElement("div");
-    infoContainer.appendChild(name);
+    infoContainer.appendChild(div1);
     infoContainer.appendChild(separator);
-    infoContainer.appendChild(price);
+    infoContainer.appendChild(div2);
     infoContainer.classList.add("listing_item_info");
 
-    const infoBtn = document.createElement("button");
-    infoBtn.classList.add("listing_item_button");
-    infoBtn.innerHTML = "MORE DETAILS";
-
-    infoContainer.appendChild(infoBtn);
     const li = document.createElement("li");
     li.classList.add("listing_item");
     li.appendChild(fig);
@@ -330,6 +349,8 @@ const createListingCards = (targetElement, min, max) => {
 
       title.innerHTML = listing[i].title;
       dateElement.innerHTML = `Posted ${day}.${month}.${date.getFullYear()}`;
+
+      document.getElementById("listing_location").innerHTML = listing[i].location;
 
         console.log(date);
         console.log(listing[i].listing_date);

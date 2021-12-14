@@ -80,7 +80,7 @@ newAdForm.addEventListener("submit", async (evt) => {
     body: data,
   };
 
-  const response = await fetch(url + "/listing", fetchOptions);
+  const response = await fetch(url + "/authListing/", fetchOptions);
 
   if (!response.ok) return;
 
@@ -121,7 +121,7 @@ changeListingForm.addEventListener("submit", async (evt) => {
         body: fd,
       };
     
-      const response = await fetch(url + "/listing/" + currentModifiedListingId, fetchOptions);
+      const response = await fetch(url + "/authListing/" + currentModifiedListingId, fetchOptions);
 
       if (!response.ok) {
         alert("Modifying the ad failed.");
@@ -155,7 +155,7 @@ const deleteListing = async () => {
         },
       };
     
-      const response = await fetch(url + "/listing/" + currentModifiedListingId, fetchOptions);
+      const response = await fetch(url + "/authListing/" + currentModifiedListingId, fetchOptions);
       
       if (!response.ok) {
         alert("Listing delete failed.");
