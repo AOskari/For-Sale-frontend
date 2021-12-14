@@ -9,6 +9,7 @@ let currentModifiedListingId = 0;
 let homeListing = {};
 let searchListing = {};
 let ownListing = {};
+let modifyListing = {};
 
 let currentHomePage = 1;
 let currentSearchPage = 1;
@@ -257,6 +258,8 @@ const hideListingInfo = () => {
 // Fetches and creates elements for displaying the listing in the given element.
 const createListingCards = (targetElement, min, max) => {
 
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
   const listingList = document.getElementById(targetElement);
   listingList.innerHTML = "";
 
@@ -330,8 +333,7 @@ const createListingCards = (targetElement, min, max) => {
     li.appendChild(infoContainer);
 
     // Adding an event listener which displays elements with information of the listing.
-    if (targetElement != "own_listing_list") {
-      li.addEventListener("click", async () => {
+    li.addEventListener("click", async () => {
 
       // Setting fetched information to follow elements:
       const title = document.getElementById("listing_upper_section_title");
@@ -375,7 +377,7 @@ const createListingCards = (targetElement, min, max) => {
       // Setting the owner information to the listing ad.
       document.getElementById("listing_user_name").innerHTML = `${userJson.first_name} ${userJson.last_name}`;
       document.getElementById("listing_user_email").innerHTML = `${userJson.email}`;
-     
+      
 
       // Creating another fetch for getting the user's review rating.
       const response = await fetch(url + "/review/user/" + userJson.user_id);
@@ -404,34 +406,49 @@ const createListingCards = (targetElement, min, max) => {
       // If the user is logged in, display the comment input form.
       if (sessionStorage.getItem("user")) displayElementById("comment_form");
       else hideElementById("comment_form");
-  
+
+      // Display modification button if it is the owner or an admin.
+      if (user.user_id == listing[i].seller_id ||user.role == 0) {
+
+        modifyListing = listing[i];
+        displayElementById("listing_modify_button");
+
+
+      } else {
+        modifyListing = {};
+        hideElementById("listing_modify_button");
+      }
+
     });
-  } else {
 
-      li.addEventListener("click", (evt) => {
-        evt.preventDefault();
-        const img = document.getElementById("listing_img");
-        const desc = document.getElementById("listing_modify_description");
-        const title = document.getElementById("listing_modify_title");
-        const price = document.getElementById("listing_modify_price");
-  
-        img.src = url + "/uploads/" + listing[i].filename;
-        desc.value = listing[i].description;
-        title.value = listing[i].title;
-        price.value = listing[i].price;
-        currentModifiedListingId = listing[i].listing_id
-
-        hideMidSectionElements();
-        displayElementById("listing_item_modification");
-
-      });
-
-    }
 
     listingList.appendChild(li);
  
   }
 };
+
+document.getElementById("listing_modify_button").addEventListener("click", evt => {
+  evt.preventDefault();
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
+  if (user.user_id == modifyListing.seller_id ||user.role == 0) {
+
+    const img = document.getElementById("listing_img");
+    const desc = document.getElementById("listing_modify_description");
+    const title = document.getElementById("listing_modify_title");
+    const price = document.getElementById("listing_modify_price");
+
+    img.src = url + "/uploads/" + modifyListing.filename;
+    desc.value = modifyListing.description;
+    title.value = modifyListing.title;
+    price.value = modifyListing.price;
+    currentModifiedListingId = modifyListing.listing_id
+
+    hideMidSectionElements();
+    displayElementById("listing_item_modification");  
+  }
+});
 
 
 /** Creates page buttons to the target element. */

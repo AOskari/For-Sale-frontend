@@ -784,6 +784,21 @@ input:focus,textarea:focus {
   flex-flow: column;
 }
 
+#listing_item_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+
+#listing_item_buttons button {
+  max-width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #listing_upper_section > * {
   padding-left: 10px;
   margin: 5px;
