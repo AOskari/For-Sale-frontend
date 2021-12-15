@@ -23,7 +23,6 @@ span.onclick = function() {
 }
 
 modal.onclick = function() {
-  console.log(modal.style.display);
   if (clicked) {
     modal.style.display = "none";
     console.log("This is happening!");
