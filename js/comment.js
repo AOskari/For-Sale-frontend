@@ -111,10 +111,10 @@ const getComments = async (id) => {
         deleteBtn.addEventListener("click", async (evt) => {
           evt.preventDefault();
           
-          removeComment(comments[j].comment_id);
-        }); 
+          await removeComment(comments[j].comment_id);
+          getComments(id);
 
-        console.log("Delete button added.");
+        }); 
 
       }
 
