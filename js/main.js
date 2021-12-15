@@ -175,7 +175,9 @@ const hideMidSectionElements = () => {
   // Hide search screen.
   hideElementById("search_section");
   document.getElementById("search_listing_list").innerHTML = "";
-  
+  document.getElementById("searchbar").value = "";
+  displayElementById("no_results_container");
+
   // Hide profile screen.
   hideElementById("user_profile");
 
@@ -253,6 +255,7 @@ const hideListingInfo = () => {
 
   if (home) displayHomeView();
   else if (search) displaySearchView();
+  else if (ownlistings) displayOwnAdsView();
 
 }
 

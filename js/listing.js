@@ -19,13 +19,28 @@ const getListing = async (searchInput) => {
 
     // Create the list to the home screen if there is no input. 
     // Otherwise create the list to the search screen.
-    if (searchInput == "") {
+
+    const noResultLogo = document.getElementById("no_results_container");
+
+    if (searchInput == "" && home) {
       homeListing = listing;
       createPageButtons(listing, "home_page_btn_section");
       createListingCards("home_listing_list", 0, 20);
       return;
-    }
+    } else if ((searchInput == "" || listing.error) && search) {
+      // Display no results logo if there is no listings.
+      document.getElementById("search_listing_list").innerHTML = "";
+      console.log("no listings found");
+      noResultLogo.classList.add("display");
+      noResultLogo.classList.remove("none");
+      return;
+    } 
+
+    noResultLogo.classList.add("none");
+    noResultLogo.classList.remove("display");
+    
     searchListing = listing;
+
     createListingCards("search_listing_list", 0, Object.keys(listing).length);
      
   } catch (e) {
@@ -50,11 +65,31 @@ const getOwnListing = async () => {
     // Fetching the user's own listing from the database.
     const response = await fetch(url + "/listing/user/" + userId, fetchOptions);
     const listing = await response.json();
+    
     ownListing = listing;
+
+    const noListings = document.getElementById("no_listings_container");
+    const listingList = document.getElementById("own_listing_list");
+    const amountOfAds = document.getElementById("amount_of_ads");
+
+    if (listing.error) {
+      noListings.classList.add("display");
+      noListings.classList.remove("none");
+      listingList.classList.add("none");
+      listingList.classList.remove("display");
+      listingList.innerHTML = "";
+      amountOfAds.innerHTML = `Listings: 0`;
+      return;
+    } 
+
+    noListings.classList.add("none");
+    noListings.classList.remove("display");
+    listingList.classList.add("display");
+    listingList.classList.remove("none");
 
     // Creating the listing cards to the My listings page.
     createListingCards("own_listing_list", 0, Object.keys(listing).length);
-    document.getElementById("amount_of_ads").innerHTML = `Listings: ${Object.keys(listing).length}`;
+    amountOfAds.innerHTML = `Listings: ${Object.keys(listing).length}`;
     
   } catch (e) {
     console.log(`Error ${e.message}`);
@@ -131,10 +166,7 @@ changeListingForm.addEventListener("submit", async (evt) => {
       if (!response.ok) {
         alert(json.error.message);
         return;
-      }
-    
-      alert("Modification was succesful.");
-    
+      }    
       displayOwnAdsView();
 
     }
@@ -151,7 +183,7 @@ const deleteListing = async () => {
 
   try {
 
-    if (confirm("Delete the listing?")) {
+    if (confirm("Delete listing?")) {
 
       const fetchOptions = {
         method: "DELETE",
@@ -166,7 +198,6 @@ const deleteListing = async () => {
         alert("Listing delete failed.");
         return;
       }
-      alert("Listing delete was succesful.");
       displayOwnAdsView();
 
     }
