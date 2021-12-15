@@ -1272,6 +1272,11 @@ input:focus,textarea:focus {
   min-width: 175px;
   padding: 10px;
 }
+
+#ad_form_file:hover {
+  opacity:0.7;
+  cursor: pointer;
+}
 #ad_form_title{
   min-width: 175px;
 }
