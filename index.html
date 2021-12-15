@@ -377,19 +377,19 @@
 				
 				</div>
 				<div id="listing_img_container">
-					<button id="modify_listing_backButton" class="borderless_button" onclick="displayOwnAdsView()"><img src="images/arrow-icon.png"></button>
+					<button id="modify_backButton" onclick="displayOwnAdsView()"><img src="images/arrow-icon.png" id="modify_listing_backButton"></button>
 					<img src="" id="listing_img">
-					<button id="delete_listing_button" class="custom_button" onclick="deleteListing()">Delete listing</button>
+					<button id="modify_deleteButton" onclick="deleteListing()"><img src="images/delete-logo.png" id="delete_listing_listingModify"></button>
 				</div>
 				<form id="change_listing_info_form">
 					<input type="file" name="filename" class="custom_file_input">
-					<h3>Description</h3>
+					<h5>Description</h5>
 					<textarea name="description" type="text" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
-					<h3>Location</h3>
+					<h5>Location</h5>
 					<input name="location" type="text" id="listing_modify_location" class="change_profile_info_form_input">
-					<h3>Title</h3>
+					<h5>Title</h5>
 					<input name="title" type="text" id="listing_modify_title" class="change_profile_info_form_input">
-					<h3>Price</h3>
+					<h5>Price</h5>
 					<input name="price" type="number" id="listing_modify_price" class="change_profile_info_form_input">
 					<button type="submit" id="save_modify_changes" class="custom_button">Save changes</button>
 				</form>

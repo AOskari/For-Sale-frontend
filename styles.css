@@ -1183,8 +1183,16 @@ input:focus,textarea:focus {
   height: 100%;
 }
 #modify_listing_backButton{
-  max-width: 75px;
-
+  max-width: 50px;
+  max-height: 50px;
+}
+#modify_backButton{
+  background-color: transparent;
+  border-style: none;
+}
+#modify_deleteButton{
+  background-color: transparent;
+  border-style: none;
 }
 
 #listing_back_button_container {
@@ -1195,15 +1203,20 @@ input:focus,textarea:focus {
 
 #delete_listing_button {
   padding: 5px;
-  max-width: 75px;
-  background-image: linear-gradient(to bottom right, red, darkred);
+  max-width: 50px;
+  max-height: 50px;
+}
+#delete_listing_listingModify{
+  max-height: 50px;
+  max-width: 50px;
 }
 
 #listing_img {
   height: 70%;
   width: 50%;
   margin: 20px;
-  padding-left: 40px;
+  margin-right: 40px;
+  padding-left: 30px;
   object-fit: contain;
 }
 
@@ -1226,7 +1239,7 @@ input:focus,textarea:focus {
 #change_listing_info_form > * {
   max-height: 40px;
   max-width: 800px;
-  padding: 10px 0px;
+  padding: 5px 0px;
   padding-left: 10px;
 }
 
@@ -1342,7 +1355,6 @@ input:focus,textarea:focus {
     filter: invert(0);
   }
   .unfocused { background-color: transparent !important; }
-
 
 
 
