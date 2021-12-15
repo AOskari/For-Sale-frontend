@@ -938,6 +938,30 @@ input:focus,textarea:focus {
   flex-flow: column;
 }
 
+.delete_button {
+  width: 40px;
+  height: 40px;
+}
+
+.delete_button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.delete_button img:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.comment_delete_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #listing_back_button {
   margin: 5px;
   width: 15%;
@@ -948,7 +972,7 @@ input:focus,textarea:focus {
   flex: 1;
   border-style: none;
   height: 70px;
-  resize: none;
+  resize: none; 
   background-color: transparent;
 }
 
@@ -974,6 +998,7 @@ input:focus,textarea:focus {
   flex: 1;
   border: var(--trim-color) solid 1px;
 }
+
 
 .comment_date { color: gray; }
 
@@ -1003,6 +1028,9 @@ input:focus,textarea:focus {
 }
 
 .listing_comment {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
   overflow-wrap: break-word;
   margin: 5px;
   overflow: none;

@@ -34,7 +34,12 @@ const getComments = async (id) => {
    // Creating a fetch for getting all the comments for the listing ad.
    const commentResponse = await fetch(url + "/commentGet/listing/" + id);
    const comments = await commentResponse.json();
- 
+
+    let loggedIn = false;
+    const currentUser = JSON.parse(sessionStorage.getItem("user"));
+
+    if (currentUser) loggedIn = true;
+
    // Emptying the list of comments before displaying current ones.
    document.getElementById("listing_comments").innerHTML = "";
  
@@ -60,6 +65,9 @@ const getComments = async (id) => {
 
       const li = document.createElement("li");
       const commentContainer = document.createElement("div");
+      const deleteContainer = document.createElement("div");
+      deleteContainer.classList.add("comment_delete_container");
+
       const h2 = document.createElement("h2");
       const date = document.createElement("h4");
       const br = document.createElement("br");
@@ -88,9 +96,31 @@ const getComments = async (id) => {
       @ ${hours}:${minutes}`;
       p.classList.add("comment_text");
 
-  
+      deleteContainer.appendChild(h2);
+      
+      if (loggedIn && (currentUser.user_id == user.user_id ||currentUser.user_id == 0)) {
+
+        const deleteBtn = document.createElement("div");
+        const img = document.createElement("img");
+        img.src = "./images/delete-logo.png";
+
+        deleteBtn.classList.add("delete_button");
+        deleteBtn.appendChild(img);
+        deleteContainer.appendChild(deleteBtn); 
+
+        deleteBtn.addEventListener("click", async (evt) => {
+          evt.preventDefault();
+          
+          removeComment(comments[j].comment_id);
+        }); 
+
+        console.log("Delete button added.");
+
+      }
+
+
       // Add previously created elements to the list and add the list element to the ul.
-      commentContainer.appendChild(h2);
+      commentContainer.appendChild(deleteContainer);
       commentContainer.appendChild(date);
       commentContainer.appendChild(br);
       commentContainer.appendChild(p);
@@ -104,5 +134,35 @@ const getComments = async (id) => {
       document.getElementById("listing_comments").appendChild(li);
    }
 
+
+}
+
+/** Removes the selected comment. */
+const removeComment = async (id) => {
+  try {
+
+    const fetchOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+      }
+    }
+  
+    if (confirm("Delete comment?")) {
+      const response = await fetch(url + "/comment/" + id, fetchOptions);
+  
+      if (response.ok) {
+        alert("Comment removal succesful.");
+        return;
+      }
+    
+      alert("Comment removal failed.");
+    }
+  
+  
+
+  } catch (e) {
+    console.log(`error ${e.message} at removeComment`);
+  }
 
 }

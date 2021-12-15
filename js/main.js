@@ -408,7 +408,7 @@ const createListingCards = (targetElement, min, max) => {
       else hideElementById("comment_form");
 
       // Display modification button if it is the owner or an admin.
-      if (user.user_id == listing[i].seller_id ||user.role == 0) {
+      if (user && (user.user_id == listing[i].seller_id ||user.role == 0)) {
 
         modifyListing = listing[i];
         displayElementById("listing_modify_button");

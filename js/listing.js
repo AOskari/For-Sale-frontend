@@ -1,8 +1,7 @@
 "use strict";
 
-/** Fetches the listing data from the database. **/
+/** Fetches listing data from the database. **/
 const getListing = async (searchInput) => {
-
   try {
 
     const fetchOptions = {
@@ -12,6 +11,8 @@ const getListing = async (searchInput) => {
     };
   
     let response = ""
+
+    // Fetching the whole list 
     if (searchInput != "") response = await fetch(url + "/listing/search/" + searchInput, fetchOptions);
     else response = await fetch(url + "/listing", fetchOptions);
     const listing = await response.json();
@@ -46,10 +47,12 @@ const getOwnListing = async () => {
 
     const userId = JSON.parse(sessionStorage.getItem("user")).user_id;
 
+    // Fetching the user's own listing from the database.
     const response = await fetch(url + "/listing/user/" + userId, fetchOptions);
     const listing = await response.json();
     ownListing = listing;
 
+    // Creating the listing cards to the My listings page.
     createListingCards("own_listing_list", 0, Object.keys(listing).length);
     document.getElementById("amount_of_ads").innerHTML = `Listings: ${Object.keys(listing).length}`;
     
@@ -110,7 +113,6 @@ changeListingForm.addEventListener("submit", async (evt) => {
 
       const data = serializeJson(changeListingForm);
       const fd = new FormData(changeListingForm);
-    
       fd.append("description", data.description);
     
       const fetchOptions = {
