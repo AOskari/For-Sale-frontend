@@ -85,17 +85,19 @@ newAdForm.addEventListener("submit", async (evt) => {
 
   const response = await fetch(url + "/authListing/", fetchOptions);
 
-  if (!response.ok) return;
+  const json = await response.json();
+  if (json.error) {
+    alert(json.message);
+    return;
+  } else {
+    // Empty the input fields after adding the ad listing.
+    emptyListingInput("ad_form_file");
+    emptyListingInput("ad_form_title");
+    emptyListingInput("ad_form_description");
+    emptyListingInput("ad_form_price");
 
-  alert("Ad succesfully added.");
-
-  // Empty the input fields after adding the ad listing.
-  emptyListingInput("ad_form_file");
-  emptyListingInput("ad_form_title");
-  emptyListingInput("ad_form_description");
-  emptyListingInput("ad_form_price");
-
-  displayOwnAdsView();
+    displayOwnAdsView();
+  }
 
 });
 
@@ -124,9 +126,10 @@ changeListingForm.addEventListener("submit", async (evt) => {
       };
     
       const response = await fetch(url + "/authListing/" + currentModifiedListingId, fetchOptions);
+      const json = await response.json();
 
       if (!response.ok) {
-        alert("Modifying the ad failed.");
+        alert(json.error.message);
         return;
       }
     

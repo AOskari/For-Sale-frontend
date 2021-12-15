@@ -868,7 +868,9 @@ input:focus,textarea:focus {
   opacity: 0.7;
 }
 
+/** This has been implemented following w3schools tutorial at https://www.w3schools.com/howto/howto_css_modal_images.asp (read 15.12.2021) **/
 
+/** -------------------------------------------------------------------------------------------------------------------------------------- **/
 .modal {
   display: none; 
   position: fixed; 
@@ -926,6 +928,8 @@ input:focus,textarea:focus {
   text-decoration: none;
   cursor: pointer;
 }
+
+/** -------------------------------------------------------------------------------------------------------------------------------------- **/
 
 #listing_lower_section {
   flex: 2;
@@ -1277,6 +1281,11 @@ input:focus,textarea:focus {
 #ad_form_file{
   min-width: 175px;
   padding: 10px;
+}
+
+#ad_form_file:hover {
+  opacity:0.7;
+  cursor: pointer;
 }
 #ad_form_title{
   min-width: 175px;
