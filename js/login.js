@@ -20,7 +20,6 @@ registerUserForm.addEventListener("submit", async (evt) => {
   // Attempt to register the user with given options and inform the user of the result.
   const response = await fetch(url + "/auth/register", fetchOptions);
   const json = await response.json();
-  alert(json.message);
 
   // After succesfully registering, log in with the newly registered account.
   if (json.user_id) {
