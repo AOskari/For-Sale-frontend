@@ -989,10 +989,24 @@ input:focus,textarea:focus {
 }
 
 #listing_back_button {
-  margin: 5px;
-  width: 15%;
+  margin: 8px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-style: none;
 }
 
+#listing_back_button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+#listing_back_button img:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
 
 #comment_input {
   padding: 15px;
@@ -1309,13 +1323,12 @@ input:focus,textarea:focus {
     width: 45%;
   }
   
-
 }
 
 
 /** Tablet screen break points **/
 
-@media (min-width: 800px) {
+@media (min-width: 831px) {
 
   .focused { 
     background-color: var(--button-primary-color) !important; 
@@ -1323,6 +1336,13 @@ input:focus,textarea:focus {
   }
   .unfocused { background-color: transparent !important; }
 
+
+
+  #listing_back_button {
+    margin: 15px;
+    width: 70px;
+    height: 70px;
+  }
 
   #listing_img {
     width: 80%;
@@ -1346,10 +1366,6 @@ input:focus,textarea:focus {
 
   .listing_item_info > * {
     margin: 5px;
-  }
-
-  #home_listing_list {
-    margin-left: 0;
   }
 
   #login_btn {
@@ -1446,10 +1462,6 @@ input:focus,textarea:focus {
   
 }
 
-@media (min-width: 1000px) {
-
-
-}
 
 
 

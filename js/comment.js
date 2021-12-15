@@ -77,8 +77,6 @@ const getComments = async (id) => {
 
       const formattedDate = new Date(comments[j].comment_date);
 
-     // TODO: Format date, and add it to the date innerhtml.
-
       h2.innerHTML = `${user.first_name} ${user.last_name}`;
       p.innerHTML = comments[j].comment;
 
@@ -87,6 +85,7 @@ const getComments = async (id) => {
       let minutes = `${formattedDate.getMinutes()}`
       let hours = `${formattedDate.getHours()}`
 
+      // Formatting the date, i.e. if the day or month is under 9, add show it as 09 instead of 9.
       if (formattedDate.getDate() <= 9) day = "0" + (formattedDate.getDate());
       if (formattedDate.getMonth() + 1 <= 9) month = "0" + (formattedDate.getMonth() + 1);
       if (formattedDate.getMinutes() <= 9) minutes = "0" + (formattedDate.getMinutes());
@@ -98,6 +97,7 @@ const getComments = async (id) => {
 
       deleteContainer.appendChild(h2);
       
+      // Adding a delete button if the user owns the comment.
       if (loggedIn && (currentUser.user_id == user.user_id || currentUser.role == 0)) {
 
         const deleteBtn = document.createElement("div");
@@ -137,7 +137,7 @@ const getComments = async (id) => {
 
 }
 
-/** Removes the selected comment. */
+/** Removes a comment by id. */
 const removeComment = async (id) => {
   try {
 
@@ -159,8 +159,6 @@ const removeComment = async (id) => {
       alert("Comment removal failed.");
     }
   
-  
-
   } catch (e) {
     console.log(`error ${e.message} at removeComment`);
   }
