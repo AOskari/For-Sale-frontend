@@ -12,8 +12,6 @@ let ownListing = {};
 let modifyListing = {};
 
 let currentHomePage = 1;
-let currentSearchPage = 1;
-let currentOwnPage = 1;
 
 let home = true;
 let search = false;
@@ -172,6 +170,7 @@ const hideMidSectionElements = () => {
   // Hide home section.
   hideElementById("home_section");
   document.getElementById("home_listing_list").innerHTML = "";
+  currentHomePage = 1;
 
   // Hide search screen.
   hideElementById("search_section");
@@ -212,7 +211,7 @@ const checkLoggedStatus = () => {
 
 
 /** Sets the correct information to the Profile screen. */
-const setProfileInfo = () => {
+const setProfileInfo = async () => {
 
   let userImg = document.getElementById("user_img");
   let userThumbnail = document.getElementById("user_thumbnail");
@@ -220,10 +219,13 @@ const setProfileInfo = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const date = new Date(user.joined_date);
 
+  const rating = await getReview(user.user_id);
+
   document.getElementById("username").innerHTML = `${user.first_name} ${user.last_name}`;
   document.getElementById("user_email").innerHTML = `Email: ${user.email}`;
   document.getElementById("user_fname").innerHTML = `First name: ${user.first_name}`;
   document.getElementById("user_lname").innerHTML = `Last name: ${user.last_name}`;
+  document.getElementById("user_rating").innerHTML = rating;
   document.getElementById("member_since").innerHTML = `Member since ${getMonthName(date.getMonth())}, ${date.getFullYear()}`;
 
   if (user.profile_pic == 0) {
@@ -379,15 +381,13 @@ const createListingCards = (targetElement, min, max) => {
       document.getElementById("listing_user_email").innerHTML = `${userJson.email}`;
       
 
-      // Creating another fetch for getting the user's review rating.
-      const response = await fetch(url + "/review/user/" + userJson.user_id);
-      const json = await response.json();
-      currentUserRating = json;
-      
+      // Fetching the user's review rating.
+      currentUserRating = await getReview(userJson.user_id);
+    
 
       // Set the rating in the chosen element according if the user has a rating.
-      if (response.ok) document.getElementById("listing_user_rating").innerHTML = `Reviews: ${json} / 5.0`;
-      else document.getElementById("listing_user_rating").innerHTML = `No reviews.`;
+      document.getElementById("listing_user_rating").innerHTML = currentUserRating;
+
 
 
       // Hiding other mid section elements and taking removing the focus of nav buttons.
@@ -578,11 +578,8 @@ commentForm.addEventListener("submit", async (evt) => {
 const reviewForm = document.getElementById("review_form");
 reviewForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
-  addReview(currentListingOwner.user_id);
-
-  const response = await fetch(url + "/review/user/" + currentListingOwner.user_id);
-  const json = await response.json();
-  currentUserRating = json;
+  await addReview(currentListingOwner.user_id);
+  currentUserRating = await getReview(currentListingOwner.user_id);
   displayOtherUserInfo();
 });
 

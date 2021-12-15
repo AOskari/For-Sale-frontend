@@ -23,16 +23,27 @@ const addReview = async (userId) => {
   }
 
   const response = await fetch(url + "/addreview/", fetchOptions); 
-  const json = response.json();
 
-  //const response = await fetch(url + "/review/", fetchOptions);
-  if (!json.error) {
-    alert(json.message);
+  if (response.ok) {
+    alert("Review succesfully added.");
     document.getElementById("review_input").value = 0;
-    return;
   }
 
-  alert(json.error.message);
-  
-
 };
+
+/** Fetches the review rating of the given user. **/
+const getReview = async (id) => {
+
+  try {
+    const response = await fetch(url + "/review/user/" + id);
+    const json = await response.json();
+
+    if (response.ok) return `Rating: ${json} / 5.0`;
+    else return "No reviews.";
+  
+  } catch (e) {
+    console.log(`error at getReview: ${e.message}`);
+  }
+
+}
+  
