@@ -23,10 +23,16 @@ const addReview = async (userId) => {
   }
 
   const response = await fetch(url + "/addreview/", fetchOptions); 
+  const json = response.json();
+
   //const response = await fetch(url + "/review/", fetchOptions);
-  if (response.ok) {
-    alert("Review succesfully added.");
+  if (!json.error) {
+    alert(json.message);
     document.getElementById("review_input").value = 0;
+    return;
   }
+
+  alert(json.error.message);
+  
 
 };

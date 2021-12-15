@@ -565,7 +565,9 @@ listingUserInfo.addEventListener("click", (evt) => {
 const commentForm = document.getElementById("comment_form");
 commentForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
-  addComment(currentListingId);
+
+  // waiting for the comment to be added to the database and updating the comments after.
+  await addComment(currentListingId);
   getComments(currentListingId);
 });
 
