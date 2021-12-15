@@ -98,7 +98,7 @@ const getComments = async (id) => {
 
       deleteContainer.appendChild(h2);
       
-      if (loggedIn && (currentUser.user_id == user.user_id ||currentUser.user_id == 0)) {
+      if (loggedIn && (currentUser.user_id == user.user_id || currentUser.role == 0)) {
 
         const deleteBtn = document.createElement("div");
         const img = document.createElement("img");
