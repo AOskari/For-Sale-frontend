@@ -1602,3 +1602,9 @@ input:focus,textarea:focus {
   }
 
 }
+
+@-moz-document url-prefix() {
+  #toolbar_logo_container {
+    max-width: 230px;
+  }
+}
