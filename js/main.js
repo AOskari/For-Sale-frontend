@@ -367,7 +367,7 @@ const createListingCards = (targetElement, min, max) => {
         console.log("Listing image not found, placing placeholder.");
       }
 
-      img.src = url + "/thumbnails/" + listing[i].filename;
+      img.src = url + "/uploads/" + listing[i].filename;
       img.alt = listing[i].title;
       price.innerHTML = listing[i].price + " €";
       desc.innerHTML = listing[i].description;
