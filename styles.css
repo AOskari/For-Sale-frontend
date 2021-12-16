@@ -640,6 +640,7 @@ input:focus,textarea:focus {
   max-height: 115px;
   display: flex;
   background-color: white;
+  border-bottom: var(--trim-color) solid 1px;
 }
 
 .listing_item_img {
@@ -1569,6 +1570,7 @@ input:focus,textarea:focus {
 }
 
 button:disabled {
+  background-color: #425e45;
   opacity: 0.6;
 }
 
