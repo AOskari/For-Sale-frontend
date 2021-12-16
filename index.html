@@ -25,30 +25,30 @@
 			</form>
 
 			<!-- login_btn displayed according to registered status -->
-			<button id="login_btn" class="custom_button" class="display" onclick="displayLoginView()">
+			<button id="login_btn" class="custom_button display" onclick="displayLoginView()">
 				Login / Register
 			</button>
 
 			<!-- user_thumbnail displayed according to registered status -->
 			<div id="user_thumbnail_container" class="none" onclick="displayProfileView()">
-				<img src="" alt="" id="user_thumbnail">
+				<img src="/images/default_profile_img.png" alt="profile-thumbnail" id="user_thumbnail">
 				<div id="notification" class="visible">🔴</div>
 			</div>
 		</div>
 
 		<div id="bottom_nav">
-			<button id="home_nav_button" class="focused nav_button" onclick="displayHomeView()">
-				<img class="button-icon" src="images/home-icon.png">
-				<h2>Home</h2>
-			</button>
-			<button id="search_nav_button" class="unfocused nav_button" onclick="displaySearchView()">
-				<img class="button-icon" src="images/search-icon.png">
-				<h2>Search</h2>
-			</button>
-			<button id="own_ads_nav_button" class="unfocused nav_button" onclick="displayOwnAdsView()">
-				<img class="button-icon" src="images/listing-icon.png">
-				<h2>My listings</h2>
-			</button>
+			<div id="home_nav_button" class="focused nav_button" onclick="displayHomeView()">
+				<img class="button-icon" src="images/home-icon.png" alt="home-icon">
+					<h2>Home</h2>
+			</div>
+			<div id="search_nav_button" class="unfocused nav_button" onclick="displaySearchView()">
+				<img class="button-icon" src="images/search-icon.png" alt="search-icon">
+				  <h2>Search</h2>
+			</div>
+			<div id="own_ads_nav_button" class="unfocused nav_button" onclick="displayOwnAdsView()">
+				<img class="button-icon" src="images/listing-icon.png" alt="own-listing-icon">
+					<h2>My listings</h2>
+			</div>
 		</div>
 	
 		<!-- display property of elements within mid_section are toggled according to button clicks -->
@@ -67,11 +67,11 @@
 						<h3 style="font-weight: 700;">Login</h3>
 						<div class="input_container">
 							<h4>Email</h4>
-							<input class="input_field" id="login_name" placeholder="..." name="username" type="email" class="input_field" required>
+							<input class="input_field" id="login_name" placeholder="..." name="username" type="email" required>
 						</div>
 						<div class="input_container">
 							<h4>Password</h4>
-							<input class="input_field" id="login_passwd" type="password" name="password" placeholder="..." class="input_field" required>
+							<input class="input_field" id="login_passwd" type="password" name="password" placeholder="..." required>
 							<h4 id="register_text">
 								New user? 
 								<button type="button" onclick="displayRegisterView()" class="borderless_button">Create an account
@@ -125,7 +125,7 @@
 					<div id="profile_info">
 
 						<div id="user_img_container"> 
-							<img src="" id="user_img" alt="Profile picture">
+							<img src="images/default_profile_img.png" id="user_img" alt="Profile picture">
 						</div>
 
 						
@@ -144,11 +144,11 @@
 						<div id="current_profile_info" class="display">
 
 							<div id="profile_info_section">
-								<h3 id="user_email" class="user_profile_info"></h3>
-								<h3 id="user_fname" class="user_profile_info"></h3>
-								<h3 id="user_lname" class="user_profile_info"></h3>
-								<h3 id="user_rating" class="user_profile_info"></h3>
-								<h3 id="member_since" class="user_profile_info"></h3>
+								<h3 id="user_email" class="user_profile_info">Email</h3>
+								<h3 id="user_fname" class="user_profile_info">First name</h3>
+								<h3 id="user_lname" class="user_profile_info">Last name</h3>
+								<h3 id="user_rating" class="user_profile_info">Rating:</h3>
+								<h3 id="member_since" class="user_profile_info">Member since:</h3>
 							</div>
 							<div id="change_info_section" >
 								<button onclick="displayChangeProfileInfoView()" class="custom_button">
@@ -170,7 +170,7 @@
 						<form id="change_profile_info_form">
 							<h3 style="font-weight: 700; margin: 5px; width: 100%">Profile info</h3>
 							<div class="custom_file_input">
-								<input type="file" name="profile_pic" placeholder="Add an image" accept="image/*" id="profile_pic_input">
+								<input type="file" name="profile_pic" accept="image/*" id="profile_pic_input">
 							</div>
 							
 							<input type="email" value="email" placeholder="Email" id="change_email_input" name="email" class="change_profile_info_form_input">
@@ -224,6 +224,9 @@
 			<div id="search_section" class="none">
 				<h2 class="section_title" id="search_title">Search
 				</h2>
+				<div id="no_results_container" class="no_results display">
+					<img src="images/no-results-logo.png" alt="no-results">
+				</div>
 				<div id="search_listing_section" class="listing_section">
 					<ul id="search_listing_list" class="listing_list">
 						<!-- Listing cards are created here -->
@@ -242,9 +245,11 @@
 							New listing
 						</button>
 					</div>
-	
+					<div id="no_listings_container" class="no_results display">
+						<img src="images/no-listings-logo.png" alt="no-listings">
+					</div>
 					<div id="own_listing_section">
-						<ul id="own_listing_list">
+						<ul id="own_listing_list" class="none">
 							<!-- Listing cards are created here -->
 	
 						</ul>
@@ -266,7 +271,7 @@
 						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="name" required>
 						<input type="text" name="location" id="ad_form_location" class="input_field" placeholder="location" required>
 						<input type="number" name="price" min="0" max="1000000" id="ad_form_price" class="input_field" placeholder="price" required>
-						<textarea type="text" name="description" id="ad_form_description" class="input_field" placeholder="description" required></textarea>
+						<textarea name="description" id="ad_form_description" class="input_field" placeholder="description" required></textarea>
 						<button type="submit" class="custom_button" id="ad_form_button">Post ad</button>
 					</form>
 				</div>
@@ -282,23 +287,23 @@
 				<div id="listing_upper_section">
 					<div id="listing_item_buttons">
 						<button id="listing_back_button" onclick="hideListingInfo()">
-							<img src="images/arrow-icon.png">
+							<img src="images/arrow-icon.png" alt="back button">
 						</button>
 						<button id="listing_modify_button" class="none">
-							<img src="images/settings-logo.png" id="modify_img">
+							<img src="images/settings-logo.png" id="modify_img" alt="settings">
 						</button>
 					</div>
 			
 					<div id="listing_title_section">
-						<h2 id="listing_upper_section_title"></h2>
+						<h2 id="listing_upper_section_title">Title</h2>
 						<h2>•</h2>
-						<h2 id="listing_upper_posted_date"></h2>
+						<h2 id="listing_upper_posted_date">Posted:</h2>
 					</div>
 					<h2 id="listing_location">Location</h2>
 				</div>
 				
 				<div id="listing_mid_section">
-					<img src="" alt="listing picture" id="listing_section_img">
+					<img src="images/placeholder-listing-img.png" alt="listing picture" id="listing_section_img">
 					<div id="myModal" class="modal">
 
 						<!-- The Close Button -->
@@ -313,14 +318,14 @@
 				</div>
 				<div id="listing_lower_section">
 					<div id="listing_price_description">
-						<h3 id="listing_lower_section_price"></h3>
-						<p id="listing_lower_section_description"></p>
+						<h3 id="listing_lower_section_price">Price:</h3>
+						<p id="listing_lower_section_description">An description</p>
 					</div>
 
 					<div id="listing_user_info">
-						<h2 id="listing_user_name"></h2>
-						<h2 id="listing_user_email"></h2>
-						<h2 id="listing_user_rating"></h2>
+						<h2 id="listing_user_name">Owner name</h2>
+						<h2 id="listing_user_email">Owner email</h2>
+						<h2 id="listing_user_rating">Owner rating</h2>
 					</div>
 
 					<div id="listing_comment_section">
