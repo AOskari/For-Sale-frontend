@@ -600,7 +600,8 @@ const displayOtherUserInfo = () => {
   const username = document.getElementById("other_username");
   const joined = document.getElementById("other_joined_date");
   const rating = document.getElementById("review_rating");
-  
+  const email = document.getElementById("other_email");
+
   if (!currentUserRating.message) rating.innerHTML = `Rating: ${currentUserRating}`;
   else rating.innerHTML = `No rating available.`;
 
@@ -610,6 +611,7 @@ const displayOtherUserInfo = () => {
   else joined.innerHTML = "Joining date not found.";
 
   username.innerHTML = `${currentListingOwner.first_name} ${currentListingOwner.last_name}`;
+  email.innerHTML = `${currentListingOwner.email}`;
 
   img.onerror = () => img.src = "./images/default_profile_img.png";
   img.src = url + "/thumbnails/" + currentListingOwner.profile_pic;
