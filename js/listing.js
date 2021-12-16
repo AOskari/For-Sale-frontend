@@ -104,7 +104,7 @@ newAdForm.addEventListener("submit", async (evt) => {
 
   const btn = document.getElementById("ad_form_button");
 
-  btn.innerHTML = "Please wait";
+  btn.innerHTML = "Please wait...";
   btn.disabled = true;
 
   const data = new FormData(newAdForm);
