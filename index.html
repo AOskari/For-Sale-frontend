@@ -253,35 +253,35 @@
 						<img src="images/no-listings-logo.png" alt="no-listings">
 					</div>
 					<div id="own_listing_section">
-						<ul id="own_listing_list" class="none">
+						<ul id="own_listing_list" class="listing_list none">
 							<!-- Listing cards are created here -->
 	
 						</ul>
 					</div>
-					
+					<div class="listing_section_filler"></div>	
 				</div>
 				
 
 				<div id="new_ad_section" class="none">
 
-					<button class="borderless_button" onclick="displayOwnAdsView()">
-						Back
-					</button>
+					<div id="new_ad_back_button_container">
+						<button onclick="displayOwnAdsView()" class="back_button">
+							<img src="images/arrow-icon.png" alt="back button" class="back_button_img">
+						</button>
+					</div>
+		
 
 					<form id="new_ad_form">
 						<h1 style="font-weight: 700;">Create a listing</h1>
 						<br>
 						<input type="file" name="filename" id="ad_form_file" class="custom_file_input" required>
-						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="name" required>
-						<input type="text" name="location" id="ad_form_location" class="input_field" placeholder="location" required>
-						<input type="number" name="price" min="0" max="1000000" id="ad_form_price" class="input_field" placeholder="price" required>
-						<textarea name="description" id="ad_form_description" class="input_field" placeholder="description" required></textarea>
+						<input type="text" name="title" id="ad_form_title" class="input_field" placeholder="Title" required>
+						<input type="text" name="location" id="ad_form_location" class="input_field" placeholder="Location" required>
+						<input type="number" name="price" min="0" max="1000000" id="ad_form_price" class="input_field" placeholder="Price" required>
+						<textarea name="description" id="ad_form_description" class="input_field" placeholder="Description" required></textarea>
 						<button type="submit" class="custom_button" id="ad_form_button">Post ad</button>
 					</form>
 				</div>
-
-				
-				<div class="listing_section_filler"></div>	
 			</div>
 
 
@@ -290,8 +290,8 @@
 			
 				<div id="listing_upper_section">
 					<div id="listing_item_buttons">
-						<button id="listing_back_button" onclick="hideListingInfo()">
-							<img src="images/arrow-icon.png" alt="back button">
+						<button id="listing_back_button" class="back_button" onclick="hideListingInfo()">
+							<img src="images/arrow-icon.png" alt="back button" class="back_button_img">
 						</button>
 						<button id="listing_modify_button" class="none">
 							<img src="images/settings-logo.png" id="modify_img" alt="settings">
@@ -382,7 +382,9 @@
 			<!-- Listing item modification view -->
 			<div id="listing_item_modification" class="none">
 				<div class="listing_section_filler">
-					<button id="modify_backButton" onclick="displayOwnAdsView()"><img src="images/arrow-icon.png" id="modify_listing_backButton"></button>
+					<button id="modify_backButton" class="back_button" onclick="displayOwnAdsView()">
+						<img src="images/arrow-icon.png" id="modify_listing_backButton" class="back_button_img">
+					</button>
 					<button id="modify_deleteButton" onclick="deleteListing()"><img src="images/delete-logo.png" id="delete_listing_listingModify"></button>
 				</div>
 				<div id="listing_img_container">
@@ -390,14 +392,14 @@
 				</div>
 				<form id="change_listing_info_form">
 					<input type="file" name="filename" class="custom_file_input">
-					<h3>Description</h3>
-					<textarea name="description" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
-					<h3>Location</h3>
-					<input name="location" type="text" id="listing_modify_location" class="change_profile_info_form_input">
 					<h5>Title</h5>
 					<input name="title" type="text" id="listing_modify_title" class="change_profile_info_form_input">
+					<h5>Location</h5>
+					<input name="location" type="text" id="listing_modify_location" class="change_profile_info_form_input">
 					<h5>Price</h5>
 					<input name="price" type="number" id="listing_modify_price" class="change_profile_info_form_input">
+					<h5>Description</h5>
+					<textarea name="description" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
 					<button type="submit" id="save_modify_changes" class="custom_button">Save changes</button>
 				</form>
 			

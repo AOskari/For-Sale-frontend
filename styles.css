@@ -700,7 +700,6 @@ input:focus,textarea:focus {
   overflow-y: scroll;
   justify-content: center;
   align-items: center; 
-  transition: 1s ease-in;
   display: flex;
   flex-flow: row wrap;
 }
@@ -771,27 +770,28 @@ input:focus,textarea:focus {
   font-weight: 800;
 }
 
-#own_listing_list {
+#own_listing_section {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+/* #own_listing_list {
   padding: 1em;
   margin: 1em;
   border: var(--trim-color) solid 1px;
-  overflow: hidden;
-  overflow-y: scroll;
-  justify-content: center;
-  align-items: center;
   background-color: var(--primary-color);
-  -ms-overflow-style: none;
   scrollbar-width: none;
 }
+ */
 
-#own_listing_list::-webkit-scrollbar {
+.listing_list::-webkit-scrollbar {
   display: none;
 }
 
 #own_listing_info_section {
   overflow: hidden;
   background-color: var(--primary-color);
-  height: 80%;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -1219,15 +1219,8 @@ input:focus,textarea:focus {
   height: 100%;
   max-height: 200px;
 }
-#modify_listing_backButton{
-  max-width: 50px;
-  max-height: 50px;
-}
-#modify_backButton{
-  background-color: transparent;
-  border-style: none;
-  margin-left: 15px;
-}
+
+
 #modify_deleteButton{
   background-color: transparent;
   border-style: none;
@@ -1321,9 +1314,33 @@ input:focus,textarea:focus {
 #new_ad_section{
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
+}
+
+#new_ad_back_button_container {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: start; 
+  align-items: center;
+}
+
+.back_button {
+  width: 50px;
+  height: 50px;
+  margin-left: 15px;
+  margin-top: 15px;
+  border-style: none;
+  background-color: transparent;
+}
+
+.back_button_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #new_ad_button {
@@ -1443,13 +1460,6 @@ input:focus,textarea:focus {
     width: 60px;
   }
 
-
-  #listing_back_button {
-    margin: 15px;
-    width: 70px;
-    height: 70px;
-  }
-
   #listing_img {
     width: 80%;
   }
@@ -1566,6 +1576,10 @@ input:focus,textarea:focus {
   #toolbar_logo_container { display: flex !important; }
 
   
+  #change_listing_info_form h5 {
+    font-weight: 800;
+  }
+
 }
 
 
@@ -1596,7 +1610,5 @@ input:focus,textarea:focus {
     flex: none;
     
   }
-
-
 
 }
