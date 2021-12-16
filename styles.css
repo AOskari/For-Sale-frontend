@@ -35,6 +35,7 @@ body {
   justify-content: center;
   overflow-y: hidden;
   background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+  scrollbar-color: transparent transparent;
 }
 
 
@@ -702,6 +703,8 @@ input:focus,textarea:focus {
   align-items: center; 
   display: flex;
   flex-flow: row wrap;
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
 }
 
 #home_listing_section {
@@ -771,21 +774,10 @@ input:focus,textarea:focus {
 }
 
 #own_listing_section {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   overflow-y: scroll;
-}
-
-/* #own_listing_list {
-  padding: 1em;
-  margin: 1em;
-  border: var(--trim-color) solid 1px;
-  background-color: var(--primary-color);
-  scrollbar-width: none;
-}
- */
-
-.listing_list::-webkit-scrollbar {
-  display: none;
 }
 
 #own_listing_info_section {
@@ -797,8 +789,6 @@ input:focus,textarea:focus {
   align-items: center;
   flex-flow: column;
 }
-
-
 
 
 /** Listing item section **/
