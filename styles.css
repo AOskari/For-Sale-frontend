@@ -179,6 +179,8 @@ body {
   border-left: var(--trim-color) solid 1px;
   border-right: var(--trim-color) solid 1px;
   height: 70px;
+  padding-left: 15px;
+  padding-right: 15px;
   position: fixed;
   justify-content: space-around;
   bottom: 0;
@@ -200,6 +202,7 @@ body {
   height: 80%;
   width: 70px;
   border: none;
+  padding: 5px;
   background-color: transparent;
 }
 
@@ -1403,7 +1406,7 @@ input:focus,textarea:focus {
     left: 0;
     width: 250px;
     position: relative;
-    padding-left: 10px;
+
     height: 100%;
     justify-content: start;
     align-items: center;
@@ -1423,11 +1426,9 @@ input:focus,textarea:focus {
     display: flex;
     flex-flow: row;
     justify-content: start;
-    padding: 10px;
     padding-left: 20px;
-    margin-right: 10px;
     align-items: center;
-    width: 95%;
+    width: 85%;
     margin-top: 10px;
     transition: 0.3s;
     border-radius: 30px;
