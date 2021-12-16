@@ -681,6 +681,9 @@ input:focus,textarea:focus {
   min-height: 70px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .listing_list {
@@ -1182,6 +1185,7 @@ input:focus,textarea:focus {
   justify-content: center;
   align-items: center;
   height: 100%;
+  max-height: 200px;
 }
 #modify_listing_backButton{
   max-width: 50px;
@@ -1190,16 +1194,21 @@ input:focus,textarea:focus {
 #modify_backButton{
   background-color: transparent;
   border-style: none;
+  margin-left: 15px;
 }
 #modify_deleteButton{
   background-color: transparent;
   border-style: none;
+  margin-right: 15px;
+
 }
 
 #listing_back_button_container {
   padding-left: 20px;
   padding-top: 20px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 #delete_listing_button {
@@ -1213,11 +1222,8 @@ input:focus,textarea:focus {
 }
 
 #listing_img {
-  height: 70%;
-  width: 50%;
-  margin: 20px;
-  margin-right: 40px;
-  padding-left: 30px;
+  height: 90%;
+  width: 90%;
   object-fit: contain;
 }
 
@@ -1338,12 +1344,42 @@ input:focus,textarea:focus {
   min-width: 100px;
 }
 
+@media (min-width: 300px){
+  #listing_img_container{
+    max-height: 110px;
+  }
+  .listing_section_filler{
+    height: 35px;
+  }
+  #modify_listing_backButton{
+    height: 30px;
+    width: 30px;
+  }
+  #delete_listing_listingModify{
+    height: 30px;
+    width: 30px;
+  }
+}
+
 @media (min-width: 400px) {
 
   .listing_item {
     width: 45%;
   }
-  
+  #listing_img_container{
+    max-height: 150px;
+  }
+
+  #modify_listing_backButton{
+    height: 40px;
+    width: 40px;
+  }
+  #delete_listing_listingModify{
+    height: 40px;
+    width: 40px;
+  }
+
+
 }
 
 
@@ -1357,6 +1393,20 @@ input:focus,textarea:focus {
   }
   .unfocused { background-color: transparent !important; }
 
+
+  #listing_img_container{
+    margin-top: 50px;
+    max-height: 300px;
+  }
+
+  #modify_listing_backButton{
+    height: 60px;
+    width: 60px;
+  }
+  #delete_listing_listingModify{
+    height: 60px;
+    width: 60px;
+  }
 
 
   #listing_back_button {

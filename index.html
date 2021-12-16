@@ -372,14 +372,14 @@
 
 			<!-- Listing item modification view -->
 			<div id="listing_item_modification" class="none">
-				<div class="listing_section_filler"></div>	
-				<div id="listing_back_button_container">
-				
+				<div class="listing_section_filler">
+					<button id="modify_backButton" onclick="displayOwnAdsView()"><img src="images/arrow-icon.png" id="modify_listing_backButton"></button>
+					<button id="modify_deleteButton" onclick="deleteListing()"><img src="images/delete-logo.png" id="delete_listing_listingModify"></button>
 				</div>
 				<div id="listing_img_container">
-					<button id="modify_backButton" onclick="displayOwnAdsView()"><img src="images/arrow-icon.png" id="modify_listing_backButton"></button>
+
 					<img src="" id="listing_img">
-					<button id="modify_deleteButton" onclick="deleteListing()"><img src="images/delete-logo.png" id="delete_listing_listingModify"></button>
+
 				</div>
 				<form id="change_listing_info_form">
 					<input type="file" name="filename" class="custom_file_input">
