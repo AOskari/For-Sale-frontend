@@ -1572,6 +1572,9 @@ input:focus,textarea:focus {
 
 }
 
+button:disabled {
+  opacity: 0.6;
+}
 
 
 

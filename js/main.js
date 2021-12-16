@@ -234,8 +234,8 @@ const setProfileInfo = async () => {
     userImg.src = "./images/default_profile_img.png";
     userThumbnail.src = "./images/default_profile_img.png";
   } else {
-    userImg.src = url + "/uploads/" + user.profile_pic;
-    userThumbnail.src = url + "/uploads/" + user.profile_pic;
+    userImg.src = url + "/thumbnails/" + user.profile_pic;
+    userThumbnail.src = url + "/thumbnails/" + user.profile_pic;
   }
 }
 
@@ -281,7 +281,7 @@ const createListingCards = (targetElement, min, max) => {
     // Placing a placeholder image if image is not found.
     img.onerror = () => img.src = "./images/placeholder-listing-img.png";
 
-    img.src = url + "/uploads/" + listing[i].filename;
+    img.src = url + "/thumbnails/" + listing[i].filename;
     
     img.alt = listing[i].title;
     img.classList.add("listing_item_img");
@@ -367,7 +367,7 @@ const createListingCards = (targetElement, min, max) => {
         console.log("Listing image not found, placing placeholder.");
       }
 
-      img.src = url + "/uploads/" + listing[i].filename;
+      img.src = url + "/thumbnails/" + listing[i].filename;
       img.alt = listing[i].title;
       price.innerHTML = listing[i].price + " €";
       desc.innerHTML = listing[i].description;
@@ -445,7 +445,7 @@ document.getElementById("listing_modify_button").addEventListener("click", evt =
 
     img.onerror = () => img.src = "./images/placeholder-listing-img.png";
 
-    img.src = url + "/uploads/" + modifyListing.filename;
+    img.src = url + "/thumbnails/" + modifyListing.filename;
 
 
     desc.value = modifyListing.description;
@@ -612,7 +612,7 @@ const displayOtherUserInfo = () => {
   username.innerHTML = `${currentListingOwner.first_name} ${currentListingOwner.last_name}`;
 
   img.onerror = () => img.src = "./images/default_profile_img.png";
-  img.src = url + "/uploads/" + currentListingOwner.profile_pic;
+  img.src = url + "/thumbnails/" + currentListingOwner.profile_pic;
 
   displayElementById("other_user_profile");
 

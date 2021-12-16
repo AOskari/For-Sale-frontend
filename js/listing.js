@@ -102,6 +102,11 @@ const newAdForm = document.getElementById("new_ad_form");
 newAdForm.addEventListener("submit", async (evt) => {
   evt.preventDefault();
 
+  const btn = document.getElementById("ad_form_button");
+
+  btn.innerHTML = "Please wait";
+  btn.disabled = true;
+
   const data = new FormData(newAdForm);
   const desc = document.getElementById("ad_form_description");
 
@@ -119,8 +124,11 @@ newAdForm.addEventListener("submit", async (evt) => {
   };
 
   const response = await fetch(url + "/authListing/", fetchOptions);
-
   const json = await response.json();
+
+  btn.innerHTML = "Post ad";
+  btn.disabled = false;
+
   if (json.error) {
     alert(json.message);
     return;
