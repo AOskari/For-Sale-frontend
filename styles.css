@@ -640,9 +640,6 @@ input:focus,textarea:focus {
   max-height: 115px;
   display: flex;
   background-color: white;
-  box-shadow: 
-        inset 0px 11px 8px -10px #B6B6B4,
-        inset 0px -11px 8px -10px #B6B6B4; 
 }
 
 .listing_item_img {
@@ -653,7 +650,6 @@ input:focus,textarea:focus {
 
 .listing_item h2 {
   font-weight: 600;
-
 }
 
 .listing_item_separator {
