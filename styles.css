@@ -541,6 +541,10 @@ input:focus,textarea:focus {
   align-items: center;
 }
 
+#top_sellers_title {
+  font-weight: 800;
+}
+
 .listing_pages {
   display: flex;
   flex-flow: row;
@@ -663,7 +667,7 @@ input:focus,textarea:focus {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  height: 3em;
+  height: 5em;
   width: 100%;
   background-color: var(--primary-color);
   border: var(--trim-color) solid 1px;
@@ -671,7 +675,7 @@ input:focus,textarea:focus {
 
 
 .listing_section {
-  overflow: none;
+  overflow: hidden;
   height: 80%;
   width: 100%;
   max-width: 1700px;
@@ -727,6 +731,10 @@ input:focus,textarea:focus {
   overflow-y: scroll;
 }
 
+#search_title {
+  font-weight: 800;
+}
+
 .no_results {
   width: 100%;
   height: 100%;
@@ -756,6 +764,10 @@ input:focus,textarea:focus {
   height: 7em;
 }
 
+#own_listing_title {
+  font-weight: 800;
+}
+
 #own_listing_list {
   padding: 1em;
   margin: 1em;
@@ -774,7 +786,7 @@ input:focus,textarea:focus {
 }
 
 #own_listing_info_section {
-  overflow: none;
+  overflow: hidden;
   background-color: var(--primary-color);
   height: 80%;
   width: 100%;
@@ -1095,7 +1107,7 @@ input:focus,textarea:focus {
   width: 100%;
   overflow-wrap: break-word;
   margin: 5px;
-  overflow: none;
+  overflow: hidden;
   max-width: 100%;
 }
 
@@ -1357,6 +1369,10 @@ input:focus,textarea:focus {
   }
   .unfocused { background-color: transparent !important; }
 
+  .section_title {
+    height: 7em;
+  }
+  
 
 
   #listing_back_button {
