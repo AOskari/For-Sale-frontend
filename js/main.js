@@ -442,7 +442,11 @@ document.getElementById("listing_modify_button").addEventListener("click", evt =
     const title = document.getElementById("listing_modify_title");
     const price = document.getElementById("listing_modify_price");
 
+    img.onerror = () => img.src = "./images/placeholder-listing-img.png";
+
     img.src = url + "/uploads/" + modifyListing.filename;
+
+
     desc.value = modifyListing.description;
     title.value = modifyListing.title;
     price.value = modifyListing.price;

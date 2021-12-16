@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="styles.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <title>For-Sale</title>
 </head>
 <body>
@@ -198,8 +198,9 @@
 
 			<!-- Home view -->
 			<div id="home_section" class="display">
-				<h2 id="top_sellers_title" class="section_title">Newest listings
-
+				<div class="section_title">
+					<h2 id="top_sellers_title">Newest listings</h2>
+					
 					<div id="home_listing_pages" class="listing_pages">
 						<button class="listing_pages_control_btn" id="home_page_previous_btn">Previous</button>
 						<div id="home_page_btn_section">
@@ -207,8 +208,11 @@
 						</div>
 						<button class="listing_pages_control_btn" id="home_page_next_btn">Next</button>
 					</div>
+				</div>
+			
 
-				</h2>
+
+				
 				
 				<div id="home_listing_section" class="listing_section">
 					<ul id="home_listing_list" class="listing_list">
@@ -239,7 +243,7 @@
 			<div id="own_ads" class="none">
 				<div id="own_listing_info_section" class="display">
 					<div id="own_listing_info" class="section_title">
-						<h2>My listings</h2>
+						<h2 id="own_listing_title">My listings</h2>
 						<h3 id="amount_of_ads">Listings: 0</h3>
 						<button id="new_ad_button" onclick="displayNewAdForm()" class="custom_button">
 							New listing
@@ -310,7 +314,7 @@
 						<span class="close">&times;</span>
 
 						<!-- Modal Content (The Image) -->
-						<img class="modal-content" id="img01">
+						<img src="images/placeholder-listing-img.png" class="modal-content" id="img01" alt="Listing image">
 
 						<!-- Modal Caption (Image Text) -->
 						<div id="caption"></div>
@@ -331,7 +335,7 @@
 					<div id="listing_comment_section">
 
 						<form id="comment_form" class="none">
-							<textarea id="comment_input" type="text" placeholder="Enter a comment.." required></textarea>
+							<textarea id="comment_input" placeholder="Enter a comment.." required></textarea>
 							<button id="add_comment_button" class="custom_button" type="submit">Submit</button>
 						</form>
 						<h2 id="comments_title">Comments:</h2>
@@ -354,14 +358,14 @@
 				<div id="other_profile_container">
 
 					<div id="other_user_img_container"> 
-						<img src="" id="other_user_img" alt="Profile picture">
+						<img src="images/default_profile_img.png" id="other_user_img" alt="Profile picture">
 					</div>
 
 					
 					<div id="other_profile_info">
 						<h3 id="other_username">Fname Lname</h3>
 						<h3 id="other_joined_date">Member since 12 / 2021</h3>
-						<h3 id="other_email" class="user_profile_info"></h3>
+						<h3 id="other_email" class="user_profile_info">User email</h3>
 						<h3 id="review_rating">Rating: 4.0</h3>
 					</div>
 					<form id="review_form">
@@ -382,15 +386,13 @@
 					<button id="modify_deleteButton" onclick="deleteListing()"><img src="images/delete-logo.png" id="delete_listing_listingModify"></button>
 				</div>
 				<div id="listing_img_container">
-
-					<img src="" id="listing_img">
-
+					<img src="images/placeholder-listing-img.png" id="listing_img" alt="Listing image">
 				</div>
 				<form id="change_listing_info_form">
 					<input type="file" name="filename" class="custom_file_input">
-					<h5>Description</h5>
-					<textarea name="description" type="text" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
-					<h5>Location</h5>
+					<h3>Description</h3>
+					<textarea name="description" id="listing_modify_description" class="change_profile_info_form_input"></textarea>
+					<h3>Location</h3>
 					<input name="location" type="text" id="listing_modify_location" class="change_profile_info_form_input">
 					<h5>Title</h5>
 					<input name="title" type="text" id="listing_modify_title" class="change_profile_info_form_input">
