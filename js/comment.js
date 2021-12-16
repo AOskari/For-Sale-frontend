@@ -16,14 +16,10 @@ const addComment = async (listingId, form) => {
     body: JSON.stringify(data),
   };
 
-  if (document.getElementById("comment_input").value == "") {
-    alert("Enter a comment.");
-    return;
-  }
+  if (document.getElementById("comment_input").value == "") return;
 
   const response = await fetch(url + "/comment/listing/" + listingId, fetchOptions);
   if (response.ok) {
-    alert("Comment succesfully added.");
     document.getElementById("comment_input").value = "";
   }
 };
@@ -151,12 +147,9 @@ const removeComment = async (id) => {
     if (confirm("Delete comment?")) {
       const response = await fetch(url + "/comment/" + id, fetchOptions);
   
-      if (response.ok) {
-        alert("Comment removal succesful.");
-        return;
-      }
+      
+      if (!response.ok) alert("Comment removal failed.");
     
-      alert("Comment removal failed.");
     }
   
   } catch (e) {
