@@ -5,7 +5,7 @@ For-Sale is a mobile first designed online marketplace application, which implem
 # Sending data
 
 Data is sent to the backend using information the user has given to the form element:
-```
+```html
 <form id="login_form" class="display">
     <h3 style="font-weight: 700;">Login</h3>
     <div class="input_container">
@@ -26,7 +26,7 @@ Data is sent to the backend using information the user has given to the form ele
 ```
 
 This is handled by a asyncronous submit event:
-```
+```js
 const loginForm = document.getElementById("login_form");
 
 // A submit eventListener which attempts to log the user in with the given credentials.
@@ -66,7 +66,7 @@ loginForm.addEventListener("submit", async (evt) => {
 # Single page
 The single page architecture requires that certain elements are hidden and displayed according to the buttons the user is navigating through. Two simple functions are used for displaying and hiding elements.
 
-```
+```js
 const hideElementById = (element) => {
   const e = document.getElementById(element);
   e.classList.add("none");
